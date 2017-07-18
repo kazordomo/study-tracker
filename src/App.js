@@ -7,6 +7,7 @@ import './App.css';
 
 //Use for state
 class App extends Component {
+
     render() {
         return (
             <div>
@@ -16,12 +17,6 @@ class App extends Component {
         );
     }
 }
-
-// const App = () => (
-//     <div>
-//         <Main />
-//     </div>
-// );
 
 //Links component
 const Header = () => (
@@ -42,7 +37,7 @@ const Main = () => (
         <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/register' component={Register} />
-            <Route path='/overview' component={Overview} />
+            <Route path='/overview' component={Overview}  />
         </Switch>
     </main>
 );
