@@ -1,24 +1,74 @@
-.App {
-  text-align: center;
+/* RESETS
+------------------------------------------------------------ */
+body {
+    color: #091b38;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+ul {
+    list-style: none;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+a {
+    text-decoration: none;
 }
 
-.App-intro {
-  font-size: large;
+input[type="text"], input[type="email"], input[type="password"] {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    background-color: #EDF7F7;
+    box-sizing: border-box;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* GLOBALS
+------------------------------------------------------------ */
+.button {
+    width: 100px;
+    float: right;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #009DFF;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* HOME
+------------------------------------------------------------ */
+.Home .Home-wrapper {
+    margin-top: 200px;
+    text-align: center;
+}
+
+.Home .Home-title {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.Home .Home-sub-title {
+    font-size: 40px;
+    opacity: 0.8;
+}
+
+/* LOGIN/REGISTER
+------------------------------------------------------------ */
+.Register .Register-form-wrapper {
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.Register .Register-form-wrapper form {
+    margin: 50px 0px;
+}
+
+.Register .Register-form-wrapper input[type="text"],
+.Register .Register-form-wrapper input[type="email"],
+.Register .Register-form-wrapper input[type="password"] {
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px 30px;
+    color: #091b38;
 }
