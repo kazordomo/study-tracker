@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StudyItem from './StudyItem';
+import SubjectItem from './SubjectItem';
 
 class Overview extends Component {
 
@@ -8,40 +8,54 @@ class Overview extends Component {
         //studySubjects will be fetched from server later.
         //should probably do this from App component.
         this.state = {
-            studySubjects: [
+            subjects: [
                 {
                     id: 1,
                     title: 'SQL',
                     hoursDone: 10,
-                    hoursToDo: 15
+                    hoursTodo: 15,
+                    inFocus: true
                 },
                 {
                     id: 2,
                     title: 'mongoDB',
                     hoursDone: 10,
-                    hoursToDo: 25
+                    hoursTodo: 25,
+                    inFocus: true
                 },
                 {
                     id: 3,
                     title: 'Random stuff',
                     hoursDone: 5,
-                    hoursToDo: 10
+                    hoursTodo: 10,
+                    inFocus: true
+                },
+                {
+                    id: 4,
+                    title: 'More stuff',
+                    hoursDone: 7,
+                    hoursTodo: 20,
+                    inFocus: false
                 }
             ]
         }
     }
 
     render() {
-        let studySubjects = this.state.studySubjects.map(studySubject => {
-            return (
-                <StudyItem key={studySubject.title} studySubject={studySubject} />
-            )
+        let subjects = this.state.subjects.map(subject => {
+            if(subject.inFocus) {
+                return (
+                    <SubjectItem key={subject.title} subject={subject} />
+                )
+            } else {
+                return false;
+            }
         });
 
         return (
             <div className="Overview">
                 <h1>Overview</h1>
-                {studySubjects}
+                {subjects}
             </div>
         );
     }
