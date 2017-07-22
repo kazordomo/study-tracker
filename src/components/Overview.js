@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SubjectItem from './SubjectItem';
+import { Link } from 'react-router-dom';
 
 class Overview extends Component {
 
@@ -55,6 +56,7 @@ class Overview extends Component {
         return (
             <div className="Overview">
                 <h1>Overview</h1>
+                <h3><Link to='/addsubject'>Add Subject</Link></h3>
                 {subjects}
             </div>
         );

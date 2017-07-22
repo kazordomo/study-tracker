@@ -13,8 +13,7 @@ class AddSubject extends Component {
         }
     }
 
-
-    handleSubmit() {
+    handleSubmit(e) {
         if(this.refs.title.value === '') {
             alert('nope.');
         } else {
@@ -22,8 +21,14 @@ class AddSubject extends Component {
                 title: this.refs.title.value,
                 hoursTodo: this.refs.hoursTodo.value,
                 inFocus: this.refs.inFocus.value
-            }});
+            }}, () => {
+                console.log(this.state);
+                //this will pass up the values. this.props, we're passing' this mf'r up.
+                //we will need to add the function in App and send the values to Overview.
+                // this.props.addProject(this.state.newProject);
+            });
         }
+        e.preventDefault();
     }
 
     render() {
