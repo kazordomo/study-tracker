@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-//AddEditSubject.js
-//we should try to use the same component for both add and edit.
-//in add there should be no "add hours done", or whatever it will be called.
-
 class AddSubject extends Component {
 
     constructor() {
@@ -19,13 +15,13 @@ class AddSubject extends Component {
         } else {
             this.setState({newProject: {
                 title: this.refs.title.value,
+                hoursDone: 0,
                 hoursTodo: this.refs.hoursTodo.value,
                 inFocus: this.refs.inFocus.value
             }}, () => {
                 console.log(this.state);
-                //this will pass up the values. this.props, we're passing' this mf'r up.
-                //we will need to add the function in App and send the values to Overview.
-                // this.props.addProject(this.state.newProject);
+                //this.props, we're passing' this mf'r up.
+                this.props.addSubject(this.state.newProject);
             });
         }
         e.preventDefault();
@@ -34,6 +30,7 @@ class AddSubject extends Component {
     render() {
         return (
             <div className="AddSubject">
+                <h1>ADD SUBJECT</h1>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <input type="text" ref="title" placeholder="Title..." />
                     <input type="number" ref="hoursTodo" placeholder="Hours to do" />

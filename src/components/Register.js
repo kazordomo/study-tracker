@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Register extends Component {
     render() {
@@ -6,18 +7,20 @@ class Register extends Component {
             <div className="Register">
                 <div className="Register-form-wrapper">
                     <form>
-                        <h1>Already got an account?</h1>
+                        <h2>Login</h2>
                         <input type="text" placeholder="Username..." />
                         <input type="password" placeholder="Password..." />
-                        <input type="submit" className="button" value="Login" />
+                        <Link to='/overview'><button className="button">Login</button></Link>
+                        {/*<input type="submit" className="button" value="Login" />*/}
                     </form>
                     <form>
-                        <h1>No? Register below!</h1>
+                        <h2>Register</h2>
                         <input type="text" placeholder="Username..." />
                         <input type="email" placeholder="Email..." />
                         <input type="password" placeholder="Password..." />
                         <input type="password" placeholder="Password..." />
-                        <input type="submit" className="button" value="Register" />
+                        <Link to='/overview'><button className="button">Register</button></Link>
+                        {/*<input type="submit" className="button" value="Register" />*/}
                     </form>
                 </div>
             </div>
