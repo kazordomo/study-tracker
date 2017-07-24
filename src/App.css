@@ -17,13 +17,12 @@ h1 {
     text-align: center;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
     border-radius: 5px;
     outline: none;
     border: none;
-    /*border: 1px solid #091b38;*/
     font-size: 16px;
-    background-color: #E7FFDB;
+    background-color: #F1F2ED;
     box-sizing: border-box;
 }
 
@@ -48,6 +47,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 .button {
     padding: 10px 15px;
     background-color: #35C1FC;
+    color: #FFFFFF;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -63,6 +63,14 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 header {
     width: 100%;
+    height: 75px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header span {
+    font-size: 40px;
+    font-weight: 700;
 }
 
 header nav {
@@ -114,7 +122,7 @@ header nav ul li {
 }
 
 .Register .Register-form-wrapper form {
-    margin: 50px 0px;
+    margin-bottom: 50px;
 }
 
 .Register .Register-form-wrapper input[type="text"],
@@ -122,7 +130,7 @@ header nav ul li {
 .Register .Register-form-wrapper input[type="password"] {
     width: 100%;
     margin-top: 10px;
-    padding: 15px 30px;
+    padding: 10px 20px;
     color: #091b38;
 }
 
@@ -140,19 +148,30 @@ header nav ul li {
     margin: 0 auto;
 }
 
+.Overview .Overview-add-subject {
+
+}
+
 /* SUBJECTITEM
 ------------------------------------------------------------ */
 .SubjectItem {
     width: 500px;
     margin: 20px auto;
     padding: 30px;
-    background-color: pink;
+    background-color: #42A7FF;
+    color: #FFFFFF;
     border-radius: 5px;
+    box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.25);
     /*box-sizing: border-box;*/
 }
 
-.SubjectItem .SubjectItem-edit {
+.SubjectItem .button {
     float: right;
+    padding: 2px 15px;
+    background-color: #FFC421;
+    color: #091b38;
+    font-weight: 300;
+    font-size: 16px;
 }
 
 .SubjectItem .sub-title {
@@ -180,7 +199,37 @@ header nav ul li {
     position: absolute;
     width: 100%;
     top: 4px;
+    color: #091b38;
     text-align: center;
     font-weight: 700;
     z-index: 999;
+}
+
+/* OVERVIEW
+------------------------------------------------------------ */
+
+.AddSubject .container {
+    width: 500px;
+}
+
+.AddSubject .form-group {
+    margin-bottom: 10px;
+}
+
+.AddSubject .form-group div {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.AddSubject input[type="text"] {
+    width: 80%;
+    padding: 5px 20px;
+}
+
+.AddSubject input[type="number"] {
+    width: 40%;
+    padding: 5px 20px;
+    border: none;
+    outline: none;
 }

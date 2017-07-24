@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 class AddSubject extends Component {
 
@@ -14,10 +15,11 @@ class AddSubject extends Component {
             alert('nope.');
         } else {
             this.setState({newProject: {
+                id: uuid.v4(),
                 title: this.refs.title.value,
                 hoursDone: 0,
                 hoursTodo: this.refs.hoursTodo.value,
-                inFocus: this.refs.inFocus.value
+                inFocus: this.refs.inFocus.checked
             }}, () => {
                 console.log(this.state);
                 //this.props, we're passing' this mf'r up.
@@ -30,14 +32,24 @@ class AddSubject extends Component {
     render() {
         return (
             <div className="AddSubject">
-                <h1>ADD SUBJECT</h1>
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input type="text" ref="title" placeholder="Title..." />
-                    <input type="number" ref="hoursTodo" placeholder="Hours to do" />
-                    <input type="checkbox" ref="inFocus" />
-                    {/*<textarea></textarea>*/}
-                    <input type="submit" value="Add" />
-                </form>
+                <div className="container">
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="form-group">
+                            <div>Title</div>
+                            <input type="text" ref="title" />
+                        </div>
+                        <div className="form-group">
+                            <div>Hours to do</div>
+                            <input type="number" ref="hoursTodo" placeholder="0" />
+                        </div>
+                        <div className="form-group">
+                            <div>In Focus?</div>
+                            <input type="checkbox" ref="inFocus" />
+                        </div>
+                        {/*<textarea></textarea>*/}
+                        <input type="submit" value="Add" />
+                    </form>
+                </div>
             </div>
         );
     }

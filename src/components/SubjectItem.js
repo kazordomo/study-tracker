@@ -12,7 +12,7 @@ class SubjectItem extends Component {
             <div className="SubjectItem">
                 <div className="row clearfix">
                     <div className="sub-title">{this.props.subject.title}</div>
-                    <div className="SubjectItem-edit"><button><Link to='/editsubject'>Edit</Link></button></div>
+                    <Link to={'/editsubject/'+this.props.subject.id}><button className="button">EDIT</button></Link>
                 </div>
                 <div className="SubjectItem-progress-bar">
                     <span className="SubjectItem-percent">{hoursDonePercent}%</span>

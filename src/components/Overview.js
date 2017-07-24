@@ -18,8 +18,7 @@ class Overview extends Component {
         return (
             <div className="Overview">
                 <div className="container">
-                    <h1>Overview</h1>
-                    <h3><Link to='/addsubject'>Add Subject</Link></h3>
+                    <Link to='/addsubject'><div className="Overview-add-subject"><i className="fa fa-plus" aria-hidden="true"></i></div></Link>
                     {subjects}
                 </div>
             </div>
