@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 class Overview extends Component {
 
+    handleSelect(e) {
+        console.log(e.target.value);
+    }
+
     render() {
         let subjects = this.props.subjects.map(subject => {
             if(subject.inFocus) {
@@ -18,8 +22,18 @@ class Overview extends Component {
         return (
             <div className="Overview">
                 <div className="container">
-                    <Link to='/addsubject'><div className="Overview-add-subject"><i className="fa fa-plus" aria-hidden="true"></i></div></Link>
-                    {subjects}
+                    <div className="title">Subjects</div>
+                    <div className="Overview-nav">
+                        <Link to='/addsubject'><span className="Overview-add-subject">New subject</span></Link>
+                        <select onChange={this.handleSelect}>
+                            <option value="inFocus">In focus</option>
+                            <option value="all">All</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                    <div className="Overview-subjects">
+                        {subjects}
+                    </div>
                 </div>
             </div>
         );

@@ -22,6 +22,7 @@ class App extends Component {
                     title: 'SQL',
                     hoursDone: 10,
                     hoursTodo: 15,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true
                 },
                 {
@@ -29,7 +30,56 @@ class App extends Component {
                     title: 'mongoDB',
                     hoursDone: 10,
                     hoursTodo: 25,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'React',
+                    hoursDone: 20,
+                    hoursTodo: 25,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
+                    inFocus: true
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Barbara OS',
+                    hoursDone: 10,
+                    hoursTodo: 20,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
+                    inFocus: false
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Windows OS',
+                    hoursDone: 10,
+                    hoursTodo: 20,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
+                    inFocus: true
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Mac OS',
+                    hoursDone: 10,
+                    hoursTodo: 20,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
+                    inFocus: true
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Linux OS',
+                    hoursDone: 10,
+                    hoursTodo: 20,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
+                    inFocus: true
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Hidden OS',
+                    hoursDone: 10,
+                    hoursTodo: 20,
+                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
+                    inFocus: false
                 }
             ]
         }

@@ -17,7 +17,7 @@ h1 {
     text-align: center;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea {
     border-radius: 5px;
     outline: none;
     border: none;
@@ -45,7 +45,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 }
 
 .button {
-    padding: 10px 15px;
+    padding: 10px 20px;
     background-color: #35C1FC;
     color: #FFFFFF;
     outline: none;
@@ -54,6 +54,12 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     font-size: 16px;
     cursor: pointer;
     font-weight: 700;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
 }
 
 .sub-title {
@@ -142,22 +148,35 @@ header nav ul li {
 
 /* OVERVIEW
 ------------------------------------------------------------ */
-.Overview .Overview-wrapper {
-    max-width: 800px;
-    width: 90%;
-    margin: 0 auto;
+.Overview .Overview-subjects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Overview .Overview-nav {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.Overview .Overview-nav select {
+    float: right;
+    border: none;
+    font-size: 18px;
 }
 
 .Overview .Overview-add-subject {
-
+    padding: 1px 10px 0px 0px;
+    border-bottom: 1px solid #091b38;
 }
 
 /* SUBJECTITEM
 ------------------------------------------------------------ */
 .SubjectItem {
-    width: 500px;
-    margin: 20px auto;
-    padding: 30px;
+    /*width: 500px;*/
+    width: 42%;
+    margin: 2% 0%;
+    padding: 3%;
     background-color: #42A7FF;
     color: #FFFFFF;
     border-radius: 5px;
@@ -165,13 +184,10 @@ header nav ul li {
     /*box-sizing: border-box;*/
 }
 
-.SubjectItem .button {
+.SubjectItem i {
     float: right;
-    padding: 2px 15px;
-    background-color: #FFC421;
-    color: #091b38;
-    font-weight: 300;
-    font-size: 16px;
+    color: #FFFFFF;
+    font-size: 25px;
 }
 
 .SubjectItem .sub-title {
@@ -190,7 +206,6 @@ header nav ul li {
 .SubjectItem .SubjectItem-hours-done {
     position: absolute;
     height: 25px;
-    background-color: #24DE10;
     border-radius: 15px 0px 0px 15px;
 }
 
@@ -208,18 +223,18 @@ header nav ul li {
 /* OVERVIEW
 ------------------------------------------------------------ */
 
-.AddSubject .container {
-    width: 500px;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.AddSubject .form-group {
-    margin-bottom: 10px;
-}
-
-.AddSubject .form-group div {
-    margin-bottom: 10px;
+.form-group div {
+    margin-bottom: 5px;
     font-size: 20px;
     font-weight: 700;
+}
+
+.AddSubject .container {
+    width: 500px;
 }
 
 .AddSubject input[type="text"] {
@@ -232,4 +247,37 @@ header nav ul li {
     padding: 5px 20px;
     border: none;
     outline: none;
+}
+
+.AddSubject textarea {
+    width: 100%;
+}
+
+.AddSubject .button {
+    float: right;
+}
+
+/*Remove this when we use the same component for add/edit*/
+.EditSubject .container {
+    width: 500px;
+}
+
+.EditSubject input[type="text"] {
+    width: 80%;
+    padding: 5px 20px;
+}
+
+.EditSubject input[type="number"] {
+    width: 40%;
+    padding: 5px 20px;
+    border: none;
+    outline: none;
+}
+
+.EditSubject textarea {
+    width: 100%;
+}
+
+.EditSubject .button {
+    float: right;
 }

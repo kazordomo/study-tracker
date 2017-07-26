@@ -19,6 +19,7 @@ class AddSubject extends Component {
                 title: this.refs.title.value,
                 hoursDone: 0,
                 hoursTodo: this.refs.hoursTodo.value,
+                description: this.refs.description.value,
                 inFocus: this.refs.inFocus.checked
             }}, () => {
                 console.log(this.state);
@@ -43,11 +44,14 @@ class AddSubject extends Component {
                             <input type="number" ref="hoursTodo" placeholder="0" />
                         </div>
                         <div className="form-group">
+                            <div>Description</div>
+                            <textarea ref="description" rows="15"></textarea>
+                        </div>
+                        <div className="form-group">
                             <div>In Focus?</div>
                             <input type="checkbox" ref="inFocus" />
                         </div>
-                        {/*<textarea></textarea>*/}
-                        <input type="submit" value="Add" />
+                        <input type="submit" className="button" value="Add" />
                     </form>
                 </div>
             </div>

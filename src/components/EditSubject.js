@@ -36,16 +36,33 @@ class EditSubject extends Component {
         })[0];
         return (
             <div className="EditSubject">
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input type="text" ref="title" placeholder="Title..." />
-                    <input type="number" ref="hoursTodo" placeholder="Hours to do" />
-                    <input type="number" ref="hoursDone" placeholder="Hours Done" />
-                    <input type="checkbox" ref="inFocus" />
-                    {/*<textarea></textarea>*/}
-                    <input type="submit" value="Add" />
-                </form>
-                {isSubjectItem.title}
-                {isSubjectItem.hoursTodo}
+                <div className="container">
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="form-group">
+                            <div>Title</div>
+                            <input type="text" ref="title" />
+                        </div>
+                        <div className="form-group">
+                            <div>Hours todo</div>
+                            <input type="number" ref="hoursTodo" />
+                        </div>
+                        <div className="form-group">
+                            <div>Hours done</div>
+                            <input type="number" ref="hoursDone" />
+                        </div>
+                        <div className="form-group">
+                            <div>Description</div>
+                            <textarea rows="15"></textarea>
+                        </div>
+                        <div className="form-group">
+                            <div>In Focus?</div>
+                            <input type="checkbox" ref="inFocus" />
+                        </div>
+                        <input type="submit" className="button" value="Add" />
+                    </form>
+                    {isSubjectItem.title}
+                    {isSubjectItem.hoursTodo}
+                </div>
             </div>
         );
     }
