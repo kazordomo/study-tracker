@@ -7,14 +7,14 @@ class Register extends Component {
             <div className="Register">
                 <div className="Register-form-wrapper">
                     <form>
-                        <h2>Login</h2>
+                        <div className="sub-title">Login</div>
                         <input type="text" placeholder="Username..." />
                         <input type="password" placeholder="Password..." />
                         <Link to='/overview'><button className="button">Login</button></Link>
                         {/*<input type="submit" className="button" value="Login" />*/}
                     </form>
                     <form>
-                        <h2>Register</h2>
+                        <div className="sub-title">Register</div>
                         <input type="text" placeholder="Username..." />
                         <input type="email" placeholder="Email..." />
                         <input type="password" placeholder="Password..." />

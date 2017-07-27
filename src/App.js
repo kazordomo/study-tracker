@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Overview from './components/Overview';
 import AddSubject from './components/AddSubject';
-import EditSubject from './components/EditSubject';
+import AddEditSubject from './components/AddEditSubject';
 import { Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 
@@ -52,7 +52,7 @@ class App extends Component {
                 {
                     id: uuid.v4(),
                     title: 'Windows OS',
-                    hoursDone: 10,
+                    hoursDone: 20,
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true
@@ -116,9 +116,9 @@ class App extends Component {
                         <Route exact path='/' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/overview' component={() => (<Overview subjects={this.state.subjects} />)} />
-                        <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
-                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
-                        {/*<Route path='/editsubject/:id' component={() => (<EditSubject subjects={this.state.subjects} />)} />*/}
+                        {/*<Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />*/}
+                        <Route path='/addsubject' component={() => (<AddEditSubject addSubject={this.handleAddSubject.bind(this)} />)} />
+                        <Route path='/editsubject/:id' render={(props) => <AddEditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
                     </Switch>
                 </main>
             </div>

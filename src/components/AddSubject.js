@@ -14,7 +14,7 @@ class AddSubject extends Component {
         if(this.refs.title.value === '') {
             alert('nope.');
         } else {
-            this.setState({newProject: {
+            this.setState({newSubject: {
                 id: uuid.v4(),
                 title: this.refs.title.value,
                 hoursDone: 0,
@@ -24,7 +24,7 @@ class AddSubject extends Component {
             }}, () => {
                 console.log(this.state);
                 //this.props, we're passing' this mf'r up.
-                this.props.addSubject(this.state.newProject);
+                this.props.addSubject(this.state.newSubject);
             });
         }
         e.preventDefault();

@@ -15,8 +15,13 @@ class SubjectItem extends Component {
         }
         let style = {
             width: hoursDonePercent + '%',
-            backgroundColor: color
+            backgroundColor: color,
+            borderRadius: '15px 0px 0px 15px'
         };
+        //fugly
+        if(hoursDonePercent === 100) {
+            style.borderRadius = '15px 15px 15px 15px';
+        }
         return (
             <div className="SubjectItem">
                 <div className="row clearfix">
