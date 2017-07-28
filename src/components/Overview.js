@@ -7,7 +7,7 @@ class Overview extends Component {
     constructor() {
         super();
         this.state = {
-            subjecs: []
+            subjects: []
         }
     }
 

@@ -4,7 +4,9 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Overview from './components/Overview';
 import AddSubject from './components/AddSubject';
-import AddEditSubject from './components/AddEditSubject';
+import EditSubject from './components/EditSubject';
+import SubjectStats from './components/SubjectStats';
+// import AddEditSubject from './components/AddEditSubject';
 import { Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 
@@ -23,7 +25,8 @@ class App extends Component {
                     hoursDone: 10,
                     hoursTodo: 15,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true
+                    inFocus: true,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
                     id: uuid.v4(),
@@ -31,7 +34,8 @@ class App extends Component {
                     hoursDone: 10,
                     hoursTodo: 25,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true
+                    inFocus: true,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
                     id: uuid.v4(),
@@ -39,7 +43,8 @@ class App extends Component {
                     hoursDone: 20,
                     hoursTodo: 25,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true
+                    inFocus: true,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
                     id: uuid.v4(),
@@ -47,15 +52,17 @@ class App extends Component {
                     hoursDone: 10,
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: false
+                    inFocus: false,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
-                    id: uuid.v4(),
+                    id: '1',
                     title: 'Windows OS',
                     hoursDone: 20,
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true
+                    inFocus: true,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
                     id: uuid.v4(),
@@ -63,7 +70,8 @@ class App extends Component {
                     hoursDone: 10,
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true
+                    inFocus: true,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
                     id: uuid.v4(),
@@ -71,7 +79,8 @@ class App extends Component {
                     hoursDone: 10,
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true
+                    inFocus: true,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 },
                 {
                     id: uuid.v4(),
@@ -79,7 +88,8 @@ class App extends Component {
                     hoursDone: 10,
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: false
+                    inFocus: false,
+                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
                 }
             ]
         }
@@ -99,7 +109,7 @@ class App extends Component {
         for(let i = 0; i < subjects.length; i++) {
             console.log(subjects[i].id, subject.id);
             if(subjects[i].id === subject.id) {
-                subjects[i] = {title: subject.title, hoursTodo: subject.hoursTodo, hoursDone: subject.hoursDone, inFocus: subject.inFocus};
+                subjects[i] = {title: subject.title, hoursTodo: subject.hoursTodo, hoursDone: subject.hoursDone, inFocus: subject.inFocus, description: subject.description};
                 return;
             }
         }
@@ -116,9 +126,10 @@ class App extends Component {
                         <Route exact path='/' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/overview' component={() => (<Overview subjects={this.state.subjects} />)} />
-                        {/*<Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />*/}
-                        <Route path='/addsubject' component={() => (<AddEditSubject addSubject={this.handleAddSubject.bind(this)} />)} />
-                        <Route path='/editsubject/:id' render={(props) => <AddEditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
+                        <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
+                        {/*<Route path='/addsubject' component={() => (<AddEditSubject addSubject={this.handleAddSubject.bind(this)} />)} />*/}
+                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
+                        <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} />} />
                     </Switch>
                 </main>
             </div>

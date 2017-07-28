@@ -23,16 +23,21 @@ class SubjectItem extends Component {
             style.borderRadius = '15px 15px 15px 15px';
         }
         return (
+            //div inside of link is the same as <a><div></div></a> and will return an error in console. fix pl0x.
             <div className="SubjectItem">
-                <div className="row clearfix">
-                    <div className="sub-title">{this.props.subject.title}</div>
-                    <Link to={'/editsubject/'+this.props.subject.id}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
-                </div>
-                <div className="SubjectItem-progress-bar">
-                    <span className="SubjectItem-percent">{hoursDonePercent}%</span>
-                    <div className="SubjectItem-hours-done" style={style}></div>
-                </div>
-                <div className="SubjectItem-description">{this.props.subject.description}</div>
+                <Link to={'/subjectStats/'+this.props.subject.id} >
+                    <div className="SubjectItem-wrapper">
+                        <div className="row clearfix">
+                            <div className="sub-title">{this.props.subject.title}</div>
+                            <Link to={'/editsubject/'+this.props.subject.id}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
+                        </div>
+                        <div className="SubjectItem-progress-bar">
+                            <span className="SubjectItem-percent">{hoursDonePercent}%</span>
+                            <div className="SubjectItem-hours-done" style={style}></div>
+                        </div>
+                        <div className="SubjectItem-description">{this.props.subject.description}</div>
+                    </div>
+                </Link>
             </div>
         );
     }

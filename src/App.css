@@ -194,10 +194,13 @@ header nav ul li {
 /* SUBJECTITEM
 ------------------------------------------------------------ */
 .SubjectItem {
+    width: 49%;
+}
+
+.SubjectItem-wrapper {
     /*width: 500px;*/
-    width: 42%;
-    margin: 2% 0%;
-    padding: 3%;
+    margin: 10px 0px;
+    padding: 20px;
     background-color: #1C3E66;
     color: #FFFFFF;
     border-radius: 5px;
@@ -259,12 +262,12 @@ header nav ul li {
 
 .AddSubject input[type="text"] {
     width: 80%;
-    padding: 5px 20px;
+    padding: 5px 10px;
 }
 
 .AddSubject input[type="number"] {
     width: 40%;
-    padding: 5px 20px;
+    padding: 5px 10px;
     border: none;
     outline: none;
 }
@@ -278,26 +281,61 @@ header nav ul li {
 }
 
 /*Remove this when we use the same component for add/edit*/
-.AddEditSubject .container {
+.EditSubject .container {
     width: 500px;
 }
 
-.AddEditSubject input[type="text"] {
+.EditSubject input[type="text"] {
     width: 80%;
-    padding: 5px 20px;
+    padding: 5px 10px;
 }
 
-.AddEditSubject input[type="number"] {
+.EditSubject input[type="number"] {
     width: 40%;
-    padding: 5px 20px;
+    padding: 5px 10px;
     border: none;
     outline: none;
 }
 
-.AddEditSubject textarea {
+.EditSubject textarea {
     width: 100%;
+    padding: 10px;
 }
 
-.AddEditSubject .button {
+.EditSubject .button {
     float: right;
+}
+
+/* OVERVIEW
+------------------------------------------------------------ */
+.SubjectStats .container {
+    /*background-color: pink;*/
+}
+
+/*change ALL of this*/
+.SubjectStats input[type="text"], .SubjectStats input[type="number"] {
+    margin-right: 10.4px;
+    padding: 10px 10px;
+}
+
+.SubjectStats input[type="number"] {
+    width: 20%;
+}
+
+.SubjectStats input[type="text"] {
+    width: 68.5%;
+}
+
+.SubjectStats .SubjectStats-messages {
+    margin-top: 25px;
+}
+
+.CommitMessage {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.CommitMessage i {
+    margin-left: 10px;
 }
