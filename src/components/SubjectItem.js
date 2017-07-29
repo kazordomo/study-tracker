@@ -18,26 +18,36 @@ class SubjectItem extends Component {
             backgroundColor: color,
             borderRadius: '15px 0px 0px 15px'
         };
+        let commitLinkStyle = {
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1
+        };
+        let editLinkStyle = {
+            position: 'relative',
+            zIndex: 999
+        };
         //fugly
         if(hoursDonePercent === 100) {
             style.borderRadius = '15px 15px 15px 15px';
         }
         return (
-            //div inside of link is the same as <a><div></div></a> and will return an error in console. fix pl0x.
             <div className="SubjectItem">
-                <Link to={'/subjectStats/'+this.props.subject.id} >
-                    <div className="SubjectItem-wrapper">
-                        <div className="row clearfix">
-                            <div className="sub-title">{this.props.subject.title}</div>
-                            <Link to={'/editsubject/'+this.props.subject.id}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></Link>
-                        </div>
-                        <div className="SubjectItem-progress-bar">
-                            <span className="SubjectItem-percent">{hoursDonePercent}%</span>
-                            <div className="SubjectItem-hours-done" style={style}></div>
-                        </div>
-                        <div className="SubjectItem-description">{this.props.subject.description}</div>
+                <div className="SubjectItem-wrapper">
+                    <Link to={'/subjectStats/'+this.props.subject.id} style={commitLinkStyle} ></Link>
+                    <div className="row clearfix">
+                        <div className="sub-title">{this.props.subject.title}</div>
+                        <Link to={'/editsubject/'+this.props.subject.id} ><i className="fa fa-pencil-square-o" style={editLinkStyle} aria-hidden="true"></i></Link>
                     </div>
-                </Link>
+                    <div className="SubjectItem-progress-bar">
+                        <span className="SubjectItem-percent">{hoursDonePercent}%</span>
+                        <div className="SubjectItem-hours-done" style={style}></div>
+                    </div>
+                    <div className="SubjectItem-description">{this.props.subject.description}</div>
+                </div>
             </div>
         );
     }

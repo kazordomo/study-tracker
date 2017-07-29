@@ -26,7 +26,10 @@ class App extends Component {
                     hoursTodo: 15,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: {
+                        messages: ['yeees duuude', 'hulabaluba', 'ooh yes'],
+                        time: 0
+                    }
                 },
                 {
                     id: uuid.v4(),
@@ -35,7 +38,10 @@ class App extends Component {
                     hoursTodo: 25,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: {
+                        messages: ['yeees duuude', 'hulabaluba', 'ooh yes'],
+                        time: 0
+                    }
                 },
                 {
                     id: uuid.v4(),
@@ -44,7 +50,10 @@ class App extends Component {
                     hoursTodo: 25,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: {
+                        messages: ['yeees duuude', 'hulabaluba', 'ooh yes'],
+                        time: 0
+                    }
                 },
                 {
                     id: uuid.v4(),
@@ -53,7 +62,20 @@ class App extends Component {
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: false,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4
+                        }
+                    ]
                 },
                 {
                     id: '1',
@@ -62,7 +84,20 @@ class App extends Component {
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4
+                        }
+                    ]
                 },
                 {
                     id: uuid.v4(),
@@ -71,7 +106,20 @@ class App extends Component {
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4
+                        }
+                    ]
                 },
                 {
                     id: uuid.v4(),
@@ -80,7 +128,20 @@ class App extends Component {
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4
+                        }
+                    ]
                 },
                 {
                     id: uuid.v4(),
@@ -89,18 +150,29 @@ class App extends Component {
                     hoursTodo: 20,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: false,
-                    commitMessages: ['yeees duuude', 'hulabaluba', 'ooh yes']
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4
+                        }
+                    ]
                 }
             ]
         }
     }
 
-    //we should be able to reuse the addSubject as updateSubject as well.
     handleAddSubject(subject) {
         let subjects = this.state.subjects;
         subjects.push(subject);
         this.setState({subjects: subjects});
-        console.log(this.state.subjects);
     }
 
     handleEditSubject(subject) {
@@ -116,6 +188,14 @@ class App extends Component {
         this.setState(subjects);
     }
 
+    //add commit message and time
+    handleAddCommit(subject) {
+        console.log("app js - ", subject);
+        // let subjects = this.state.subjects;
+        // subjects.push(subject);
+        // this.setState({subjects: subjects});
+    }
+
     //learn the right way to send props within the router.
     render() {
         return (
@@ -129,9 +209,10 @@ class App extends Component {
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         {/*<Route path='/addsubject' component={() => (<AddEditSubject addSubject={this.handleAddSubject.bind(this)} />)} />*/}
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
-                        <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} />} />
+                        <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} />} />
                     </Switch>
                 </main>
+                <Footer />
             </div>
         );
     }
@@ -149,6 +230,12 @@ const Header = () => (
             </ul>
         </nav>
     </header>
+);
+
+const Footer = () => (
+    <footer>
+        <p>Kazordomo productions &copy;</p>
+    </footer>
 );
 
 export default App;

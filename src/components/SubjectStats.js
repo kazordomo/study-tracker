@@ -4,13 +4,25 @@ import uuid from 'uuid';
 function CommitMessage(props) {
     return (
         <div className="CommitMessage">
-            {props.value}
-            <i className="fa fa-comment-o" aria-hidden="true"></i>
+            <i className="fa fa-comment" aria-hidden="true"></i>
+            <span className="CommitMessage-message">{props.value.message}</span>
+            <span className="CommitMessage-time">{props.value.time}h</span>
         </div>
     )
 }
 
 class SubjectStats extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            commitMessage: {
+                message: '',
+                time: 0
+            }
+        }
+    }
+
     renderCommitMessages(messages) {
         return (
             messages.map(message => {
@@ -19,6 +31,19 @@ class SubjectStats extends Component {
                 )
             })
         )
+    }
+
+    handleCommit(e) {
+        this.setState({
+            commitMessage: {
+                message: this.refs.message.value,
+                time: this.refs.time.value
+            }
+        }, () => {
+            console.log(this.state);
+            this.props.addCommit(this.state.commitMessage);
+        });
+        e.preventDefault();
     }
 
 
@@ -33,9 +58,9 @@ class SubjectStats extends Component {
             <div className="SubjectStats">
                 <div className="container">
                    <h1>{isSubjectItem.title}</h1>
-                    <form>
-                        <input type="text" placeholder="Message" />
-                        <input type="number" placeholder="Add hours" />
+                    <form onSubmit={this.handleCommit.bind(this)}>
+                        <input type="text" ref="message" placeholder="Message" />
+                        <input type="number" ref="time" placeholder="Add hours" />
                         <input type="submit" value="Add" className="button" />
                     </form>
                     <div className="SubjectStats-messages">

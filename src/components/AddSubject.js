@@ -49,7 +49,7 @@ class AddSubject extends Component {
                         </div>
                         <div className="form-group">
                             <div>In Focus?</div>
-                            <input type="checkbox" ref="inFocus" />
+                            <input type="checkbox" ref="inFocus" defaultChecked />
                         </div>
                         <input type="submit" className="button" value="Add" />
                     </form>

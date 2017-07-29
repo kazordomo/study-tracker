@@ -27,7 +27,7 @@ class EditSubject extends Component {
     // componentWillUpdate
     componentWillMount() {
         let paramId = this.props.match.params.id;
-        let isSubjectItem = this.props.data.filter(function(sub){
+        let isSubjectItem = this.props.data.filter((sub) => {
             return sub.id === paramId;
         })[0];
         console.log(isSubjectItem);

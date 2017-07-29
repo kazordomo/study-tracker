@@ -95,6 +95,11 @@ header nav ul li {
     margin-right: 15px;
 }
 
+footer p {
+    margin-top: 200px;
+    text-align: center;
+}
+
 /* HOME
 ------------------------------------------------------------ */
 .Home .Home-wrapper {
@@ -194,6 +199,7 @@ header nav ul li {
 /* SUBJECTITEM
 ------------------------------------------------------------ */
 .SubjectItem {
+    position: relative;
     width: 49%;
 }
 
@@ -336,6 +342,10 @@ header nav ul li {
     font-size: 25px;
 }
 
+.CommitMessage .CommitMessage-message {
+    margin-right: 20px;
+}
+
 .CommitMessage i {
-    margin-left: 10px;
+    margin-right: 20px;
 }
