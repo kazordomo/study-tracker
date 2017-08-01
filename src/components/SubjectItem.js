@@ -38,7 +38,7 @@ class SubjectItem extends Component {
             <div className="SubjectItem">
                 <div className="SubjectItem-wrapper">
                     <Link to={'/subjectStats/'+this.props.subject.id} style={commitLinkStyle} ></Link>
-                    <div className="row clearfix">
+                    <div className="clearfix">
                         <div className="sub-title">{this.props.subject.title}</div>
                         <Link to={'/editsubject/'+this.props.subject.id} ><i className="fa fa-pencil-square-o" style={editLinkStyle} aria-hidden="true"></i></Link>
                     </div>

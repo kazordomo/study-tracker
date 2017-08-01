@@ -47,7 +47,6 @@ class Overview extends Component {
     }
 
     render() {
-
         return (
             <div className="Overview">
                 <div className="container">

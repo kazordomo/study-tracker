@@ -20,16 +20,29 @@ class App extends Component {
         this.state = {
             subjects: [
                 {
-                    id: uuid.v4(),
+                    id: '2',
                     title: 'SQL',
                     hoursDone: 10,
                     hoursTodo: 15,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: {
-                        messages: ['yeees duuude', 'hulabaluba', 'ooh yes'],
-                        time: 0
-                    }
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        }
+                    ]
                 },
                 {
                     id: uuid.v4(),
@@ -38,10 +51,23 @@ class App extends Component {
                     hoursTodo: 25,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: {
-                        messages: ['yeees duuude', 'hulabaluba', 'ooh yes'],
-                        time: 0
-                    }
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        }
+                    ]
                 },
                 {
                     id: uuid.v4(),
@@ -50,10 +76,23 @@ class App extends Component {
                     hoursTodo: 25,
                     description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
                     inFocus: true,
-                    commitMessages: {
-                        messages: ['yeees duuude', 'hulabaluba', 'ooh yes'],
-                        time: 0
-                    }
+                    commitMessages: [
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        }
+                    ]
                 },
                 {
                     id: uuid.v4(),
@@ -65,15 +104,18 @@ class App extends Component {
                     commitMessages: [
                         {
                             message: 'yeees duuude',
-                            time: 2
+                            time: 2,
+                            date: new Date(17, 7, 28)
                         },
                         {
                             message: 'hulabaluba',
-                            time: 1
+                            time: 1,
+                            date: new Date(17, 7, 27)
                         },
                         {
                             message: 'ooh yes',
-                            time: 4
+                            time: 4,
+                            date: new Date(17, 7, 29)
                         }
                     ]
                 },
@@ -87,15 +129,93 @@ class App extends Component {
                     commitMessages: [
                         {
                             message: 'yeees duuude',
-                            time: 2
+                            time: 2,
+                            date: new Date(17, 7, 28)
                         },
                         {
                             message: 'hulabaluba',
-                            time: 1
+                            time: 1,
+                            date: new Date(17, 7, 27)
                         },
                         {
                             message: 'ooh yes',
-                            time: 4
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        },
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        },
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        },
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        },
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
+                        },
+                        {
+                            message: 'yeees duuude',
+                            time: 2,
+                            date: new Date(17, 7, 28)
+                        },
+                        {
+                            message: 'hulabaluba',
+                            time: 1,
+                            date: new Date(17, 7, 27)
+                        },
+                        {
+                            message: 'ooh yes',
+                            time: 4,
+                            date: new Date(17, 7, 29)
                         }
                     ]
                 },
@@ -109,15 +229,18 @@ class App extends Component {
                     commitMessages: [
                         {
                             message: 'yeees duuude',
-                            time: 2
+                            time: 2,
+                            date: new Date(17, 7, 28)
                         },
                         {
                             message: 'hulabaluba',
-                            time: 1
+                            time: 1,
+                            date: new Date(17, 7, 27)
                         },
                         {
                             message: 'ooh yes',
-                            time: 4
+                            time: 4,
+                            date: new Date(17, 7, 29)
                         }
                     ]
                 },
@@ -131,15 +254,18 @@ class App extends Component {
                     commitMessages: [
                         {
                             message: 'yeees duuude',
-                            time: 2
+                            time: 2,
+                            date: new Date(17, 7, 28)
                         },
                         {
                             message: 'hulabaluba',
-                            time: 1
+                            time: 1,
+                            date: new Date(17, 7, 27)
                         },
                         {
                             message: 'ooh yes',
-                            time: 4
+                            time: 4,
+                            date: new Date(17, 7, 29)
                         }
                     ]
                 },
@@ -153,15 +279,18 @@ class App extends Component {
                     commitMessages: [
                         {
                             message: 'yeees duuude',
-                            time: 2
+                            time: 2,
+                            date: new Date(17, 7, 28)
                         },
                         {
                             message: 'hulabaluba',
-                            time: 1
+                            time: 1,
+                            date: new Date(17, 7, 27)
                         },
                         {
                             message: 'ooh yes',
-                            time: 4
+                            time: 4,
+                            date: new Date(17, 7, 29)
                         }
                     ]
                 }
@@ -189,14 +318,12 @@ class App extends Component {
     }
 
     //add commit message and time
-    handleAddCommit(subject) {
-        console.log("app js - ", subject);
-        // let subjects = this.state.subjects;
-        // subjects.push(subject);
-        // this.setState({subjects: subjects});
+    handleAddCommit(commit, subject) {
+        let subjects = this.state.subjects;
+        subject.commitMessages.push(commit);
+        this.setState({subjects: subjects});
     }
 
-    //learn the right way to send props within the router.
     render() {
         return (
             <div>

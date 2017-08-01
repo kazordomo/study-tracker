@@ -24,7 +24,6 @@ class EditSubject extends Component {
         e.preventDefault();
     }
 
-    // componentWillUpdate
     componentWillMount() {
         let paramId = this.props.match.params.id;
         let isSubjectItem = this.props.data.filter((sub) => {
@@ -35,7 +34,6 @@ class EditSubject extends Component {
     }
 
     render() {
-        console.log(this.state.updateSubject);
         return (
             <div className="EditSubject">
                 <div className="container">
