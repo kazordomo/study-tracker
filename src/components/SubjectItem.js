@@ -5,6 +5,7 @@ class SubjectItem extends Component {
 
     render() {
         let hoursDonePercent = Math.round((this.props.subject.hoursDone / this.props.subject.hoursTodo) * 100);
+        hoursDonePercent = (hoursDonePercent > 100) ? 100 : hoursDonePercent;
         let color = '';
         if(hoursDonePercent <= 40) {
             color = '#FC2626';
@@ -13,6 +14,17 @@ class SubjectItem extends Component {
         } else {
             color = '#24DE10';
         }
+
+        //MJAAAAAAAAAAAAAAAAAAAAA TVEK
+        let subjectWidth = (this.props.subject.title.length < 30) ? 49 : 100;
+        let subjectStyle = {
+            width: subjectWidth + '%'
+        };
+
+        // let subjectStyle = {
+        //
+        // }
+
         let style = {
             width: hoursDonePercent + '%',
             backgroundColor: color,
@@ -35,7 +47,7 @@ class SubjectItem extends Component {
             style.borderRadius = '15px 15px 15px 15px';
         }
         return (
-            <div className="SubjectItem">
+            <div className="SubjectItem" style={subjectStyle}>
                 <div className="SubjectItem-wrapper">
                     <Link to={'/subjectStats/'+this.props.subject.id} style={commitLinkStyle} ></Link>
                     <div className="clearfix">

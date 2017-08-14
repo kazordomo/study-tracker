@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 
 class AddSubject extends Component {
 
@@ -15,7 +14,7 @@ class AddSubject extends Component {
             alert('nope.');
         } else {
             this.setState({newSubject: {
-                id: uuid.v4(),
+                id: '8',
                 title: this.refs.title.value,
                 hoursDone: 0,
                 hoursTodo: this.refs.hoursTodo.value,

@@ -29,7 +29,6 @@ class EditSubject extends Component {
         let isSubjectItem = this.props.data.filter((sub) => {
             return sub.id === paramId;
         })[0];
-        console.log(isSubjectItem);
         this.setState({updateSubject: isSubjectItem});
     }
 
