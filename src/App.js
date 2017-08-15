@@ -123,91 +123,109 @@ class App extends Component {
                     inFocus: true,
                     commitMessages: [
                         {
+                            id: '1',
                             message: 'yeees duuude',
                             time: 2,
                             timestamp: new Date(17, 7, 28)
                         },
                         {
+                            id: '2',
                             message: 'hulabaluba',
                             time: 1,
                             timestamp: new Date(17, 7, 27)
                         },
                         {
+                            id: '3',
                             message: 'ooh yes',
                             time: 4,
                             timestamp: new Date(17, 7, 29)
                         },
                         {
+                            id: '4',
                             message: 'yeees duuude',
                             time: 2,
                             timestamp: new Date(17, 7, 28)
                         },
                         {
+                            id: '5',
                             message: 'hulabaluba',
                             time: 1,
                             timestamp: new Date(17, 7, 27)
                         },
                         {
+                            id: '6',
                             message: 'ooh yes',
                             time: 4,
                             timestamp: new Date(17, 7, 29)
                         },
                         {
+                            id: '7',
                             message: 'yeees duuude',
                             time: 2,
                             timestamp: new Date(17, 7, 28)
                         },
                         {
+                            id: '8',
                             message: 'hulabaluba',
                             time: 1,
                             timestamp: new Date(17, 7, 27)
                         },
                         {
+                            id: '9',
                             message: 'ooh yes',
                             time: 4,
                             timestamp: new Date(17, 7, 29)
                         },
                         {
+                            id: '10',
                             message: 'yeees duuude',
                             time: 2,
                             timestamp: new Date(17, 7, 28)
                         },
                         {
+                            id: '11',
                             message: 'hulabaluba',
                             time: 1,
                             timestamp: new Date(17, 7, 27)
                         },
                         {
+                            id: '12',
                             message: 'ooh yes',
                             time: 4,
                             timestamp: new Date(17, 7, 29)
                         },
                         {
+                            id: '13',
                             message: 'yeees duuude',
                             time: 2,
                             timestamp: new Date(17, 7, 28)
                         },
                         {
+                            id: '14',
                             message: 'hulabaluba',
                             time: 1,
                             timestamp: new Date(17, 7, 27)
                         },
                         {
+                            id: '15',
                             message: 'ooh yes',
                             time: 4,
                             timestamp: new Date(17, 7, 29)
                         },
                         {
+                            id: '16',
                             message: 'yeees duuude',
                             time: 2,
                             timestamp: new Date(17, 7, 28)
                         },
                         {
+                            id: '17',
                             message: 'hulabaluba',
                             time: 1,
                             timestamp: new Date(17, 7, 27)
                         },
                         {
+                            id: '18',
                             message: 'ooh yes',
                             time: 4,
                             timestamp: new Date(17, 7, 29)
@@ -315,17 +333,22 @@ class App extends Component {
     //add commit message and time
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
+        //TODO: delete all of the hardcoded IDs
+        commit.id = '19';
         subject.hoursDone += parseInt(commit.time, 10);
         subject.commitMessages.push(commit);
         this.setState({subjects: subjects});
     }
 
     handleDeleteCommit(commit, subject) {
-        //we should make hoursDone so that it takes all the commit hours.
-        // let subjects = this.state.subjects;
-        // subject.hoursDone += parseInt(commit.time, 10);
-        // subject.commitMessages.push(commit);
-        // this.setState({subjects: subjects});
+        let subjects = this.state.subjects;
+        let commitMessage = subject.commitMessages.filter((com) => {
+            return com.id === commit.id;
+        })[0];
+        //because hoursDone is its on field we need to calculate the time from the deleted commit manually.
+        subject.hoursDone -= parseInt(commit.time, 10);
+        subject.commitMessages.splice(subject.commitMessages.indexOf(commitMessage), 1);
+        this.setState({subjects: subjects});
     }
 
     render() {
@@ -339,7 +362,7 @@ class App extends Component {
                         <Route path='/overview' component={() => (<Overview subjects={this.state.subjects} />)} />
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
-                        <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} />} />
+                        <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
                     </Switch>
                 </main>
                 <Footer />

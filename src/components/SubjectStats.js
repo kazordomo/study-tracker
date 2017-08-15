@@ -9,7 +9,7 @@ function CommitMessage(props) {
             <span className="CommitMessage-message">{props.value.message}</span>
             <span className="CommitMessage-dash">-</span>
             <span className="CommitMessage-time">{props.value.time}h, {props.value.formatedDate}</span>
-            <span className="CommitMessage-delete"><i className="fa fa-trash-o" aria-hidden="true"></i></span>
+            <button className="CommitMessage-delete button" onClick={() => props.deleteCommit(props.value)} ><i className="fa fa-trash-o" aria-hidden="true"></i></button>
         </div>
     )
 }
@@ -38,7 +38,7 @@ class SubjectStats extends Component {
                 //lol, no. just no.
                 message.formatedDate = new moment(message.timestamp).format('MMM Do YY');
                 return (
-                    <CommitMessage value={message} key={uuid.v4()} />
+                    <CommitMessage value={message} deleteCommit={this.handleDeleteCommit.bind(this)} key={uuid.v4()} />
                 )
             })
         )
@@ -65,9 +65,13 @@ class SubjectStats extends Component {
         e.preventDefault();
     }
 
+    handleDeleteCommit(message) {
+        this.props.deleteCommit(message, this.state.subject);
+    }
+
     componentWillMount() {
         let paramId = this.props.match.params.id;
-        let isSubjectItem = this.props.data.filter(function(sub){
+        let isSubjectItem = this.props.data.filter((sub) => {
             return sub.id === paramId;
         })[0];
         this.setState({

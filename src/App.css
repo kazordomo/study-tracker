@@ -75,11 +75,11 @@ header {
     height: 75px;
     padding: 20px;
     box-sizing: border-box;
+    font-family: 'Righteous', cursive;
 }
 
 header .Header-logo {
     color: #FF8838;
-    font-family: 'Sedgwick Ave Display', cursive;
 }
 
 header span {
@@ -103,6 +103,7 @@ header nav ul li {
 footer p {
     margin-top: 200px;
     text-align: center;
+    font-family: 'Righteous', cursive;
 }
 
 footer p .Footer-cr {
@@ -360,14 +361,20 @@ footer p .Footer-cr {
     margin-right: 20px;
 }
 
-.CommitMessage-delete i {
+.CommitMessage-delete {
     float: right;
-    margin-right: 0;
+    padding: 0;
     opacity: 0;
     transition: 0.2s ease-in-out;
+    background-color: transparent;
 }
 
-.CommitMessage:hover .CommitMessage-delete i {
+.CommitMessage-delete i {
+    margin-right: 0;
+    font-size: 25px;
+}
+
+.CommitMessage:hover .CommitMessage-delete {
     opacity: 1;
     cursor: pointer;
 }
