@@ -29,6 +29,7 @@ class SubjectStats extends Component {
     }
 
     renderCommitMessages(messages) {
+        //if there is no commits it gives us an error. FIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIX
         let quantity = this.state.counter * 5;
         let messagesArr = messages.sort((a, b) => {
             return b.timestamp - a.timestamp;

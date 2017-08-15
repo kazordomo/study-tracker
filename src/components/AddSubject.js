@@ -14,7 +14,7 @@ class AddSubject extends Component {
             alert('nope.');
         } else {
             this.setState({newSubject: {
-                id: '8',
+                id: '9',
                 title: this.refs.title.value,
                 hoursDone: 0,
                 hoursTodo: this.refs.hoursTodo.value,

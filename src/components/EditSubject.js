@@ -14,7 +14,6 @@ class EditSubject extends Component {
         this.setState({updateSubject: {
             id: this.props.match.params.id,
             title: this.refs.title.value,
-            hoursDone: this.refs.hoursDone.value,
             hoursTodo: this.refs.hoursTodo.value,
             inFocus: this.refs.inFocus.value,
             description: this.refs.description.value
@@ -44,10 +43,6 @@ class EditSubject extends Component {
                         <div className="form-group">
                             <div>Hours todo</div>
                             <input type="number" ref="hoursTodo" defaultValue={this.state.updateSubject.hoursTodo} />
-                        </div>
-                        <div className="form-group">
-                            <div>Hours done</div>
-                            <input type="number" ref="hoursDone" defaultValue={this.state.updateSubject.hoursDone} />
                         </div>
                         <div className="form-group">
                             <div>Description</div>

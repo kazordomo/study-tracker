@@ -211,7 +211,7 @@ footer p .Footer-cr {
 ------------------------------------------------------------ */
 .SubjectItem {
     position: relative;
-    /*width: 49%;*/
+    width: 49%;
 }
 
 .SubjectItem-wrapper {
@@ -346,6 +346,7 @@ footer p .Footer-cr {
     font-size: 25px;
     box-sizing: border-box;
     transition: 0.2s ease-in-out;
+    border-radius: 2px;
 }
 
 .CommitMessage .CommitMessage-dash {
@@ -380,6 +381,7 @@ footer p .Footer-cr {
 }
 
 .CommitMessage:hover {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(255, 136, 56, 0.8);
+    /*background-color: rgba(0,0,0,0.4);*/
 }
 

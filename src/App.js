@@ -313,6 +313,9 @@ class App extends Component {
 
     handleAddSubject(subject) {
         let subjects = this.state.subjects;
+        //TODO: commitMessages should prop be its own schema. adding it empty here does not make that much sense...
+        //to prevent error in SubjectStats
+        subject.commitMessages = [];
         subjects.push(subject);
         this.setState({subjects: subjects});
     }
