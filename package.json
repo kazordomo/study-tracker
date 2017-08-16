@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
     "moment": "^2.18.1",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.10.8",
+    "pug": "^2.0.0-rc.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10"
   },
   "scripts": {
