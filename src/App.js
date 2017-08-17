@@ -313,7 +313,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        return fetch('http://localhost:9000/api/subjects')
+        return fetch('/api/subjects')
             .then(response => response.json())
             .then(subjects => this.setState({subjects}));
     }
