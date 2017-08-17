@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
+const router = express.Router();
 
 app.set('port', (process.env.PORT || 9000));
 
@@ -18,26 +19,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
 // view engine setup
-app.set('view engine', 'pug');
-app.set('views', __dirname + '/views');
+// app.set('view engine', 'pug');
+// app.set('views', __dirname + '/views');
 
 const api = require('./routes/api');
 app.use('/api', api);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    let err = new Error('File Not Found');
-    err.status = 404;
-    next(err);
-});
-
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+// app.use(function(req, res, next) {
+//     let err = new Error('File Not Found');
+//     err.status = 404;
+//     next(err);
+// });
+//
+// app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.render('error', {
+//         message: err.message,
+//         error: {}
+//     });
+// });
 
 app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'));

@@ -13,6 +13,6 @@ let SubjectSchema = new mongoose.Schema({
     commitMessages: Array,
 });
 
-let SubjectSchema = mongoose.model('Subject', SubjectSchema);
+let Subject = mongoose.model('Subject', SubjectSchema);
 
 module.exports = Subject;

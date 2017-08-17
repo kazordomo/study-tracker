@@ -13,7 +13,8 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            subjects: [
+            subjects: [],
+            test: [
                 {
                     id: '2',
                     title: 'SQL',
@@ -311,7 +312,14 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        return fetch('http://localhost:9000/api/subjects')
+            .then(response => response.json())
+            .then(subjects => this.setState({subjects}));
+    }
+
     handleAddSubject(subject) {
+        console.log(this.state.test);
         let subjects = this.state.subjects;
         //TODO: commitMessages should prop be its own schema. adding it empty here does not make that much sense...
         //to prevent error in SubjectStats

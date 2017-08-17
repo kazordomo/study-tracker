@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/User');
+const Subject = require('../models/Subject');
 
-// GET /
-router.get('/:resource', (req, res, next) => {
+// /GET subjects
 
-    let resource = req.params.resource;
-
-    res.json({
-        confirmation: 'success',
-        resource: resource
+router.get('/subjects', (req, res, next) => {
+    Subject.find({}, (error, doc) => {
+        res.json({response: doc});
     });
-
 });
-
 
 
 module.exports = router;

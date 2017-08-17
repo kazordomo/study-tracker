@@ -29,10 +29,8 @@ UserSchema.statics.authenticate = (email, password, callback) => {
                 err.status = 401;
                 return callback(err);
             }
-            //plain text password, hashed password and a callback function
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result === false) {
-                    //the callbacks first argument is error. if no error, return error == null
                     return callback(null, user);
                 } else {
                     console.log(result);
