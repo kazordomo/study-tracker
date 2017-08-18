@@ -51,8 +51,8 @@ class App extends Component {
         let subjects = this.state.subjects;
         //please remove tha for loop.
         for(let i = 0; i < subjects.length; i++) {
-            console.log(subjects[i].id, subject.id);
-            if(subjects[i].id === subject.id) {
+            console.log(subjects[i]._id, subject._id);
+            if(subjects[i]._id === subject._id) {
                 subjects[i] = {title: subject.title, hoursTodo: subject.hoursTodo, hoursDone: subject.hoursDone, inFocus: subject.inFocus, description: subject.description};
                 return;
             }
@@ -64,7 +64,7 @@ class App extends Component {
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
         //TODO: delete all of the hardcoded IDs
-        commit.id = '19';
+        commit._id = '19';
         subject.hoursDone += parseInt(commit.time, 10);
         subject.commitMessages.push(commit);
         this.setState({subjects: subjects});

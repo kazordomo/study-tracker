@@ -73,7 +73,7 @@ class SubjectStats extends Component {
     componentWillMount() {
         let paramId = this.props.match.params.id;
         let isSubjectItem = this.props.data.filter((sub) => {
-            return sub.id === paramId;
+            return sub._id === paramId;
         })[0];
         this.setState({
             subject: isSubjectItem

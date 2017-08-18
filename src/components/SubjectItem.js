@@ -39,10 +39,10 @@ class SubjectItem extends Component {
         return (
             <div className="SubjectItem">
                 <div className="SubjectItem-wrapper">
-                    <Link to={'/subjectStats/'+this.props.subject.id} style={commitLinkStyle} ></Link>
+                    <Link to={'/subjectStats/'+this.props.subject._id} style={commitLinkStyle} ></Link>
                     <div className="clearfix">
                         <div className="sub-title">{this.props.subject.title}</div>
-                        <Link to={'/editsubject/'+this.props.subject.id} ><i className="fa fa-pencil-square-o" style={editLinkStyle} aria-hidden="true"></i></Link>
+                        <Link to={'/editsubject/'+this.props.subject._id} ><i className="fa fa-pencil-square-o" style={editLinkStyle} aria-hidden="true"></i></Link>
                     </div>
                     <div className="SubjectItem-progress-bar">
                         <span className="SubjectItem-percent">{hoursDonePercent}%</span>
