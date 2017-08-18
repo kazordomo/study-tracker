@@ -7,7 +7,7 @@ const Subject = require('../models/Subject');
 
 router.get('/subjects', (req, res, next) => {
     Subject.find({}, (error, doc) => {
-        res.json({response: doc});
+        res.json({doc});
     });
 });
 

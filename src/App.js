@@ -13,315 +13,34 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            subjects: [],
-            test: [
-                {
-                    id: '2',
-                    title: 'SQL',
-                    hoursDone: 10,
-                    hoursTodo: 15,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '3',
-                    title: 'mongoDB',
-                    hoursDone: 10,
-                    hoursTodo: 25,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '4',
-                    title: 'React',
-                    hoursDone: 20,
-                    hoursTodo: 25,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '5',
-                    title: 'Barbara OS',
-                    hoursDone: 10,
-                    hoursTodo: 20,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: false,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '1',
-                    title: 'Windows OS',
-                    hoursDone: 12,
-                    hoursTodo: 20,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true,
-                    commitMessages: [
-                        {
-                            id: '1',
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            id: '2',
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            id: '3',
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        },
-                        {
-                            id: '4',
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            id: '5',
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            id: '6',
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        },
-                        {
-                            id: '7',
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            id: '8',
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            id: '9',
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        },
-                        {
-                            id: '10',
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            id: '11',
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            id: '12',
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        },
-                        {
-                            id: '13',
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            id: '14',
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            id: '15',
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        },
-                        {
-                            id: '16',
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            id: '17',
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            id: '18',
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '6',
-                    title: 'Mac OS',
-                    hoursDone: 20,
-                    hoursTodo: 20,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '7',
-                    title: 'Linux OS',
-                    hoursDone: 10,
-                    hoursTodo: 20,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: true,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                },
-                {
-                    id: '8',
-                    title: 'Hidden OS',
-                    hoursDone: 10,
-                    hoursTodo: 20,
-                    description: 'Lorem ipsum dorem ipsum hipsum bitsum lara kara vara bara nille snahala',
-                    inFocus: false,
-                    commitMessages: [
-                        {
-                            message: 'yeees duuude',
-                            time: 2,
-                            timestamp: new Date(17, 7, 28)
-                        },
-                        {
-                            message: 'hulabaluba',
-                            time: 1,
-                            timestamp: new Date(17, 7, 27)
-                        },
-                        {
-                            message: 'ooh yes',
-                            time: 4,
-                            timestamp: new Date(17, 7, 29)
-                        }
-                    ]
-                }
-            ]
+            subjects: []
         }
     }
 
+    //TODO: we've changed the id in subjects.
+
+    getJSON(response) {
+        return response.json();
+    }
+
     componentDidMount() {
-        return fetch('/api/subjects')
-            .then(response => response.json())
-            .then(subjects => this.setState({subjects}));
+        //TODO: should catch error if the request is bad
+        return (
+            fetch('api/subjects')
+                .then(this.getJSON)
+                .then((data) => {
+                    this.setState({
+                        subjects: data.doc
+                    });
+                    console.log(data.doc);
+                })
+        )
     }
 
     handleAddSubject(subject) {
-        console.log(this.state.test);
+        console.log(this.state.subjects);
         let subjects = this.state.subjects;
-        //TODO: commitMessages should prop be its own schema. adding it empty here does not make that much sense...
+        //TODO: commitMessages should prob be its own schema. adding it empty here does not make that much sense...
         //to prevent error in SubjectStats
         subject.commitMessages = [];
         subjects.push(subject);

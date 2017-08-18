@@ -78,7 +78,7 @@ class SubjectStats extends Component {
         this.setState({
             subject: isSubjectItem
         }, () => {
-            console.log('callback');
+            console.log(this.state.subject);
         });
     }
 
