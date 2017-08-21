@@ -25,9 +25,7 @@ UserSchema.statics.authenticate = (email, password, callback) => {
             if (error) {
                 return callback(error);
             } else if (!user) {
-                var err = new Error('User not found.');
-                err.status = 401;
-                return callback(err);
+                console.log("WRONG");
             }
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result === false) {
@@ -39,7 +37,7 @@ UserSchema.statics.authenticate = (email, password, callback) => {
                 }
             });
         });
-}
+};
 
 UserSchema.pre('save', function(next) {
     let user = this;

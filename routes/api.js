@@ -11,5 +11,11 @@ router.get('/subjects', (req, res, next) => {
     });
 });
 
+router.post('/register', (req, res, next) => {
+    if(req.body.email && req.body.name && req.body.password && req.body.confirmPassword) {
+
+    }
+});
+
 
 module.exports = router;

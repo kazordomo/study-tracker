@@ -32,7 +32,6 @@ class App extends Component {
                     this.setState({
                         subjects: data.doc
                     });
-                    console.log(data.doc);
                 })
         )
     }

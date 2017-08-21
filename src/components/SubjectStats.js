@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import moment from 'moment';
 
+//TODO: Fix error when refreshing page inside subjectItems. Localstorage? Send in props differently?
+//TODO: The comp will return to initial state when page refresh, meaning we have no values to calculate isSubjectItem with.
+//with the local storage approach every subject will be the same.
+// if(!localStorage.getItem('subject')) {
+//     localStorage.setItem('subject', JSON.stringify(isSubjectItem));
+// }
+// subject: JSON.parse(localStorage.getItem('subject'))
+
 function CommitMessage(props) {
     return (
         <div className="CommitMessage">
@@ -29,6 +37,7 @@ class SubjectStats extends Component {
     }
 
     renderCommitMessages(messages) {
+        //the sorting of time do work, just that the db doesnt contain any timestamps yes.
         //if there is no commits it gives us an error. FIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIX
         let quantity = this.state.counter * 5;
         let messagesArr = messages.sort((a, b) => {

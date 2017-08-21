@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Register extends Component {
+
+    handleRegister() {
+
+    }
+
     render() {
         return (
             <div className="Register">
@@ -13,7 +18,7 @@ class Register extends Component {
                         <Link to='/overview'><button className="button">Login</button></Link>
                         {/*<input type="submit" className="button" value="Login" />*/}
                     </form>
-                    <form>
+                    <form onSubmit={this.handleRegister.bind(this)}>
                         <div className="sub-title">Register</div>
                         <input type="text" placeholder="Username..." />
                         <input type="email" placeholder="Email..." />
