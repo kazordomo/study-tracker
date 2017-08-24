@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
-const router = express.Router();
 
 app.set('port', (process.env.PORT || 9000));
 
@@ -13,7 +12,7 @@ db.on('error', console.error.bind(console, 'connection error'));
 
 //parse incoming requests
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // serve static files from /public folder
 app.use(express.static(__dirname + '/public'));

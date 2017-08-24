@@ -5,6 +5,7 @@ import Overview from './components/Overview';
 import AddSubject from './components/AddSubject';
 import EditSubject from './components/EditSubject';
 import SubjectStats from './components/SubjectStats';
+import Profile from './components/Profile';
 import { Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 
@@ -16,8 +17,6 @@ class App extends Component {
             subjects: []
         }
     }
-
-    //TODO: we've changed the id in subjects.
 
     getJSON(response) {
         return response.json();
@@ -37,11 +36,14 @@ class App extends Component {
     }
 
     handleAddSubject(subject) {
-        console.log(this.state.subjects);
         let subjects = this.state.subjects;
         //TODO: commitMessages should prob be its own schema. adding it empty here does not make that much sense...
-        //to prevent error in SubjectStats
-        subject.commitMessages = [];
+        //default commit, subject started. timestamp should be added and id should be set differently.
+        subject.commitMessages = [{
+            'id': '1',
+            'message': 'Subject created',
+            'time': 0
+        }];
         subjects.push(subject);
         this.setState({subjects: subjects});
     }
@@ -50,13 +52,15 @@ class App extends Component {
         let subjects = this.state.subjects;
         //please remove tha for loop.
         for(let i = 0; i < subjects.length; i++) {
-            console.log(subjects[i]._id, subject._id);
             if(subjects[i]._id === subject._id) {
-                subjects[i] = {title: subject.title, hoursTodo: subject.hoursTodo, hoursDone: subject.hoursDone, inFocus: subject.inFocus, description: subject.description};
+                let cm = subjects[i].commitMessages;
+                subjects[i] = subject;
+                //bad bad bad bad
+                subjects[i].commitMessages = cm;
                 return;
             }
         }
-        this.setState(subjects);
+        this.setState({subjects: subjects});
     }
 
     //add commit message and time
@@ -81,6 +85,10 @@ class App extends Component {
     }
 
     render() {
+        // loggedIn ? (
+        //     <Redirect to="/dashboard"/>
+        // )
+
         return (
             <div>
                 <Header />
@@ -92,6 +100,7 @@ class App extends Component {
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
                         <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
+                        <Route path='/profile' component={Profile} />
                     </Switch>
                 </main>
                 <Footer />

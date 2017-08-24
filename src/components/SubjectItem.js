@@ -39,6 +39,7 @@ class SubjectItem extends Component {
         return (
             <div className="SubjectItem">
                 <div className="SubjectItem-wrapper">
+                    <div className="SubjectItem-dummy-triangle"></div>
                     <Link to={'/subjectStats/'+this.props.subject._id} style={commitLinkStyle} ></Link>
                     <div className="clearfix">
                         <div className="sub-title">{this.props.subject.title}</div>

@@ -13,8 +13,9 @@ class AddSubject extends Component {
         if(this.refs.title.value === '') {
             alert('nope.');
         } else {
+            //TODO: remove id when we're done setting up adding to db. the id will be created automatically.
             this.setState({newSubject: {
-                id: '9',
+                _id: '9',
                 title: this.refs.title.value,
                 hoursDone: 0,
                 hoursTodo: this.refs.hoursTodo.value,
