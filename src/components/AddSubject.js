@@ -10,24 +10,30 @@ class AddSubject extends Component {
     }
 
     handleSubmit(e) {
-        if(this.refs.title.value === '') {
-            alert('nope.');
-        } else {
-            //TODO: remove id when we're done setting up adding to db. the id will be created automatically.
-            this.setState({newSubject: {
-                _id: '9',
-                title: this.refs.title.value,
-                hoursDone: 0,
-                hoursTodo: this.refs.hoursTodo.value,
-                description: this.refs.description.value,
-                inFocus: this.refs.inFocus.checked
-            }}, () => {
-                console.log(this.state);
-                //this.props, we're passing' this mf'r up.
-                this.props.addSubject(this.state.newSubject);
-            });
-        }
         e.preventDefault();
+
+        let formData = {
+            title: this.refs.title.value,
+            hoursDone: 0,
+            hoursTodo: this.refs.hoursTodo.value,
+            description: this.refs.description.value,
+            inFocus: this.refs.inFocus.checked,
+            commitMessages: []
+        };
+
+        fetch('api/addsubject', {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then((data) => {
+            if(data.status === 200) {
+                //send to main component to update state and rerender overview.
+                this.props.addSubject(formData);
+            }
+            // else
+        });
     }
 
     render() {

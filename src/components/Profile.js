@@ -7,13 +7,25 @@ class Profile extends Component {
     render() {
         return (
             <div className="Profile">
-                <h1>USERNAME</h1>
+                <h1>KAZORDOMO</h1>
                 <div className="container">
                     <div className="Profile-stats">
-                        <div>Total Commits: 200</div>
-                        <div>Total Hours: 20</div>
-                        <div>Blablabla: 15</div>
-                        <div>Jasdasd: Nej</div>
+                        <div className="Profile-stats-row">
+                            <div className="Profile-stats-title">Total Subjects:</div>
+                            <div className="Profile-stats-sum">200</div>
+                        </div>
+                        <div className="Profile-stats-row">
+                            <div className="Profile-stats-title">Total Commits:</div>
+                            <div className="Profile-stats-sum">500</div>
+                        </div>
+                        <div className="Profile-stats-row">
+                            <div className="Profile-stats-title">Total Hours:</div>
+                            <div className="Profile-stats-sum">250</div>
+                        </div>
+                        <div className="Profile-stats-row">
+                            <div className="Profile-stats-title">Done Subjects:</div>
+                            <div className="Profile-stats-sum">52</div>
+                        </div>
                     </div>
                 </div>
             </div>

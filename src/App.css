@@ -49,8 +49,10 @@ main {
 
 .button {
     padding: 10px 20px;
-    background-color: #FF8838;
-    color: #09121F;
+    /*background-color: #FF8838;*/
+    /*color: #09121F;*/
+    background-color: #2EA3C9;
+    color: #FFFFFF;
     outline: none;
     border: none;
     border-radius: 2px;
@@ -79,7 +81,7 @@ header {
 }
 
 header .Header-logo {
-    color: #FF8838;
+    color: #FFFFFF;
 }
 
 header span {
@@ -92,7 +94,8 @@ header nav {
 }
 
 header nav a {
-    color: #FF8838;
+    /*color: #FF8838;*/
+    color: #FFFFFF;
 }
 
 header nav ul li {
@@ -107,7 +110,7 @@ footer p {
 }
 
 footer p .Footer-cr {
-    color: #FF8838;
+    color: #2EA3C9;
 }
 
 /* HOME
@@ -124,7 +127,8 @@ footer p .Footer-cr {
 }
 
 .Home .Home-sub-title {
-    color: #FF8838;
+    /*color: #FF8838;*/
+    color: #2EA3C9;
     font-size: 35px;
 }
 
@@ -219,18 +223,19 @@ footer p .Footer-cr {
     box-shadow: 3px 6px 5px 3px rgba(0,0,0,1);
 }
 
-.SubjectItem:hover .SubjectItem-dummy-triangle {
+.SubjectItem:hover .SubjectItem-dummy-circle {
     opacity: 1;
 }
 
-.SubjectItem-dummy-triangle {
+.SubjectItem-dummy-circle {
     position: absolute;
     top: 0px;
     right: 0px;
     width: 6px;
     height: 6px;
-    background-color: #FF8838;
+    background-color: #2EA3C9;
     opacity: 0;
+    border-radius: 50%;
 }
 
 .SubjectItem-wrapper {
@@ -309,6 +314,11 @@ footer p .Footer-cr {
 
 .AddSubject .button, .EditSubject .button {
     float: right;
+}
+
+.EditSubject .EditSubject-delete {
+    float: left;
+    background-color: #FC2626;
 }
 
 /* OVERVIEW
@@ -390,19 +400,39 @@ footer p .Footer-cr {
 }
 
 .CommitMessage:hover {
-    background-color: rgba(255, 136, 56, 0.8);
+    /*background-color: rgba(255, 136, 56, 0.8);*/
+    background-color: rgba(46, 163, 201, 0.8);
 }
 
 /* PROFILE
 ------------------------------------------------------------ */
-
-.Profile .Profile-stats {
-
+.Profile .container {
+    margin-top: 50px;
+    max-width: 500px;
 }
 
-.Profile .Profile-stats div {
+.Profile .Profile-stats-row {
+    display: flex;
+    width: 100%;
+    /*margin-bottom: 10px;*/
+    padding: 10px 5px;
+    justify-content: space-between;
     font-size: 30px;
-    background-color: rgba(0,0,0,0.7);
-    margin-bottom: 10px;
+    border-bottom: 2px solid #1C3E66;
+    /*color: #FF8838*/
 }
+
+.Profile .Profile-stats .Profile-stats-title {
+
+}
+
+.Profile .Profile-stats .Profile-stats-sum {
+
+}
+
+/*.Profile .Profile-stats div {*/
+    /*font-size: 30px;*/
+    /*color: rgba(255, 136, 56, 1);*/
+    /*margin-bottom: 10px;*/
+/*}*/
 

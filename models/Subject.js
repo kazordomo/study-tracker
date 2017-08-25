@@ -10,7 +10,9 @@ let SubjectSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    commitMessages: Array,
+    description: String,
+    inFocus: Boolean,
+    commitMessages: Array
 });
 
 let Subject = mongoose.model('Subject', SubjectSchema);

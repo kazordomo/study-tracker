@@ -43,7 +43,7 @@ class EditSubject extends Component {
                             <input type="text" ref="title" defaultValue={this.state.subject.title} />
                         </div>
                         <div className="form-group">
-                            <div>Hours todo</div>
+                            <div>Hours to do</div>
                             <input type="number" ref="hoursTodo" defaultValue={this.state.subject.hoursTodo} />
                         </div>
                         <div className="form-group">
@@ -58,6 +58,7 @@ class EditSubject extends Component {
                             <input type="checkbox" ref="inFocus" defaultChecked={this.state.subject.inFocus} />
                         </div>
                         <input type="submit" className="button" value="Add" />
+                        <button className="EditSubject-delete button">Delete</button>
                     </form>
                 </div>
             </div>

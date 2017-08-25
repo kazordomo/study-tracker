@@ -3,8 +3,11 @@ const router = express.Router();
 const User = require('../models/User');
 const Subject = require('../models/Subject');
 
-// /GET subjects
+// router.get('/', (req, res, next) => {
+//     return res.json(req.session);
+// });
 
+// /GET subjects
 router.get('/subjects', (req, res, next) => {
     Subject.find({}, (error, doc) => {
         res.json({doc});
@@ -13,11 +16,10 @@ router.get('/subjects', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
 
+    console.log(req.session);
     if(req.body.name && req.body.password) {
-        //SOMETHING FAKKED UP
         User.authenticate(req.body.name, req.body.password, (error, user) => {
             console.log(user);
-            console.log(error);
             if(error || !user) {
                 // let err = new Error('Wrong email or password');
                 // err.status = 401;
@@ -25,7 +27,6 @@ router.post('/login', (req, res, next) => {
                 console.log("/login 25 - auth failed");
                 return res.status(401).end();
             } else {
-                //give user a session. _id is the id mongo gave the user collection when created
                 // req.session.userId = user._id;
                 return res.status(200).end();
             }
@@ -69,6 +70,29 @@ router.post('/register', (req, res, next) => {
         return res.status(400).json({
             success: false,
             message: 'wrong'
+        });
+    }
+});
+
+router.post('/addsubject', (req, res, next) => {
+    if(req.body.title && req.body.hoursTodo) {
+        console.log("title and hoursTodo ok");
+        let subjectData = {
+            title: req.body.title,
+            hoursDone: 0,
+            hoursTodo: req.body.hoursTodo,
+            description: req.body.description ? req.body.description : '',
+            inFocus: req.body.inFocus,
+            commitMessages: []
+        };
+        Subject.create(subjectData, (error, subject) => {
+            if(error) {
+                console.log("ERROR");
+                return res.status(400).end();
+            } else {
+                console.log(subject);
+                return res.status(200).end();
+            }
         });
     }
 });

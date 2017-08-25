@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const app = express();
 
 app.set('port', (process.env.PORT || 9000));
@@ -9,6 +11,22 @@ mongoose.connect('mongodb://root:root@ds145303.mlab.com:45303/study-tracker-db')
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
+
+app.use(session({
+    secret: 'newsecretfrombeyond',
+    resave: true,
+    //should we save or not?
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db
+    })
+}));
+
+app.use((req, res, next) => {
+    // store the userId. all the views can access the currentUser.
+    res.locals.currentUser = req.session.userId;
+    next();
+});
 
 //parse incoming requests
 app.use(bodyParser.json());

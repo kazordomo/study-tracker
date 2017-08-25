@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 
 class Register extends Component {
 
+
+    //TODO: If we set username as state, we could send it as prop to profile and therefor not haveing to fetch it from database?
     state = {
         redirect: false
     };
