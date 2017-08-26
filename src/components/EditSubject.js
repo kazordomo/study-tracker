@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class EditSubject extends Component {
 
@@ -23,6 +24,22 @@ class EditSubject extends Component {
             console.log(this.state.subject);
         });
         e.preventDefault();
+    }
+
+    //ERROR
+    handleDelete() {
+        console.log(this.props);
+        // let id = this.state.subject._id;
+        fetch('/api/deletesubject',{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(function(data){
+            console.log(data);
+            this.props.deleteSubject(this.state.subject);
+            return <Redirect to='/overview'/>;
+        })
     }
 
     componentWillMount() {
@@ -58,7 +75,7 @@ class EditSubject extends Component {
                             <input type="checkbox" ref="inFocus" defaultChecked={this.state.subject.inFocus} />
                         </div>
                         <input type="submit" className="button" value="Add" />
-                        <button className="EditSubject-delete button">Delete</button>
+                        <button className="EditSubject-delete button" onClick={this.handleDelete.bind(this)}>Delete</button>
                     </form>
                 </div>
             </div>

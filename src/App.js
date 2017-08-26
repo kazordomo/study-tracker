@@ -63,6 +63,15 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
+    handleDeleteSubject(subject) {
+        let subjects = this.state.subjects;
+        let isSubjectItem = subjects.filter((sub) => {
+            return sub._id === subject._id;
+        })[0];
+        subjects.splice(subjects.indexOf(isSubjectItem), 1);
+        this.setState({subjects: subjects});
+    }
+
     //add commit message and time
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
@@ -98,7 +107,7 @@ class App extends Component {
                         <Route path='/register' component={Register} />
                         <Route path='/overview' component={() => (<Overview subjects={this.state.subjects} />)} />
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
-                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} />} />
+                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
                         <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
                         <Route path='/profile' component={Profile} />
                     </Switch>

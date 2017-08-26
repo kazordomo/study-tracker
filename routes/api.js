@@ -7,6 +7,8 @@ const Subject = require('../models/Subject');
 //     return res.json(req.session);
 // });
 
+//TODO: create an proper api. Subject.find should only be used once, for instance.
+
 // /GET subjects
 router.get('/subjects', (req, res, next) => {
     Subject.find({}, (error, doc) => {
@@ -14,6 +16,45 @@ router.get('/subjects', (req, res, next) => {
     });
 });
 
+// /ADD subject
+router.post('/addsubject', (req, res, next) => {
+    if(req.body.title && req.body.hoursTodo) {
+        console.log("title and hoursTodo ok");
+        let subjectData = {
+            title: req.body.title,
+            hoursDone: 0,
+            hoursTodo: req.body.hoursTodo,
+            description: req.body.description ? req.body.description : '',
+            inFocus: req.body.inFocus,
+            commitMessages: []
+        };
+        Subject.create(subjectData, (error, subject) => {
+            if(error) {
+                console.log("ERROR");
+                return res.status(400).end();
+            } else {
+                console.log(subject);
+                return res.status(200).end();
+            }
+        });
+    }
+});
+
+// /DELETE subject
+//TODO: write the delete function. ERROR
+router.delete('/deletesubject', (req, res) => {
+    console.log(req.body);
+   Subject.deleteOne({_id: req.body._id}, (error, result) => {
+       //cleaning up: no else needed, it will end directly if error occurs
+       if(error) {
+           return res.send(500, error);
+       } else {
+           return res.status(200).end();
+       }
+   });
+});
+
+// /POST login
 router.post('/login', (req, res, next) => {
 
     console.log(req.session);
@@ -41,6 +82,7 @@ router.post('/login', (req, res, next) => {
     }
 });
 
+// /POST register
 router.post('/register', (req, res, next) => {
     if(req.body.name && req.body.email && req.body.password && req.body.reenterPassword) {
         if (req.body.password !== req.body.reenterPassword) {
@@ -74,27 +116,32 @@ router.post('/register', (req, res, next) => {
     }
 });
 
-router.post('/addsubject', (req, res, next) => {
-    if(req.body.title && req.body.hoursTodo) {
-        console.log("title and hoursTodo ok");
-        let subjectData = {
-            title: req.body.title,
-            hoursDone: 0,
-            hoursTodo: req.body.hoursTodo,
-            description: req.body.description ? req.body.description : '',
-            inFocus: req.body.inFocus,
-            commitMessages: []
-        };
-        Subject.create(subjectData, (error, subject) => {
-            if(error) {
-                console.log("ERROR");
-                return res.status(400).end();
-            } else {
-                console.log(subject);
-                return res.status(200).end();
-            }
+// /GET profile
+router.get('/profile', (req, res, next) => {
+    //TODO: make it account-wise
+    Subject.find({}, (error, doc) => {
+        //TODO: test when we get commitMessages to db.
+        //TODO: loading slowly. store in db or get when in overview?
+        let totalSubjects = doc.length;
+        let totalCommits = 0;
+        let totalHours = 0;
+        let doneSubjects = 0;
+        //plz less forEach plzz
+        doc.forEach((subject) => {
+            totalCommits += subject.commitMessages.length;
+            if(subject.hoursDone >= subject.hoursTodo) doneSubjects++;
+            subject.commitMessages.forEach((commitMessage) => {
+                totalHours += commitMessage.time;
+            });
         });
-    }
+        let profileData = {
+            totalSubjects: totalSubjects,
+            totalCommits: totalCommits,
+            totalHours: totalHours,
+            doneSubjects: doneSubjects
+        };
+        res.send(profileData);
+    });
 });
 
 
