@@ -35,7 +35,6 @@ class AddEditSubject extends Component {
                     description: this.refs.description.value,
                     inFocus: this.refs.inFocus.checked
                 }}, () => {
-                    console.log(this.state);
                     //this.props, we're passing' this mf'r up.
                     this.props.addSubject(this.state.subject);
                 });

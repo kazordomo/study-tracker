@@ -49,7 +49,7 @@ router.delete('/deletesubject', (req, res) => {
        if(error) {
            return res.send(500, error);
        } else {
-           return res.status(200).end();
+           return res.send(subject);
        }
    });
 });

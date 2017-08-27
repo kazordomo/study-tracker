@@ -426,12 +426,8 @@ footer p .Footer-cr {
 }
 
 .Profile .Profile-stats .Profile-stats-sum {
-    color: #2EA3C9;
+    padding: 2px 10px;
+    background-color: #2EA3C9;
+    border-radius: 20px 0px 20px 0px;
 }
-
-/*.Profile .Profile-stats div {*/
-    /*font-size: 30px;*/
-    /*color: rgba(255, 136, 56, 1);*/
-    /*margin-bottom: 10px;*/
-/*}*/
 

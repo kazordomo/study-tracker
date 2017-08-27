@@ -21,25 +21,26 @@ class EditSubject extends Component {
             description: this.refs.description.value
         }}, () => {
             this.props.editSubject(this.state.subject);
-            console.log(this.state.subject);
         });
         e.preventDefault();
     }
 
     //ERROR
-    handleDelete() {
+    //TODO: fix the redirect.
+    handleDelete(e) {
+        e.preventDefault();
         console.log(this.props);
-        // let id = this.state.subject._id;
         fetch('/api/deletesubject',{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify(this.state.subject)
         }).then(function(data){
-            console.log(data);
-            this.props.deleteSubject(this.state.subject);
+            // console.log(data);
             return <Redirect to='/overview'/>;
-        })
+        });
+        this.props.deleteSubject(this.state.subject);
     }
 
     componentWillMount() {

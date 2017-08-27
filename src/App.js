@@ -45,7 +45,9 @@ class App extends Component {
             'time': 0
         }];
         subjects.push(subject);
-        this.setState({subjects: subjects});
+        this.setState({subjects: subjects}, () => {
+            console.log(this.state.subjects);
+        });
     }
 
     handleEditSubject(subject) {

@@ -52,6 +52,7 @@ class Overview extends Component {
                 <div className="container">
                     <div className="title">Subjects</div>
                     <div className="Overview-nav">
+                        {/*we shouold avoid hardcoding the options*/}
                         <select onChange={this.handleSelect.bind(this)}>
                             <option value="inFocus">In focus</option>
                             <option value="all">All</option>

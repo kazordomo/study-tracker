@@ -9,6 +9,7 @@ class AddSubject extends Component {
         }
     }
 
+    //TODO: no id is added to subjects directly.
     handleSubmit(e) {
         e.preventDefault();
 
@@ -27,12 +28,13 @@ class AddSubject extends Component {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(formData)
-        }).then((data) => {
-            if(data.status === 200) {
-                //send to main component to update state and rerender overview.
-                this.props.addSubject(formData);
-            }
+        //TODO: Need to get this right. we need to update state with the response we get back from server.
+        }).then((response) => {
+            return response;
             // else
+        }).then((subject) => {
+           console.log(subject);
+            this.props.addSubject(subject);
         });
     }
 
