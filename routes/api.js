@@ -8,6 +8,7 @@ const Subject = require('../models/Subject');
 // });
 
 //TODO: create an proper api. Subject.find should only be used once, for instance.
+//TODO: remove all tha next parameters that's not being used, pl0x.
 
 // /GET subjects
 router.get('/subjects', (req, res, next) => {
@@ -34,14 +35,13 @@ router.post('/addsubject', (req, res, next) => {
                 return res.status(400).end();
             } else {
                 console.log(subject);
-                return res.status(200).end();
+                return res.send(subject);
             }
         });
     }
 });
 
 // /DELETE subject
-//TODO: write the delete function. ERROR
 router.delete('/deletesubject', (req, res) => {
     console.log(req.body);
    Subject.deleteOne({_id: req.body._id}, (error, result) => {
@@ -49,7 +49,7 @@ router.delete('/deletesubject', (req, res) => {
        if(error) {
            return res.send(500, error);
        } else {
-           return res.send(subject);
+           return res.status(200).end();
        }
    });
 });

@@ -28,12 +28,9 @@ class AddSubject extends Component {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(formData)
-        //TODO: Need to get this right. we need to update state with the response we get back from server.
         }).then((response) => {
-            return response;
-            // else
+            return response.json();
         }).then((subject) => {
-           console.log(subject);
             this.props.addSubject(subject);
         });
     }
@@ -60,6 +57,7 @@ class AddSubject extends Component {
                             <input type="checkbox" ref="inFocus" defaultChecked />
                         </div>
                         <input type="submit" className="button" value="Add" />
+                        <button className="button button-cancel">Cancel</button>
                     </form>
                 </div>
             </div>

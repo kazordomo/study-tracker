@@ -61,6 +61,12 @@ main {
     font-weight: 700;
 }
 
+/*remove important and change hiearchy instead pl0x*/
+.button.button-cancel {
+    float: left !important;
+    background-color: #FF8838;
+}
+
 .title {
     font-size: 40px;
     font-weight: 700;

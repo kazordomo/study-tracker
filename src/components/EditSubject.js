@@ -7,6 +7,7 @@ class EditSubject extends Component {
     constructor() {
         super();
         this.state = {
+            redirect: false,
             subject: {}
         }
     }
@@ -36,9 +37,10 @@ class EditSubject extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state.subject)
-        }).then(function(data){
-            // console.log(data);
-            return <Redirect to='/overview'/>;
+        }).then((data) => {
+            if(data.status === 200) {
+                this.setState({redirect: true});
+            }
         });
         this.props.deleteSubject(this.state.subject);
     }
@@ -52,6 +54,13 @@ class EditSubject extends Component {
     }
 
     render() {
+
+        const { redirect } = this.state;
+
+        if (redirect) {
+            return <Redirect to='/overview'/>;
+        }
+
         return (
             <div className="EditSubject">
                 <div className="container">

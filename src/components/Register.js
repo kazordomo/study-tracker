@@ -58,7 +58,7 @@ class Register extends Component {
 
         if (redirect) {
             return <Redirect to='/overview'/>;
-    }
+        }
 
         return (
             <div className="Register">
