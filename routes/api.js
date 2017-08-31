@@ -20,7 +20,6 @@ router.get('/subjects', (req, res, next) => {
 // /ADD subject
 router.post('/addsubject', (req, res, next) => {
     if(req.body.title && req.body.hoursTodo) {
-        console.log("title and hoursTodo ok");
         let subjectData = {
             title: req.body.title,
             hoursDone: 0,
@@ -34,7 +33,7 @@ router.post('/addsubject', (req, res, next) => {
                 console.log("ERROR");
                 return res.status(400).end();
             } else {
-                console.log(subject);
+                //res.json?
                 return res.send(subject);
             }
         });
@@ -43,7 +42,6 @@ router.post('/addsubject', (req, res, next) => {
 
 // /DELETE subject
 router.delete('/deletesubject', (req, res) => {
-    console.log(req.body);
    Subject.deleteOne({_id: req.body._id}, (error, result) => {
        //cleaning up: no else needed, it will end directly if error occurs
        if(error) {
@@ -144,5 +142,50 @@ router.get('/profile', (req, res, next) => {
     });
 });
 
+// /POST commit
+router.post('/addcommit', (req, res) => {
+    if(req.body.message && req.body.time) {
+
+        let commitData = {
+            _id: req.body._id,
+            message: req.body.message,
+            time: req.body.time
+        };
+
+        console.log(commitData);
+        //UPDATE
+        Subject.findById(req.body.subjectId, (error, subject) => {
+            subject.commitMessages.push(commitData);
+            subject.save((error) => {
+                if(error) {
+                    console.log("save error");
+                    return res.status(400).end();
+                }
+                else {
+                    console.log("SAVED");
+                    res.send(subject);
+                }
+            });
+        });
+    }
+});
+
+// /DELETE commit
+router.delete('/deletecommit', (req, res) => {
+    Subject.findById(req.body.subject._id, (error, subject) => {
+        let commit = subject.commitMessages.filter(message => message._id === req.body.message._id);
+        subject.commitMessages.splice(subject.commitMessages.indexOf(commit), 1);
+        subject.save((error) => {
+            if(error) {
+                console.log("save error");
+                return res.status(400).end();
+            }
+            else {
+                console.log("SAVED");
+                res.send(subject);
+            }
+        });
+    });
+});
 
 module.exports = router;

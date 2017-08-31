@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class AddSubject extends Component {
 
-    constructor() {
-        super();
+    constructor(props   ) {
+        super(props);
         this.state = {
+            redirect: false,
             newSubject: {}
         }
     }
@@ -31,11 +33,21 @@ class AddSubject extends Component {
         }).then((response) => {
             return response.json();
         }).then((subject) => {
+            console.log(subject);
             this.props.addSubject(subject);
         });
+        this.setState({redirect: true});
     }
 
     render() {
+
+        //TODO: all of theses redirects should be refactored. DCY pl0x.
+        const { redirect } = this.state;
+
+        if (redirect) {
+            return <Redirect to='/overview'/>;
+        }
+
         return (
             <div className="AddSubject">
                 <div className="container">

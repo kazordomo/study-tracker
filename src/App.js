@@ -77,21 +77,20 @@ class App extends Component {
     //add commit message and time
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
-        //TODO: delete all of the hardcoded IDs
-        commit._id = '19';
         subject.hoursDone += parseInt(commit.time, 10);
         subject.commitMessages.push(commit);
         this.setState({subjects: subjects});
     }
 
-    handleDeleteCommit(commit, subject) {
+    //send in commit as well.
+    handleDeleteCommit(subject) {
         let subjects = this.state.subjects;
-        let commitMessage = subject.commitMessages.filter((com) => {
-            return com.id === commit.id;
-        })[0];
+        // let commitMessage = subject.commitMessages.filter((com) => {
+        //     return com.id === commit.id;
+        // })[0];
         //because hoursDone is its on field we need to calculate the time from the deleted commit manually.
-        subject.hoursDone -= parseInt(commit.time, 10);
-        subject.commitMessages.splice(subject.commitMessages.indexOf(commitMessage), 1);
+        // subject.hoursDone -= parseInt(commit.time, 10);
+        // subject.commitMessages.splice(subject.commitMessages.indexOf(commitMessage), 1);
         this.setState({subjects: subjects});
     }
 

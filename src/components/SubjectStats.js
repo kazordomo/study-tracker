@@ -28,6 +28,7 @@ class SubjectStats extends Component {
         super();
         this.state = {
             commitMessage: {
+                _id: '',
                 message: '',
                 time: 0
             },
@@ -48,7 +49,7 @@ class SubjectStats extends Component {
                 //lol, no. just no.
                 message.formatedDate = new moment(message.timestamp).format('MMM Do YY');
                 return (
-                    <CommitMessage value={message} deleteCommit={this.handleDeleteCommit.bind(this)} key={uuid.v4()} />
+                    <CommitMessage value={message} deleteCommit={this.handleDeleteCommit.bind(this)} key={message._id} />
                 )
             })
         )
@@ -61,22 +62,55 @@ class SubjectStats extends Component {
     }
 
     handleCommit(e) {
-        this.setState({
-            commitMessage: {
-                message: this.refs.message.value,
-                time: this.refs.time.value,
-                timestamp: new Date()
-            }
-        }, () => {
-            this.props.addCommit(this.state.commitMessage, this.state.subject);
-            this.refs.message.value = '';
-            this.refs.time.value = '';
-        });
         e.preventDefault();
+
+        let formData = {
+            _id: uuid.v4(),
+            message: this.refs.message.value,
+            time: parseInt(this.refs.time.value, 10),
+            timestamp: new Date(),
+            subjectId: this.state.subject._id
+        };
+
+        fetch('/api/addcommit', {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then((response) => {
+            return response.json();
+        }).then((commitMessage) => {
+            //WE NEED TO UPDATE THE COMPONENT CORRECT
+            //CREATE THE DELETE FUNCTION FIRST, TO MAKE IT EASIER TO TEST.
+            console.log(commitMessage);
+            this.props.addCommit(commitMessage, this.state.subject);
+        });
     }
 
     handleDeleteCommit(message) {
-        this.props.deleteCommit(message, this.state.subject);
+        // this.props.deleteCommit(message, this.state.subject);
+
+        //TODO: find subject by subject._id and then splice commitMessages where _id === _id.
+        let commitData = {
+            subject: this.state.subject,
+            message: message
+        };
+
+        // e.preventDefault();
+        fetch('/api/deletecommit',{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(commitData)
+        }).then((response) => {
+            return response.json();
+        }).then(data => {
+            console.log(data);
+            //commitMessages do not rerender.
+            this.props.deleteCommit(data);
+        });
     }
 
     componentWillMount() {
@@ -101,7 +135,7 @@ class SubjectStats extends Component {
                     <form onSubmit={this.handleCommit.bind(this)}>
                         <input type="text" ref="message" placeholder="Message" required />
                         <input type="number" ref="time" placeholder="Hours" required />
-                        <input type="submit" value="Add" className="button" />
+                        <input type="submit" value="Add" className="button button-add" />
                     </form>
                     <div className="SubjectStats-messages">
                         {this.renderCommitMessages(this.state.subject.commitMessages)}

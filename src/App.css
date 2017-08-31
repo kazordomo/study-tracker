@@ -262,7 +262,7 @@ footer p .Footer-cr {
     position: relative;
     width: 100%;
     height: 25px;
-    margin-bottom: 20px;
+    margin: 5px 0px 10px 0px;
     background-color: #E4E6EB;
     border-radius: 15px;
 }
@@ -331,18 +331,21 @@ footer p .Footer-cr {
 ------------------------------------------------------------ */
 /*change ALL of this*/
 .SubjectStats input[type="text"], .SubjectStats input[type="number"] {
-    margin-right: 10px;
+    box-sizing: border-box;
+    margin-right: 1.5%;
     padding: 10px 10px;
 }
 
 .SubjectStats input[type="number"] {
-    max-width: 25%;
-    width: 200px;
+    width: 19%;
 }
 
 .SubjectStats input[type="text"] {
-    max-width: 65%;
-    width: 500px;
+    width: 64%;
+}
+
+.SubjectStats .button.button-add {
+    width: 14%
 }
 
 .SubjectStats .SubjectStats-messages {
