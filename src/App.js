@@ -76,9 +76,9 @@ class App extends Component {
 
     //add commit message and time
     handleAddCommit(commit, subject) {
+        console.log(commit);
         let subjects = this.state.subjects;
         subject.hoursDone += parseInt(commit.time, 10);
-        subject.commitMessages.push(commit);
         this.setState({subjects: subjects});
     }
 

@@ -36,12 +36,13 @@ class AddSubject extends Component {
             console.log(subject);
             this.props.addSubject(subject);
         });
+        //TODO: redirect should only be done when subject is saved to DB.
         this.setState({redirect: true});
     }
 
     render() {
 
-        //TODO: all of theses redirects should be refactored. DCY pl0x.
+        //TODO: all of theses redirects should be refactored. DRY pl0x.
         const { redirect } = this.state;
 
         if (redirect) {

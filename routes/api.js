@@ -155,6 +155,7 @@ router.post('/addcommit', (req, res) => {
         console.log(commitData);
         //UPDATE
         Subject.findById(req.body.subjectId, (error, subject) => {
+            subject.hoursDone += parseInt(commitData.time, 10);
             subject.commitMessages.push(commitData);
             subject.save((error) => {
                 if(error) {

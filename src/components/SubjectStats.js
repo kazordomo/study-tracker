@@ -27,11 +27,7 @@ class SubjectStats extends Component {
     constructor() {
         super();
         this.state = {
-            commitMessage: {
-                _id: '',
-                message: '',
-                time: 0
-            },
+            commitMessages: [],
             subject: {},
             counter: 1
         }
@@ -61,9 +57,9 @@ class SubjectStats extends Component {
         });
     }
 
+    //TODO: REFACTOR!! we shouold have the same logics for what we're updating through App.js and here.
     handleCommit(e) {
         e.preventDefault();
-
         let formData = {
             _id: uuid.v4(),
             message: this.refs.message.value,
@@ -80,11 +76,12 @@ class SubjectStats extends Component {
             body: JSON.stringify(formData)
         }).then((response) => {
             return response.json();
-        }).then((commitMessage) => {
-            //WE NEED TO UPDATE THE COMPONENT CORRECT
-            //CREATE THE DELETE FUNCTION FIRST, TO MAKE IT EASIER TO TEST.
-            console.log(commitMessage);
-            this.props.addCommit(commitMessage, this.state.subject);
+        }).then((subject) => {
+            let commitMessages = this.state.commitMessages;
+            commitMessages.push(formData);
+            this.setState({commitMessages: commitMessages}, () => {
+                this.props.addCommit(formData, this.state.subject);
+            });
         });
     }
 
@@ -118,14 +115,17 @@ class SubjectStats extends Component {
         let isSubjectItem = this.props.data.filter((sub) => {
             return sub._id === paramId;
         })[0];
-        this.setState({subject: isSubjectItem});
+        this.setState({
+            subject: isSubjectItem,
+            commitMessages: isSubjectItem.commitMessages
+        });
     }
 
 
     render() {
-        let quantity = this.renderCommitMessages(this.state.subject.commitMessages).length;
+        let quantity = this.renderCommitMessages(this.state.commitMessages).length;
         let quantityTotal = this.state.subject.commitMessages.length;
-        let showMore = this.renderCommitMessages(this.state.subject.commitMessages).length === this.state.subject.commitMessages.length ?
+        let showMore = this.renderCommitMessages(this.state.commitMessages).length === this.state.commitMessages.length ?
             '' :
             <span>Show more ({quantity} / {quantityTotal}) <i className="fa fa-caret-down" aria-hidden="true"></i></span>;
         return (
@@ -138,7 +138,7 @@ class SubjectStats extends Component {
                         <input type="submit" value="Add" className="button button-add" />
                     </form>
                     <div className="SubjectStats-messages">
-                        {this.renderCommitMessages(this.state.subject.commitMessages)}
+                        {this.renderCommitMessages(this.state.commitMessages)}
                     </div>
                     <button className="SubjectStats-show-more" onClick={() => {this.showMoreCommits()}} >{showMore}</button>
                 </div>
