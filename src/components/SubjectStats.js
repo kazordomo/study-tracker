@@ -57,7 +57,7 @@ class SubjectStats extends Component {
         });
     }
 
-    //TODO: REFACTOR!! we shouold have the same logics for what we're updating through App.js and here.
+    //TODO: REFACTOR!! we should have the same logic for what we're updating through App.js and here.
     handleCommit(e) {
         e.preventDefault();
         let formData = {
@@ -86,9 +86,6 @@ class SubjectStats extends Component {
     }
 
     handleDeleteCommit(message) {
-        // this.props.deleteCommit(message, this.state.subject);
-
-        //TODO: find subject by subject._id and then splice commitMessages where _id === _id.
         let commitData = {
             subject: this.state.subject,
             message: message
@@ -104,9 +101,9 @@ class SubjectStats extends Component {
         }).then((response) => {
             return response.json();
         }).then(data => {
-            console.log(data);
-            //commitMessages do not rerender.
-            this.props.deleteCommit(data);
+            this.setState({commitMessages: data.commitMessages}, () => {
+                this.props.deleteCommit(commitData);
+            });
         });
     }
 

@@ -37,13 +37,6 @@ class App extends Component {
 
     handleAddSubject(subject) {
         let subjects = this.state.subjects;
-        //TODO: commitMessages should prob be its own schema. adding it empty here does not make that much sense...
-        //default commit, subject started. timestamp should be added and id should be set differently.
-        subject.commitMessages = [{
-            'id': '1',
-            'message': 'Subject created',
-            'time': 0
-        }];
         subjects.push(subject);
         this.setState({subjects: subjects}, () => {
             console.log(this.state.subjects);
@@ -76,21 +69,15 @@ class App extends Component {
 
     //add commit message and time
     handleAddCommit(commit, subject) {
-        console.log(commit);
         let subjects = this.state.subjects;
         subject.hoursDone += parseInt(commit.time, 10);
         this.setState({subjects: subjects});
     }
 
     //send in commit as well.
-    handleDeleteCommit(subject) {
+    handleDeleteCommit(data) {
         let subjects = this.state.subjects;
-        // let commitMessage = subject.commitMessages.filter((com) => {
-        //     return com.id === commit.id;
-        // })[0];
-        //because hoursDone is its on field we need to calculate the time from the deleted commit manually.
-        // subject.hoursDone -= parseInt(commit.time, 10);
-        // subject.commitMessages.splice(subject.commitMessages.indexOf(commitMessage), 1);
+        data.subject.hoursDone -= parseInt(data.message.time, 10);
         this.setState({subjects: subjects});
     }
 

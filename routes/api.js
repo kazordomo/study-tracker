@@ -163,7 +163,6 @@ router.post('/addcommit', (req, res) => {
                     return res.status(400).end();
                 }
                 else {
-                    console.log("SAVED");
                     res.send(subject);
                 }
             });
@@ -175,6 +174,8 @@ router.post('/addcommit', (req, res) => {
 router.delete('/deletecommit', (req, res) => {
     Subject.findById(req.body.subject._id, (error, subject) => {
         let commit = subject.commitMessages.filter(message => message._id === req.body.message._id);
+        //wtf
+        subject.hoursDone -= parseInt(commit[0].time, 10);
         subject.commitMessages.splice(subject.commitMessages.indexOf(commit), 1);
         subject.save((error) => {
             if(error) {
@@ -182,7 +183,6 @@ router.delete('/deletecommit', (req, res) => {
                 return res.status(400).end();
             }
             else {
-                console.log("SAVED");
                 res.send(subject);
             }
         });
