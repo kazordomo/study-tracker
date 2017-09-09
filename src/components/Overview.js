@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SubjectItem from './SubjectItem';
 import { Link } from 'react-router-dom';
+import Auth from './Auth'
 
 class Overview extends Component {
 
@@ -9,6 +10,10 @@ class Overview extends Component {
         this.state = {
             subjects: []
         }
+    }
+
+    getJSON(response) {
+        return response.json();
     }
 
     //refactor this later pl0x. fugly af.
@@ -36,14 +41,28 @@ class Overview extends Component {
     }
 
     componentDidMount() {
-        let subjects = this.props.subjects.map(subject => {
-            if(subject.inFocus) {
-                return (
-                    <SubjectItem key={subject.title} subject={subject} />
-                )
-            } else return false;
-        });
-        this.setState({subjects: subjects});
+        //TODO: should catch error if the request is bad
+        // let unSortedSubjects = [];
+        let headers = new Headers();
+        headers.append('Authorization', `bearer ${Auth.getToken()}`);
+        let fetchInit = {
+            method: 'GET',
+            headers: headers
+        };
+
+        fetch('api/subjects', fetchInit)
+            .then(this.getJSON)
+            .then((data) => {
+                console.log(data);
+                let subjects = data.doc.map(subject => {
+                    if(subject.inFocus) {
+                        return (
+                            <SubjectItem key={subject.title} subject={subject} />
+                        )
+                    } else return false;
+                });
+                this.setState({subjects: subjects});
+            });
     }
 
     render() {

@@ -7,6 +7,7 @@ import EditSubject from './components/EditSubject';
 import SubjectStats from './components/SubjectStats';
 import Profile from './components/Profile';
 import { Switch, Route, Link } from 'react-router-dom'
+import Auth from './components/Auth';
 import './App.css';
 
 class App extends Component {
@@ -24,10 +25,20 @@ class App extends Component {
 
     componentDidMount() {
         //TODO: should catch error if the request is bad
+
+        //TODO: Fetch in here or overview comp? If in overview we need to send subjects to here as well.
+        let headers = new Headers();
+        headers.append('Authorization', `bearer ${Auth.getToken()}`);
+        let fetchInit = {
+            method: 'GET',
+            headers: headers
+        };
+
         return (
-            fetch('api/subjects')
+            fetch('api/subjects', fetchInit)
                 .then(this.getJSON)
                 .then((data) => {
+                    console.log(data);
                     this.setState({
                         subjects: data.doc
                     });

@@ -3,20 +3,6 @@ const router = express.Router();
 const User = require('../models/User');
 const Subject = require('../models/Subject');
 
-// router.get('/', (req, res, next) => {
-//     return res.json(req.session);
-// });
-
-//TODO: create an proper api. Subject.find should only be used once, for instance.
-//TODO: remove all tha next parameters that's not being used, pl0x.
-
-// /GET test
-router.get('/test', (req, res) => {
-    res.status(200).json({
-        message: 'Authorized!!'
-    });
-});
-
 // /GET subjects
 router.get('/subjects', (req, res) => {
     Subject.find({}, (error, doc) => {
@@ -60,6 +46,7 @@ router.delete('/deletesubject', (req, res) => {
 });
 
 // /GET profile
+//TODO: REMAKE THE WHOLE PROFILE-CHABLANG. THIS IS JUST FOR TEST
 router.get('/profile', (req, res) => {
     //TODO: make it account-wise
     Subject.find({}, (error, doc) => {

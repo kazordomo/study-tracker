@@ -1,6 +1,6 @@
 class Auth {
 
-    //Setting/Getting/Deleting token from localstorage.
+    //Setting/Getting/Deleting token from localStorage.
 
     static authenticateUser(token) {
         localStorage.setItem('token', token);

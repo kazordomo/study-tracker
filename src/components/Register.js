@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Auth from './Auth';
 
 class Register extends Component {
 
@@ -10,6 +11,14 @@ class Register extends Component {
     };
 
     postFetch(url) {
+
+        // const storedMessage = localStorage.getItem('successMessage');
+        // let successMessage = '';
+        //
+        // if (storedMessage) {
+        //     successMessage = storedMessage;
+        //     localStorage.removeItem('successMessage');
+        // }
 
         let formData = {};
         //use FormData instead. using this as a dummy-func for now.
@@ -39,6 +48,7 @@ class Register extends Component {
             }
         }).then((data) => {
             console.log(data);
+            Auth.authenticateUser(data.token);
             this.setState({redirect: true});
         });
     }
