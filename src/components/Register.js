@@ -27,16 +27,19 @@ class Register extends Component {
             }
         }
 
-        fetch(`api/${url}`, {
+        fetch(`auth/${url}`, {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(formData)
-        }).then((data) => {
-            if(data.status === 200) {
-                this.setState({redirect: true});
+        }).then((response) => {
+            if(response.status === 200) {
+                return response.json();
             }
+        }).then((data) => {
+            console.log(data);
+            this.setState({redirect: true});
         });
     }
 

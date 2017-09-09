@@ -10,15 +10,22 @@ const Subject = require('../models/Subject');
 //TODO: create an proper api. Subject.find should only be used once, for instance.
 //TODO: remove all tha next parameters that's not being used, pl0x.
 
+// /GET test
+router.get('/test', (req, res) => {
+    res.status(200).json({
+        message: 'Authorized!!'
+    });
+});
+
 // /GET subjects
-router.get('/subjects', (req, res, next) => {
+router.get('/subjects', (req, res) => {
     Subject.find({}, (error, doc) => {
         res.json({doc});
     });
 });
 
 // /ADD subject
-router.post('/addsubject', (req, res, next) => {
+router.post('/addsubject', (req, res) => {
     if(req.body.title && req.body.hoursTodo) {
         let subjectData = {
             title: req.body.title,
@@ -52,70 +59,8 @@ router.delete('/deletesubject', (req, res) => {
    });
 });
 
-// /POST login
-router.post('/login', (req, res, next) => {
-
-    console.log(req.session);
-    if(req.body.name && req.body.password) {
-        User.authenticate(req.body.name, req.body.password, (error, user) => {
-            console.log(user);
-            if(error || !user) {
-                // let err = new Error('Wrong email or password');
-                // err.status = 401;
-                // return next(err);
-                console.log("/login 25 - auth failed");
-                return res.status(401).end();
-            } else {
-                // req.session.userId = user._id;
-                return res.status(200).end();
-            }
-        });
-    } else {
-        // let err = new Error('Email and password are required');
-        //401 - unauthorized
-        // err.status = 401;
-        // return next(err);
-        console.log("name or password wrong");
-        return res.status(401).end();
-    }
-});
-
-// /POST register
-router.post('/register', (req, res, next) => {
-    if(req.body.name && req.body.email && req.body.password && req.body.reenterPassword) {
-        if (req.body.password !== req.body.reenterPassword) {
-            // let err = new Error('Passwords do not match');
-            // err.status = 400;
-            // return next(err);
-            console.log("the two passwords need to match");
-        }
-
-        let userData = {
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-        };
-
-        User.create(userData, (error, user) => {
-            console.log(user);
-            if(error) {
-                console.log(error);
-                return res.status(400).end();
-            } else {
-                return res.status(200).end();
-            }
-        });
-    } else {
-        // //TODO. create proper error-handling.
-        return res.status(400).json({
-            success: false,
-            message: 'wrong'
-        });
-    }
-});
-
 // /GET profile
-router.get('/profile', (req, res, next) => {
+router.get('/profile', (req, res) => {
     //TODO: make it account-wise
     Subject.find({}, (error, doc) => {
         //TODO: test when we get commitMessages to db.

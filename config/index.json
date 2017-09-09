@@ -1,0 +1,4 @@
+{
+  "dbUri": "mongodb://root:root@ds145303.mlab.com:45303/study-tracker-db",
+  "jwtSecret": "a really and very good secret!"
+}

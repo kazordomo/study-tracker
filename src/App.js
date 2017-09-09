@@ -81,6 +81,13 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
+    isUserAuthorized() {
+        if(true)
+            return Home;
+        else
+            return Overview;
+    }
+
     render() {
         // loggedIn ? (
         //     <Redirect to="/dashboard"/>
@@ -91,7 +98,8 @@ class App extends Component {
                 <Header />
                 <main>
                     <Switch>
-                        <Route exact path='/' component={Home} />
+                        {/*'/' shouold go to overview if the user is authorized/has a token */}
+                        <Route exact path='/' component={this.isUserAuthorized()} />
                         <Route path='/register' component={Register} />
                         <Route path='/overview' component={() => (<Overview subjects={this.state.subjects} />)} />
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
