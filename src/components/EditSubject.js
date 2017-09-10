@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Auth from './Auth';
 
 class EditSubject extends Component {
 
@@ -34,7 +35,8 @@ class EditSubject extends Component {
         fetch('/api/deletesubject',{
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `bearer ${Auth.getToken()}`
             },
             body: JSON.stringify(this.state.subject)
         }).then((data) => {

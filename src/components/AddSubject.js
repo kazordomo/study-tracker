@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Auth from './Auth';
 
 class AddSubject extends Component {
 
@@ -27,7 +28,8 @@ class AddSubject extends Component {
         fetch('api/addsubject', {
             method: 'post',
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'Authorization': `bearer ${Auth.getToken()}`
             },
             body: JSON.stringify(formData)
         }).then((response) => {

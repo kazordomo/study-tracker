@@ -5,6 +5,9 @@ import Auth from './Auth'
 
 class Overview extends Component {
 
+    //TODO: we should use subjects as a prop, and have a subject as a state when you edit/add etc.
+    //TODO: this means we should send subjects from state in App.js, and update that state.
+
     constructor() {
         super();
         this.state = {
@@ -40,6 +43,7 @@ class Overview extends Component {
         this.setState({subjects: subjects});
     }
 
+    //TODO: if we put get logic in App.js we could map the subject directly within render.
     componentDidMount() {
         fetch('api/subjects', {
             headers: {
@@ -61,6 +65,17 @@ class Overview extends Component {
     }
 
     render() {
+
+        // const listSubjects = this.state.subjects.map((subject, i) => {
+        //     return(
+        //         <div className="Overview-subjects">
+        //             {subject}
+        //         </div>
+        //     )
+        // });
+        //USE AS -
+        // {listSubjects}
+
         return (
             <div className="Overview">
                 <div className="container">
