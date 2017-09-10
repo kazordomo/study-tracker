@@ -26,7 +26,6 @@ UserSchema.statics.authenticate = (name, password, callback) => {
             if (error) {
                 return callback(error);
             } else if (!user) {
-                console.log("Userschema 23 - WRONG");
                 return callback(error);
             }
             bcrypt.compare(password, user.password, (err, result) => {
@@ -35,7 +34,6 @@ UserSchema.statics.authenticate = (name, password, callback) => {
                 } else {
                     // var err = new Error('User not found.');
                     // err.status = 401;
-                    console.log(result);
                     return callback(null, user);
                 }
             });

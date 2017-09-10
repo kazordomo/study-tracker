@@ -23,8 +23,10 @@ router.post('/addsubject', (req, res) => {
         };
         Subject.create(subjectData, (error, subject) => {
             if(error) {
-                console.log("ERROR");
-                return res.status(400).end();
+                return res.status(400).json({
+                    success: false,
+                    message: 'Error creating subject.'
+                });
             } else {
                 //res.json?
                 return res.send(subject);
@@ -56,7 +58,6 @@ router.get('/profile', (req, res) => {
         let totalCommits = 0;
         let totalHours = 0;
         let doneSubjects = 0;
-        //plz less forEach plzz
         doc.forEach((subject) => {
             totalCommits += subject.commitMessages.length;
             if(subject.hoursDone >= subject.hoursTodo) doneSubjects++;
@@ -84,14 +85,12 @@ router.post('/addcommit', (req, res) => {
             time: req.body.time
         };
 
-        console.log(commitData);
         //UPDATE
         Subject.findById(req.body.subjectId, (error, subject) => {
             subject.hoursDone += parseInt(commitData.time, 10);
             subject.commitMessages.push(commitData);
             subject.save((error) => {
                 if(error) {
-                    console.log("save error");
                     return res.status(400).end();
                 }
                 else {
@@ -111,7 +110,6 @@ router.delete('/deletecommit', (req, res) => {
         subject.commitMessages.splice(subject.commitMessages.indexOf(commit), 1);
         subject.save((error) => {
             if(error) {
-                console.log("save error");
                 return res.status(400).end();
             }
             else {

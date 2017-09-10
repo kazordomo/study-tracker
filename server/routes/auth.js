@@ -14,17 +14,15 @@ router.post('/login', (req, res) => {
         User.authenticate(req.body.name, req.body.password, (error, user) => {
             console.log(user);
             if(error || !user) {
-                console.log("/login - auth failed");
                 return res.status(401).json({
                     success: false,
                     message: 'Failed to login.'
                 });
             } else {
-                //token data
                 const payload = {
                     sub: user._id
                 };
-                //token string
+                //create token string
                 const token = jwt.sign(payload, config.jwtSecret);
                 const data = {
                     name: user.name
@@ -37,11 +35,10 @@ router.post('/login', (req, res) => {
             }
         });
     } else {
-        console.log("name or password wrong");
         return res.json({
             success: false,
-            message: 'Auth failed.'
-        })
+            message: 'Both name and password need to be entered.'
+        });
     }
 });
 

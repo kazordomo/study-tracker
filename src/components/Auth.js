@@ -8,7 +8,8 @@ class Auth {
     static isUserAuthenticated() {
         return localStorage.getItem('token') !== null;
     }
-    static deauthenticateUser() {
+    static removeToken() {
+        console.log("WOOOPS");
         localStorage.removeItem('token');
     }
     static getToken() {

@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 const authCheckMiddleware = require('./server/middleware/auth-check');
 app.use('/api', authCheckMiddleware);
 
-//because we are checking for token every time we request /api, we use login/register from auth.
+//open api for auth (login, register) to avoid getting declined by auth protection.
 const authRoutes = require('./server/routes/auth');
 const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);

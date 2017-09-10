@@ -38,7 +38,6 @@ class App extends Component {
             fetch('api/subjects', fetchInit)
                 .then(this.getJSON)
                 .then((data) => {
-                    console.log(data);
                     this.setState({
                         subjects: data.doc
                     });
@@ -135,6 +134,7 @@ const Header = () => (
                 <li><Link to='/register'>Login/Register</Link></li>
                 <li><Link to='/overview'>Overview</Link></li>
                 <li><Link to='/profile'>Profile</Link></li>
+                <li><Link to='/' onClick={() => {Auth.removeToken()}}>Logout</Link></li>
             </ul>
         </nav>
     </header>

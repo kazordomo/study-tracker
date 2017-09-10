@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Auth from './Auth';
 import uuid from 'uuid';
 import moment from 'moment';
 
@@ -71,7 +72,8 @@ class SubjectStats extends Component {
         fetch('/api/addcommit', {
             method: 'post',
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'Authorization': `bearer ${Auth.getToken()}`
             },
             body: JSON.stringify(formData)
         }).then((response) => {
@@ -95,7 +97,8 @@ class SubjectStats extends Component {
         fetch('/api/deletecommit',{
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `bearer ${Auth.getToken()}`
             },
             body: JSON.stringify(commitData)
         }).then((response) => {

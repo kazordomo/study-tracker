@@ -47,7 +47,6 @@ class Register extends Component {
                 return response.json();
             }
         }).then((data) => {
-            console.log(data);
             Auth.authenticateUser(data.token);
             this.setState({redirect: true});
         });

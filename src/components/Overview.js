@@ -41,28 +41,23 @@ class Overview extends Component {
     }
 
     componentDidMount() {
-        //TODO: should catch error if the request is bad
-        // let unSortedSubjects = [];
-        let headers = new Headers();
-        headers.append('Authorization', `bearer ${Auth.getToken()}`);
-        let fetchInit = {
-            method: 'GET',
-            headers: headers
-        };
-
-        fetch('api/subjects', fetchInit)
-            .then(this.getJSON)
-            .then((data) => {
-                console.log(data);
-                let subjects = data.doc.map(subject => {
-                    if(subject.inFocus) {
-                        return (
-                            <SubjectItem key={subject.title} subject={subject} />
-                        )
-                    } else return false;
-                });
-                this.setState({subjects: subjects});
+        fetch('api/subjects', {
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `bearer ${Auth.getToken()}`
+            }
+        })
+        .then(this.getJSON)
+        .then((data) => {
+            let subjects = data.doc.map(subject => {
+                if(subject.inFocus) {
+                    return (
+                        <SubjectItem key={subject.title} subject={subject} />
+                    )
+                } else return false;
             });
+            this.setState({subjects: subjects});
+        });
     }
 
     render() {
