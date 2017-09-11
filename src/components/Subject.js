@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class SubjectItem extends Component {
+class Subject extends Component {
 
     render() {
         let hoursDonePercent = Math.round((this.props.subject.hoursDone / this.props.subject.hoursTodo) * 100);
@@ -37,23 +37,23 @@ class SubjectItem extends Component {
             style.borderRadius = '15px 15px 15px 15px';
         }
         return (
-            <div className="SubjectItem">
-                <div className="SubjectItem-wrapper">
-                    <div className="SubjectItem-dummy-circle"></div>
-                    <Link to={'/subjectStats/'+this.props.subject._id} style={commitLinkStyle} ></Link>
+            <div className="Subject">
+                <div className="Subject-wrapper">
+                    <div className="Subject-dummy-circle"></div>
+                    <Link to={'/commits/'+this.props.subject._id} style={commitLinkStyle} ></Link>
                     <div className="clearfix">
                         <div className="sub-title">{this.props.subject.title}</div>
                         <Link to={'/editsubject/'+this.props.subject._id} ><i className="fa fa-pencil-square-o" style={editLinkStyle} aria-hidden="true"></i></Link>
                     </div>
-                    <div className="SubjectItem-progress-bar">
-                        <span className="SubjectItem-percent">{hoursDonePercent}%</span>
-                        <div className="SubjectItem-hours-done" style={style}></div>
+                    <div className="Subject-progress-bar">
+                        <span className="Subject-percent">{hoursDonePercent}%</span>
+                        <div className="Subject-hours-done" style={style}></div>
                     </div>
-                    <div className="SubjectItem-description">{this.props.subject.description}</div>
+                    <div className="Subject-description">{this.props.subject.description}</div>
                 </div>
             </div>
         );
     }
 }
 
-export default SubjectItem;
+export default Subject;

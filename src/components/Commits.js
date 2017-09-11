@@ -11,19 +11,19 @@ import moment from 'moment';
 // }
 // subject: JSON.parse(localStorage.getItem('subject'))
 
-function CommitMessage(props) {
+function Commit(props) {
     return (
-        <div className="CommitMessage">
+        <div className="Commit">
             <i className="fa fa-comment" aria-hidden="true"></i>
-            <span className="CommitMessage-message">{props.value.message}</span>
-            <span className="CommitMessage-dash">-</span>
-            <span className="CommitMessage-time">{props.value.time}h, {props.value.formatedDate}</span>
-            <button className="CommitMessage-delete button" onClick={() => props.deleteCommit(props.value)} ><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+            <span className="Commit-message">{props.value.message}</span>
+            <span className="Commit-dash">-</span>
+            <span className="Commit-time">{props.value.time}h, {props.value.formatedDate}</span>
+            <button className="Commit-delete button" onClick={() => props.deleteCommit(props.value)} ><i className="fa fa-trash-o" aria-hidden="true"></i></button>
         </div>
     )
 }
 
-class SubjectStats extends Component {
+class Commits extends Component {
 
     constructor() {
         super();
@@ -35,8 +35,6 @@ class SubjectStats extends Component {
     }
 
     renderCommitMessages(messages) {
-        //the sorting of time do work, just that the db doesnt contain any timestamps yes.
-        //if there is no commits it gives us an error. FIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIX
         let quantity = this.state.counter * 5;
         let messagesArr = messages.sort((a, b) => {
             return b.timestamp - a.timestamp;
@@ -46,7 +44,7 @@ class SubjectStats extends Component {
                 //lol, no. just no.
                 message.formatedDate = new moment(message.timestamp).format('MMM Do YY');
                 return (
-                    <CommitMessage value={message} deleteCommit={this.handleDeleteCommit.bind(this)} key={message._id} />
+                    <Commit value={message} deleteCommit={this.handleDeleteCommit.bind(this)} key={message._id} />
                 )
             })
         )
@@ -58,7 +56,6 @@ class SubjectStats extends Component {
         });
     }
 
-    //TODO: REFACTOR!! we should have the same logic for what we're updating through App.js and here.
     handleCommit(e) {
         e.preventDefault();
         let formData = {
@@ -93,7 +90,6 @@ class SubjectStats extends Component {
             message: message
         };
 
-        // e.preventDefault();
         fetch('/api/deletecommit',{
             method: 'DELETE',
             headers: {
@@ -104,6 +100,11 @@ class SubjectStats extends Component {
         }).then((response) => {
             return response.json();
         }).then(data => {
+            let commits = this.state.commitMessages;
+            let isCommitItem = commits.filter((com) => {
+                return com._id === message._id;
+            })[0];
+            commits.splice(commits.indexOf(isCommitItem), 1);
             this.setState({commitMessages: data.commitMessages}, () => {
                 this.props.deleteCommit(commitData);
             });
@@ -129,7 +130,7 @@ class SubjectStats extends Component {
             '' :
             <span>Show more ({quantity} / {quantityTotal}) <i className="fa fa-caret-down" aria-hidden="true"></i></span>;
         return (
-            <div className="SubjectStats">
+            <div className="Commits">
                 <div className="container">
                    <h1>{this.state.subject.title}</h1>
                     <form onSubmit={this.handleCommit.bind(this)}>
@@ -137,14 +138,14 @@ class SubjectStats extends Component {
                         <input type="number" ref="time" placeholder="Hours" required />
                         <input type="submit" value="Add" className="button button-add" />
                     </form>
-                    <div className="SubjectStats-messages">
+                    <div className="Commits-messages">
                         {this.renderCommitMessages(this.state.commitMessages)}
                     </div>
-                    <button className="SubjectStats-show-more" onClick={() => {this.showMoreCommits()}} >{showMore}</button>
+                    <button className="Commits-show-more" onClick={() => {this.showMoreCommits()}} >{showMore}</button>
                 </div>
             </div>
         );
     }
 }
 
-export default SubjectStats;
+export default Commits;

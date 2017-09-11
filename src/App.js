@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import Home from './components/Home';
 import Register from './components/Register';
-import Overview from './components/Overview';
+import Subjects from './components/Subjects';
 import AddSubject from './components/AddSubject';
 import EditSubject from './components/EditSubject';
-import SubjectStats from './components/SubjectStats';
+import Commits from './components/Commits';
 import Profile from './components/Profile';
 import { Switch, Route, Link } from 'react-router-dom'
 import Auth from './components/Auth';
 import './App.css';
 
 class App extends Component {
+
+    //TODO: If we only fetch when we are auth, the page need to be reloaded for the subjects to render.
+    //TODO: You should only be able to access for instance Subjects if you are logged in.
 
     constructor() {
         super();
@@ -25,24 +28,26 @@ class App extends Component {
 
     componentDidMount() {
         //TODO: should catch error if the request is bad
+        if(Auth.getToken()) {
+            let headers = new Headers();
+            headers.append('Authorization', `bearer ${Auth.getToken()}`);
+            let fetchInit = {
+                method: 'GET',
+                headers: headers
+            };
 
-        //TODO: Fetch in here or overview comp? If in overview we need to send subjects to here as well.
-        let headers = new Headers();
-        headers.append('Authorization', `bearer ${Auth.getToken()}`);
-        let fetchInit = {
-            method: 'GET',
-            headers: headers
-        };
+            return (
+                fetch('api/subjects', fetchInit)
+                    .then(this.getJSON)
+                    .then((data) => {
+                        this.setState({
+                            subjects: data.doc
+                        }, () => {
 
-        return (
-            fetch('api/subjects', fetchInit)
-                .then(this.getJSON)
-                .then((data) => {
-                    this.setState({
-                        subjects: data.doc
-                    });
-                })
-        )
+                        });
+                    })
+            )
+        }
     }
 
     handleAddSubject(subject) {
@@ -91,31 +96,21 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
-    isUserAuthorized() {
-        if(true)
-            return Home;
-        else
-            return Overview;
-    }
-
     render() {
-        // loggedIn ? (
-        //     <Redirect to="/dashboard"/>
-        // )
-
         return (
             <div>
                 <Header />
                 <main>
                     <Switch>
-                        {/*'/' shouold go to overview if the user is authorized/has a token */}
-                        <Route exact path='/' component={this.isUserAuthorized()} />
+                        {/*'/' should go to overview if the user is authorized/has a token */}
+                        <Route exact path='/' component={Home} />
                         <Route path='/register' component={Register} />
-                        <Route path='/overview' component={() => (<Overview subjects={this.state.subjects} />)} />
+                        <Route path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
-                        <Route path='/subjectStats/:id' render={(props) => <SubjectStats {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
+                        <Route path='/commits/:id' render={(props) => <Commits {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
                         <Route path='/profile' component={Profile} />
+                        <Route path="*" component={NotFound} />
                     </Switch>
                 </main>
                 <Footer />
@@ -132,7 +127,7 @@ const Header = () => (
             <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/register'>Login/Register</Link></li>
-                <li><Link to='/overview'>Overview</Link></li>
+                <li><Link to='/overview'>Subjects</Link></li>
                 <li><Link to='/profile'>Profile</Link></li>
                 <li><Link to='/' onClick={() => {Auth.removeToken()}}>Logout</Link></li>
             </ul>
@@ -145,5 +140,13 @@ const Footer = () => (
         <p>Kazordomo productions <span className="Footer-cr">&copy;</span></p>
     </footer>
 );
+
+const NotFound = () => {
+    return (
+        <div className="NotFound">
+            <h1>NOT FOUND</h1>
+        </div>
+    )
+};
 
 export default App;

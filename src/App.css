@@ -184,18 +184,18 @@ footer p .Footer-cr {
 
 /* OVERVIEW
 ------------------------------------------------------------ */
-.Overview .Overview-subjects {
+.Subjects .Subjects-subjects {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.Overview .Overview-nav {
+.Subjects .Subjects-nav {
     font-size: 18px;
     margin-bottom: 5px;
 }
 
-.Overview .Overview-nav select {
+.Subjects .Subjects-nav select {
     border: none;
     font-size: 18px;
     background-color: transparent;
@@ -204,22 +204,22 @@ footer p .Footer-cr {
     cursor: pointer;
 }
 
-.Overview .Overview-nav select > option {
+.Subjects .Subjects-nav select > option {
     background-color: #09121F;
     cursor: pointer;
 }
 
-.Overview .Overview-nav select option:hover {
+.Subjects .Subjects-nav select option:hover {
     box-shadow: 0 0 10px 100px #1882A8 inset;
 }
 
-.Overview .Overview-add-subject {
+.Subjects .Subjects-add-subject {
     float: right;
 }
 
 /* SUBJECTITEM
 ------------------------------------------------------------ */
-.SubjectItem {
+.Subject {
     position: relative;
     width: 49%;
     margin: 10px 0px;
@@ -229,11 +229,11 @@ footer p .Footer-cr {
     box-shadow: 3px 6px 5px 3px rgba(0,0,0,1);
 }
 
-.SubjectItem:hover .SubjectItem-dummy-circle {
+.Subject:hover .Subject-dummy-circle {
     opacity: 1;
 }
 
-.SubjectItem-dummy-circle {
+.Subject-dummy-circle {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -244,21 +244,21 @@ footer p .Footer-cr {
     border-radius: 50%;
 }
 
-.SubjectItem-wrapper {
+.Subject-wrapper {
     padding: 20px;
 }
 
-.SubjectItem i {
+.Subject i {
     float: right;
     color: #FFFFFF;
     font-size: 25px;
 }
 
-.SubjectItem .sub-title {
+.Subject .sub-title {
     float: left;
 }
 
-.SubjectItem .SubjectItem-progress-bar {
+.Subject .Subject-progress-bar {
     position: relative;
     width: 100%;
     height: 25px;
@@ -267,13 +267,13 @@ footer p .Footer-cr {
     border-radius: 15px;
 }
 
-.SubjectItem .SubjectItem-hours-done {
+.Subject .Subject-hours-done {
     position: absolute;
     height: 25px;
 }
 
 /*please redo this... please*/
-.SubjectItem .SubjectItem-percent {
+.Subject .Subject-percent {
     position: absolute;
     width: 100%;
     top: 4px;
@@ -330,29 +330,29 @@ footer p .Footer-cr {
 /* OVERVIEW
 ------------------------------------------------------------ */
 /*change ALL of this*/
-.SubjectStats input[type="text"], .SubjectStats input[type="number"] {
+.Commits input[type="text"], .Commits input[type="number"] {
     box-sizing: border-box;
     margin-right: 1.5%;
     padding: 10px 10px;
 }
 
-.SubjectStats input[type="number"] {
+.Commits input[type="number"] {
     width: 19%;
 }
 
-.SubjectStats input[type="text"] {
+.Commits input[type="text"] {
     width: 64%;
 }
 
-.SubjectStats .button.button-add {
+.Commits .button.button-add {
     width: 14%
 }
 
-.SubjectStats .SubjectStats-messages {
+.Commits .Commits-messages {
     margin: 25px 0px;
 }
 
-.SubjectStats .SubjectStats-show-more {
+.Commits .Commits-show-more {
     width: 100%;
     text-align: center;
     color: #FFFFFF;
@@ -362,11 +362,11 @@ footer p .Footer-cr {
     font-size: 16px;
 }
 
-.SubjectStats .SubjectStats-show-more:focus {
+.Commits .Commits-show-more:focus {
     outline: none;
 }
 
-.CommitMessage {
+.Commit {
     width: 100%;
     margin-bottom: 15px;
     padding: 15px;
@@ -376,20 +376,20 @@ footer p .Footer-cr {
     border-radius: 2px;
 }
 
-.CommitMessage .CommitMessage-dash {
+.Commit .Commit-dash {
     margin: 0px 15px;
 }
 
-.CommitMessage .CommitMessage-time {
+.Commit .Commit-time {
     font-style: italic;
     font-size: 20px;
 }
 
-.CommitMessage i {
+.Commit i {
     margin-right: 20px;
 }
 
-.CommitMessage-delete {
+.Commit-delete {
     float: right;
     padding: 0;
     opacity: 0;
@@ -397,18 +397,18 @@ footer p .Footer-cr {
     background-color: transparent;
 }
 
-.CommitMessage-delete i {
+.Commit-delete i {
     margin-right: 0;
     font-size: 25px;
     color: #FFFFFF;
 }
 
-.CommitMessage:hover .CommitMessage-delete {
+.Commit:hover .Commit-delete {
     opacity: 1;
     cursor: pointer;
 }
 
-.CommitMessage:hover {
+.Commit:hover {
     /*background-color: rgba(255, 136, 56, 0.8);*/
     background-color: rgba(46, 163, 201, 0.8);
 }

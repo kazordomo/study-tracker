@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Auth from './Auth';
 
 class Profile extends Component {
 
@@ -14,11 +15,17 @@ class Profile extends Component {
     componentDidMount() {
         //TODO: should catch error if the request is bad
         return (
-            fetch('api/profile')
-                .then(this.getJSON)
-                .then((data) => {
-                    this.setState({profileData: data});
-                })
+            fetch('api/profile', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bearer ${Auth.getToken()}`
+                }
+            })
+            .then(this.getJSON)
+            .then((data) => {
+                this.setState({profileData: data});
+            })
         )
     }
 

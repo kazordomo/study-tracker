@@ -12,7 +12,6 @@ router.post('/login', (req, res) => {
 
     if(req.body.name && req.body.password) {
         User.authenticate(req.body.name, req.body.password, (error, user) => {
-            console.log(user);
             if(error || !user) {
                 return res.status(401).json({
                     success: false,
@@ -59,9 +58,7 @@ router.post('/register', (req, res) => {
         };
 
         User.create(userData, (error, user) => {
-            console.log(user);
             if(error) {
-                console.log(error);
                 return res.status(400).end();
             } else {
                 return res.status(200).end();

@@ -4,9 +4,9 @@ import Auth from './Auth';
 
 class EditSubject extends Component {
 
-    //should prob not need a constructor here.
-    constructor() {
-        super();
+    //TODO: get the subject through props and not in componenWillMount
+    constructor(props) {
+        super(props);
         this.state = {
             redirect: false,
             subject: {}
@@ -48,6 +48,7 @@ class EditSubject extends Component {
     }
 
     componentWillMount() {
+        //TODO: we should get an single subject item sent to us
         let paramId = this.props.match.params.id;
         let isSubjectItem = this.props.data.filter((sub) => {
             return sub._id === paramId;
