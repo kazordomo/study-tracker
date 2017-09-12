@@ -4,7 +4,6 @@ const config = require('../../config');
 
 module.exports = (req, res, next) => {
 
-    console.log(req.headers);
     if(!req.headers.authorization) {
         return res.status(401).json({
             success: false,

@@ -26,8 +26,7 @@ class App extends Component {
         return response.json();
     }
 
-    componentDidMount() {
-        //TODO: should catch error if the request is bad
+    getSubjects() {
         if(Auth.getToken()) {
             let headers = new Headers();
             headers.append('Authorization', `bearer ${Auth.getToken()}`);
@@ -53,13 +52,16 @@ class App extends Component {
     handleAddSubject(subject) {
         let subjects = this.state.subjects;
         subjects.push(subject);
-        this.setState({subjects: subjects}, () => {
-            console.log(this.state.subjects);
-        });
+        this.setState({subjects: subjects});
     }
 
     handleEditSubject(subject) {
         let subjects = this.state.subjects;
+        //try with this. make a function of it this.isSubjectItem(subject).
+        // let isSubjectItem = subjects.find((sub) => {
+        //     return sub._id === subject._id;
+        // });
+
         //please remove tha for loop.
         for(let i = 0; i < subjects.length; i++) {
             if(subjects[i]._id === subject._id) {
@@ -82,18 +84,20 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
-    //add commit message and time
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
         subject.hoursDone += parseInt(commit.time, 10);
         this.setState({subjects: subjects});
     }
 
-    //send in commit as well.
     handleDeleteCommit(data) {
         let subjects = this.state.subjects;
         data.subject.hoursDone -= parseInt(data.message.time, 10);
         this.setState({subjects: subjects});
+    }
+
+    componentDidMount() {
+        this.getSubjects();
     }
 
     render() {
@@ -102,12 +106,13 @@ class App extends Component {
                 <Header />
                 <main>
                     <Switch>
+                        this.props.match.params.id
                         {/*'/' should go to overview if the user is authorized/has a token */}
                         <Route exact path='/' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
                         <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
-                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} data={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
+                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} subjects={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
                         <Route path='/commits/:id' render={(props) => <Commits {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
                         <Route path='/profile' component={Profile} />
                         <Route path="*" component={NotFound} />
@@ -119,7 +124,6 @@ class App extends Component {
     }
 }
 
-//Links component
 const Header = () => (
     <header>
         <Link to="/"><span className="Header-logo">ST</span></Link>

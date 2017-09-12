@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Auth from './Auth';
 
 class AddSubject extends Component {
 
-    constructor(props   ) {
-        super(props);
+    constructor(   ) {
+        super();
         this.state = {
-            redirect: false,
-            newSubject: {}
+            redirect: false
         }
     }
 
@@ -16,7 +16,7 @@ class AddSubject extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        let formData = {
+        let subjectData = {
             title: this.refs.title.value,
             hoursDone: 0,
             hoursTodo: this.refs.hoursTodo.value,
@@ -31,20 +31,18 @@ class AddSubject extends Component {
                 'Content-type': 'application/json',
                 'Authorization': `bearer ${Auth.getToken()}`
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(subjectData)
         }).then((response) => {
             return response.json();
-        }).then((subject) => {
-            console.log(subject);
-            this.props.addSubject(subject);
+        }).then((data) => {
+            //case of race condition?
+            this.setState({redirect: true});
+            this.props.addSubject(data);
         });
-        //TODO: redirect should only be done when subject is saved to DB.
-        this.setState({redirect: true});
     }
 
     render() {
 
-        //TODO: all of theses redirects should be refactored. DRY pl0x.
         const { redirect } = this.state;
 
         if (redirect) {
@@ -79,5 +77,9 @@ class AddSubject extends Component {
         );
     }
 }
+
+AddSubject.propTypes = {
+    addSubject: PropTypes.func
+};
 
 export default AddSubject;

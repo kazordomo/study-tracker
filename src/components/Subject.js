@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Subject extends Component {
 
@@ -55,5 +56,9 @@ class Subject extends Component {
         );
     }
 }
+
+Subject.proTypes = {
+    subject: PropTypes.object
+};
 
 export default Subject;

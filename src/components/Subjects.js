@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Subject from './Subject';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Subject from './Subject';
 
 class Subjects extends Component {
 
@@ -11,24 +12,18 @@ class Subjects extends Component {
         }
     }
 
-    //refactor this later pl0x. fugly af.
     handleSelect(e) {
         let subjects = this.props.subjects.map(subject => {
+            const subjectItem = <Subject key={subject._id} subject={subject} />;
             if(e.target.value === 'all') {
-                return (
-                    <Subject key={subject.title} subject={subject} />
-                )
+                return subjectItem;
             } else if (e.target.value ==='inFocus') {
                 if(subject.inFocus === true) {
-                    return (
-                        <Subject key={subject.title} subject={subject} />
-                    )
+                    return subjectItem;
                 } else return false;
             } else if (e.target.value === 'done') {
                 if(subject.hoursDone >= subject.hoursTodo) {
-                    return (
-                        <Subject key={subject.title} subject={subject} />
-                    )
+                    return subjectItem;
                 } else return false;
             } else return false;
         });
@@ -39,7 +34,7 @@ class Subjects extends Component {
         let subjects = this.props.subjects.map(subject => {
             if(subject.inFocus) {
                 return (
-                    <Subject key={subject.title} subject={subject} />
+                    <Subject key={subject._id} subject={subject} />
                 )
             } else return false;
         });
@@ -52,7 +47,6 @@ class Subjects extends Component {
                 <div className="container">
                     <div className="title">Subjects</div>
                     <div className="Subjects-nav">
-                        {/*we should NOT hardcode the options*/}
                         <select onChange={this.handleSelect.bind(this)}>
                             <option value="inFocus">In focus</option>
                             <option value="all">All</option>
@@ -68,5 +62,9 @@ class Subjects extends Component {
         );
     }
 }
+
+Subjects.proTypes = {
+    subjects: PropTypes.array
+};
 
 export default Subjects;

@@ -9,7 +9,6 @@ class Auth {
         return localStorage.getItem('token') !== null;
     }
     static removeToken() {
-        console.log("WOOOPS");
         localStorage.removeItem('token');
     }
     static getToken() {

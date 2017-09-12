@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Auth from './Auth';
 
 class EditSubject extends Component {
 
-    //TODO: get the subject through props and not in componenWillMount
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             redirect: false,
             subject: {}
@@ -14,33 +14,43 @@ class EditSubject extends Component {
     }
 
     handleSubmit(e) {
-        this.setState({subject: {
-            _id: this.props.match.params.id,
+        e.preventDefault();
+        let subjectData = {
+            _id: this.state.subject._id,
             title: this.refs.title.value,
             hoursTodo: this.refs.hoursTodo.value,
             hoursDone: this.refs.hoursDone.value,
             inFocus: this.refs.inFocus.value,
-            description: this.refs.description.value
-        }}, () => {
-            this.props.editSubject(this.state.subject);
+            description: this.refs.description.value,
+            commits: this.state.subject.commitMessages
+        };
+
+        fetch('/api/editsubject',{
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `bearer ${Auth.getToken()}`
+            },
+            body: JSON.stringify(subjectData)
+        }).then((response) => {
+            if(response.status === 200) {
+                this.props.editSubject(subjectData);
+                this.setState({redirect: true});
+            }
         });
-        e.preventDefault();
     }
 
-    //ERROR
-    //TODO: fix the redirect.
     handleDelete(e) {
         e.preventDefault();
-        console.log(this.props);
         fetch('/api/deletesubject',{
-            method: 'DELETE',
+            method: 'delete',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `bearer ${Auth.getToken()}`
             },
             body: JSON.stringify(this.state.subject)
-        }).then((data) => {
-            if(data.status === 200) {
+        }).then((response) => {
+            if(response.status === 200) {
                 this.setState({redirect: true});
             }
         });
@@ -48,9 +58,8 @@ class EditSubject extends Component {
     }
 
     componentWillMount() {
-        //TODO: we should get an single subject item sent to us
         let paramId = this.props.match.params.id;
-        let isSubjectItem = this.props.data.filter((sub) => {
+        let isSubjectItem = this.props.subjects.filter((sub) => {
             return sub._id === paramId;
         })[0];
         this.setState({subject: isSubjectItem});
@@ -95,5 +104,11 @@ class EditSubject extends Component {
         );
     }
 }
+
+EditSubject.propTypes = {
+    data: PropTypes.array,
+    editSubject: PropTypes.func,
+    deleteSubject: PropTypes.func
+};
 
 export default EditSubject;

@@ -11,17 +11,7 @@ class Register extends Component {
     };
 
     postFetch(url) {
-
-        // const storedMessage = localStorage.getItem('successMessage');
-        // let successMessage = '';
-        //
-        // if (storedMessage) {
-        //     successMessage = storedMessage;
-        //     localStorage.removeItem('successMessage');
-        // }
-
         let formData = {};
-        //use FormData instead. using this as a dummy-func for now.
         if(url === 'register') {
             formData = {
                 name: this.refs.name.value,

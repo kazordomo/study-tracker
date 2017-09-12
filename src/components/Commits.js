@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Auth from './Auth';
 import uuid from 'uuid';
 import moment from 'moment';
 
-//TODO: Fix error when refreshing page inside subjectItems. Localstorage? Send in props differently?
-//TODO: The comp will return to initial state when page refresh, meaning we have no values to calculate isSubjectItem with.
 //with the local storage approach every subject will be the same.
 // if(!localStorage.getItem('subject')) {
 //     localStorage.setItem('subject', JSON.stringify(isSubjectItem));
@@ -56,7 +55,7 @@ class Commits extends Component {
         });
     }
 
-    handleCommit(e) {
+    handleAddCommit(e) {
         e.preventDefault();
         let formData = {
             _id: uuid.v4(),
@@ -75,7 +74,7 @@ class Commits extends Component {
             body: JSON.stringify(formData)
         }).then((response) => {
             return response.json();
-        }).then((subject) => {
+        }).then(() => {
             let commitMessages = this.state.commitMessages;
             commitMessages.push(formData);
             this.setState({commitMessages: commitMessages}, () => {
@@ -133,7 +132,7 @@ class Commits extends Component {
             <div className="Commits">
                 <div className="container">
                    <h1>{this.state.subject.title}</h1>
-                    <form onSubmit={this.handleCommit.bind(this)}>
+                    <form onSubmit={this.handleAddCommit.bind(this)}>
                         <input type="text" ref="message" placeholder="Message" required />
                         <input type="number" ref="time" placeholder="Hours" required />
                         <input type="submit" value="Add" className="button button-add" />
@@ -146,6 +145,12 @@ class Commits extends Component {
             </div>
         );
     }
+}
+
+Commits.propTypes = {
+    data: PropTypes.array,
+    addCommit: PropTypes.func,
+    deleteCommit: PropTypes.func
 }
 
 export default Commits;

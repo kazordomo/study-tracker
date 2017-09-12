@@ -35,6 +35,19 @@ router.post('/addsubject', (req, res) => {
     }
 });
 
+router.post('/editsubject', (req, res) => {
+    let updateSubject = req.body;
+    Subject.findById(updateSubject._id, (error, subject) => {
+        subject.update(updateSubject, (error, subject) => {
+            if(error) {
+                return res.status(400).end();
+            } else {
+                return res.json(subject);
+            }
+        });
+    });
+});
+
 // /DELETE subject
 router.delete('/deletesubject', (req, res) => {
    Subject.deleteOne({_id: req.body._id}, (error, result) => {
@@ -92,8 +105,7 @@ router.post('/addcommit', (req, res) => {
             subject.save((error) => {
                 if(error) {
                     return res.status(400).end();
-                }
-                else {
+                } else {
                     res.send(subject);
                 }
             });
