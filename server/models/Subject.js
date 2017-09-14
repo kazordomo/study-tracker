@@ -6,12 +6,15 @@ let SubjectSchema = new mongoose.Schema({
         required: true
     },
     hoursDone: Number,
-    hoursTodo: {
-        type: Number,
-        required: true
-    },
+    //either hoursTodo or infinity should be required.
+    hoursTodo: Number,
+    infinity: Boolean,
     description: String,
     inFocus: Boolean,
+    lastUpdated: {
+        type: Date,
+        default: Date.now
+    },
     commitMessages: Array
 });
 

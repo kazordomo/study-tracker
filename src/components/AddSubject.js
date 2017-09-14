@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Auth from './Auth';
+import { Link } from 'react-router-dom';
 
 class AddSubject extends Component {
 
@@ -20,6 +21,7 @@ class AddSubject extends Component {
             title: this.refs.title.value,
             hoursDone: 0,
             hoursTodo: this.refs.hoursTodo.value,
+            infinity: this.refs.infinity.checked,
             description: this.refs.description.value,
             inFocus: this.refs.inFocus.checked,
             commitMessages: []
@@ -42,7 +44,6 @@ class AddSubject extends Component {
     }
 
     render() {
-
         const { redirect } = this.state;
 
         if (redirect) {
@@ -52,14 +53,21 @@ class AddSubject extends Component {
         return (
             <div className="AddSubject">
                 <div className="container">
+                    <div className="go-back">
+                        <Link to='/overview'><i className="fa fa-arrow-left" aria-hidden="true"></i></Link>
+                    </div>
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <div>Title</div>
-                            <input type="text" ref="title" />
+                            <input type="text" ref="title" required />
                         </div>
                         <div className="form-group">
                             <div>Hours to do</div>
                             <input type="number" ref="hoursTodo" placeholder="0" />
+                        </div>
+                        <div className="form-group">
+                            <div>Infinity</div>
+                            <input type="checkbox" ref="infinity" className="switch" />
                         </div>
                         <div className="form-group">
                             <div>Description</div>
@@ -67,10 +75,11 @@ class AddSubject extends Component {
                         </div>
                         <div className="form-group">
                             <div>In Focus?</div>
-                            <input type="checkbox" ref="inFocus" defaultChecked />
+                            <input type="checkbox" ref="inFocus" className="switch" defaultChecked />
                         </div>
-                        <input type="submit" className="button" value="Add" />
-                        <button className="button button-cancel">Cancel</button>
+                        <div className="button-wrapper">
+                            <input type="submit" className="button" value="Add" />
+                        </div>
                     </form>
                 </div>
             </div>

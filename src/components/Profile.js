@@ -16,7 +16,7 @@ class Profile extends Component {
         //TODO: should catch error if the request is bad
         return (
             fetch('api/profile', {
-                method: 'DELETE',
+                method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `bearer ${Auth.getToken()}`

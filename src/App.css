@@ -27,6 +27,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     border: none;
     font-size: 16px;
     box-sizing: border-box;
+    font-weight: 700;
 }
 
 main {
@@ -45,6 +46,10 @@ main {
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
+}
+
+.button-wrapper {
+    margin-top: 50px;
 }
 
 .button {
@@ -67,10 +72,74 @@ main {
     background-color: #FF8838;
 }
 
+input[type="checkbox"] {
+    margin: 0;
+}
+
+.switch{
+    font-size: 20px;
+    appearance: none;
+    width: 3.5em;
+    height: 1.5em;
+    background-color: #A3A2A2;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border-radius: 2px;
+    transition: all .2s ease-in-out;
+}
+
+.switch:checked{
+    background-color: #4796D6;
+}
+
+.switch:after{
+    position: absolute;
+    content: "";
+    width: 1.5em;
+    height: 1.5em;
+    background: #fff;
+    box-shadow: 0 0 .25em rgba(0,0,0,.3);
+    transform: scale(.7);
+    left: 0;
+    border-radius: 2px;
+    transition: all .2s ease-in-out;
+}
+
+.switch:checked:after{
+    left: calc(100% - 1.5em);
+}
+
+.switch:after{
+    position: absolute;
+    content: "";
+    width: 1.5em;
+    height: 1.5em;
+    background: #fff;
+    box-shadow: 0 0 .25em rgba(0,0,0,.3);
+    transform: scale(.7);
+    left: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.switch:checked:after{
+    left: calc(100% - 1.5em);
+}
+
+.go-back {
+    margin-bottom: 50px;
+}
+
+.go-back i {
+    font-size: 25px;
+    cursor: pointer;
+}
+
 .title {
     font-size: 40px;
-    font-weight: 700;
     text-align: center;
+    font-weight: 700;
 }
 
 .sub-title {
@@ -182,7 +251,7 @@ footer p .Footer-cr {
     margin-top: 10px;
 }
 
-/* OVERVIEW
+/* SUBJECTS
 ------------------------------------------------------------ */
 .Subjects .Subjects-subjects {
     display: flex;
@@ -202,11 +271,13 @@ footer p .Footer-cr {
     color: #FFFFFF;
     outline: none;
     cursor: pointer;
+    font-weight: 700;
 }
 
 .Subjects .Subjects-nav select > option {
     background-color: #09121F;
     cursor: pointer;
+    font-weight: 700;
 }
 
 .Subjects .Subjects-nav select option:hover {
@@ -215,33 +286,24 @@ footer p .Footer-cr {
 
 .Subjects .Subjects-add-subject {
     float: right;
+    font-weight: 700;
 }
 
-/* SUBJECTITEM
+/* SUBJECT
 ------------------------------------------------------------ */
 .Subject {
     position: relative;
     width: 49%;
     margin: 10px 0px;
-    background-color: #1C3E66;
+    background-color: #003159;
     color: #FFFFFF;
     border-radius: 5px;
     box-shadow: 3px 6px 5px 3px rgba(0,0,0,1);
+    transition: all .2s ease-in-out;
 }
 
-.Subject:hover .Subject-dummy-circle {
-    opacity: 1;
-}
-
-.Subject-dummy-circle {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 6px;
-    height: 6px;
-    background-color: #2EA3C9;
-    opacity: 0;
-    border-radius: 50%;
+.Subject .Subject-description {
+    font-weight: 400;
 }
 
 .Subject-wrapper {
@@ -272,18 +334,25 @@ footer p .Footer-cr {
     height: 25px;
 }
 
-/*please redo this... please*/
 .Subject .Subject-percent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     width: 100%;
-    top: 4px;
+    height: 25px;
     color: #091b38;
-    text-align: center;
-    font-weight: 700;
     z-index: 999;
+    font-family: 'Righteous', cursive;
 }
 
-/* OVERVIEW
+.Subject .Subject-percent i {
+    font-size: 20px;
+    color: #091b38;
+}
+
+
+/* ADDSUBJECT
 ------------------------------------------------------------ */
 
 .form-group {
@@ -302,12 +371,12 @@ footer p .Footer-cr {
 
 .AddSubject input[type="text"], .EditSubject input[type="text"] {
     width: 100%;
-    padding: 5px 10px;
+    padding: 10px 10px;
 }
 
 .AddSubject input[type="number"], .EditSubject input[type="number"] {
     width: 30%;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border: none;
     outline: none;
 }
@@ -315,7 +384,7 @@ footer p .Footer-cr {
 .AddSubject textarea, .EditSubject textarea {
     width: 100%;
     font-family: 'Roboto', sans-serif;
-    padding: 5px 10px;
+    padding: 10px 10px;
 }
 
 .AddSubject .button, .EditSubject .button {
@@ -327,7 +396,43 @@ footer p .Footer-cr {
     background-color: #FC2626;
 }
 
-/* OVERVIEW
+.EditSubject .EditSubject-fade-background {
+    display: none;
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.EditSubject .EditSubject-delete-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    width: 400px;
+    height: 200px;
+    padding: 15px 30px;
+    margin-top: 50px;
+    background-color: #EAE9F0;
+    color: #091b38;
+    border-radius: 2px;
+}
+
+.EditSubject .EditSubject-delete-modal .title {
+    height: 100px;
+}
+
+.EditSubject .EditSubject-delete-modal .EditSubject-delete {
+    float: right;
+    margin: 0 auto;
+}
+
+/* COMMITS
 ------------------------------------------------------------ */
 /*change ALL of this*/
 .Commits input[type="text"], .Commits input[type="number"] {
@@ -409,7 +514,6 @@ footer p .Footer-cr {
 }
 
 .Commit:hover {
-    /*background-color: rgba(255, 136, 56, 0.8);*/
     background-color: rgba(46, 163, 201, 0.8);
 }
 

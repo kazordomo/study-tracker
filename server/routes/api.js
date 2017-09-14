@@ -12,11 +12,12 @@ router.get('/subjects', (req, res) => {
 
 // /ADD subject
 router.post('/addsubject', (req, res) => {
-    if(req.body.title && req.body.hoursTodo) {
+    if(req.body.title) {
         let subjectData = {
             title: req.body.title,
             hoursDone: 0,
-            hoursTodo: req.body.hoursTodo,
+            hoursTodo: req.body.hoursTodo ? req.body.hoursTodo : 0,
+            infinity: req.body.infinity,
             description: req.body.description ? req.body.description : '',
             inFocus: req.body.inFocus,
             commitMessages: []
@@ -95,13 +96,15 @@ router.post('/addcommit', (req, res) => {
         let commitData = {
             _id: req.body._id,
             message: req.body.message,
-            time: req.body.time
+            time: req.body.time,
+            timestamp: req.body.timestamp
         };
 
         //UPDATE
         Subject.findById(req.body.subjectId, (error, subject) => {
             subject.hoursDone += parseInt(commitData.time, 10);
             subject.commitMessages.push(commitData);
+            subject.lastUpdated = commitData.timestamp;
             subject.save((error) => {
                 if(error) {
                     return res.status(400).end();

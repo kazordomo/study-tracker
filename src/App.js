@@ -6,7 +6,7 @@ import AddSubject from './components/AddSubject';
 import EditSubject from './components/EditSubject';
 import Commits from './components/Commits';
 import Profile from './components/Profile';
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import Auth from './components/Auth';
 import './App.css';
 
@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     getSubjects() {
-        if(Auth.getToken()) {
+        if(Auth.isUserAuthenticated()) {
             let headers = new Headers();
             headers.append('Authorization', `bearer ${Auth.getToken()}`);
             let fetchInit = {
@@ -84,6 +84,7 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
+    //SUBJECTS SHOULD RERENDER WITH NEW SORTED ORDER.
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
         subject.hoursDone += parseInt(commit.time, 10);
@@ -101,20 +102,45 @@ class App extends Component {
     }
 
     render() {
+
+        const PrivateRoute = ({ component: Component, ...rest }) => (
+            <Route {...rest} render={props => (
+                Auth.isUserAuthenticated() ? (
+                    <Component {...props}/>
+                ) : (
+                    <Redirect to={{
+                        pathname: '/register',
+                        state: { from: props.location }
+                    }}/>
+                )
+            )}/>
+        );
+
+        const HasTokenRoute = ({ component: Component, ...rest }) => (
+            <Route {...rest} render={props => (
+                Auth.isUserAuthenticated() ? (
+                    <Redirect to={{
+                        pathname: '/overview',
+                        state: { from: props.location }
+                    }}/>
+                ) : (
+                    <Component {...props}/>
+                )
+            )}/>
+        );
+
         return (
             <div>
                 <Header />
                 <main>
                     <Switch>
-                        this.props.match.params.id
-                        {/*'/' should go to overview if the user is authorized/has a token */}
                         <Route exact path='/' component={Home} />
-                        <Route path='/register' component={Register} />
-                        <Route path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
-                        <Route path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
+                        <HasTokenRoute path='/register' component={Register} />
+                        <PrivateRoute path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
+                        <PrivateRoute path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} subjects={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
                         <Route path='/commits/:id' render={(props) => <Commits {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
-                        <Route path='/profile' component={Profile} />
+                        <PrivateRoute path='/profile' component={Profile} />
                         <Route path="*" component={NotFound} />
                     </Switch>
                 </main>

@@ -13,7 +13,10 @@ class Subjects extends Component {
     }
 
     handleSelect(e) {
-        let subjects = this.props.subjects.map(subject => {
+        let sortedSubjects = this.props.subjects.sort((a, b) => {
+            return new Date(b.lastUpdated) - new Date(a.lastUpdated);
+        });
+        let subjects = sortedSubjects.map(subject => {
             const subjectItem = <Subject key={subject._id} subject={subject} />;
             if(e.target.value === 'all') {
                 return subjectItem;
@@ -31,7 +34,11 @@ class Subjects extends Component {
     }
 
     componentDidMount() {
-        let subjects = this.props.subjects.map(subject => {
+        //DRY
+        let sortedSubjects = this.props.subjects.sort((a, b) => {
+            return new Date(b.lastUpdated) - new Date(a.lastUpdated);
+        });
+        let subjects = sortedSubjects.map(subject => {
             if(subject.inFocus) {
                 return (
                     <Subject key={subject._id} subject={subject} />

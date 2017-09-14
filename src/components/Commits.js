@@ -56,12 +56,13 @@ class Commits extends Component {
     }
 
     handleAddCommit(e) {
+        let time = Date.now();
         e.preventDefault();
         let formData = {
             _id: uuid.v4(),
             message: this.refs.message.value,
             time: parseInt(this.refs.time.value, 10),
-            timestamp: new Date(),
+            timestamp: time,
             subjectId: this.state.subject._id
         };
 
