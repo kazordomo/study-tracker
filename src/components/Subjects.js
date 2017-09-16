@@ -12,6 +12,7 @@ class Subjects extends Component {
         }
     }
 
+    //TODO: no rerender of subject, need to reload to get the sorting done.
     handleSelect(e) {
         let sortedSubjects = this.props.subjects.sort((a, b) => {
             return new Date(b.lastUpdated) - new Date(a.lastUpdated);
@@ -25,7 +26,7 @@ class Subjects extends Component {
                     return subjectItem;
                 } else return false;
             } else if (e.target.value === 'done') {
-                if(subject.hoursDone >= subject.hoursTodo) {
+                if(subject.hoursDone >= subject.hoursTodo && !subject.infinity) {
                     return subjectItem;
                 } else return false;
             } else return false;

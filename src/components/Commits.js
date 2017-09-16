@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Auth from './Auth';
 import uuid from 'uuid';
@@ -9,6 +10,8 @@ import moment from 'moment';
 //     localStorage.setItem('subject', JSON.stringify(isSubjectItem));
 // }
 // subject: JSON.parse(localStorage.getItem('subject'))
+
+//TODO: add total hours of the subject in the title.
 
 function Commit(props) {
     return (
@@ -27,12 +30,14 @@ class Commits extends Component {
     constructor() {
         super();
         this.state = {
+            redirect: false,
             commitMessages: [],
             subject: {},
             counter: 1
         }
     }
 
+    //TODO: the sorting should care about houors/minutes/seconds as well.
     renderCommitMessages(messages) {
         let quantity = this.state.counter * 5;
         let messagesArr = messages.sort((a, b) => {
@@ -75,11 +80,13 @@ class Commits extends Component {
             body: JSON.stringify(formData)
         }).then((response) => {
             return response.json();
-        }).then(() => {
+        }).then((data) => {
             let commitMessages = this.state.commitMessages;
             commitMessages.push(formData);
             this.setState({commitMessages: commitMessages}, () => {
-                this.props.addCommit(formData, this.state.subject);
+                this.props.addCommit(formData, data);
+                this.refs.message.value = '';
+                this.refs.time.value = '';
             });
         });
     }
@@ -112,18 +119,30 @@ class Commits extends Component {
     }
 
     componentWillMount() {
-        let paramId = this.props.match.params.id;
-        let isSubjectItem = this.props.data.filter((sub) => {
-            return sub._id === paramId;
-        })[0];
-        this.setState({
-            subject: isSubjectItem,
-            commitMessages: isSubjectItem.commitMessages
-        });
+        if(this.props.commits.length) {
+            let paramId = this.props.match.params.id;
+            let isSubjectItem = this.props.commits.filter((sub) => {
+                return sub._id === paramId;
+            })[0];
+            this.setState({
+                subject: isSubjectItem,
+                commitMessages: isSubjectItem.commitMessages
+            });
+        } else {
+            //TODO: temp solution. when fixed, remove redirect.
+            this.setState({redirect: true});
+        }
     }
 
 
     render() {
+
+        const { redirect } = this.state;
+
+        if (redirect) {
+            return <Redirect to='/overview'/>;
+        }
+
         let quantity = this.renderCommitMessages(this.state.commitMessages).length;
         let quantityTotal = this.state.subject.commitMessages.length;
         let showMore = this.renderCommitMessages(this.state.commitMessages).length === this.state.commitMessages.length ?
@@ -148,10 +167,14 @@ class Commits extends Component {
     }
 }
 
+Commits.defaultProps = {
+    commits: []
+};
+
 Commits.propTypes = {
     data: PropTypes.array,
     addCommit: PropTypes.func,
     deleteCommit: PropTypes.func
-}
+};
 
 export default Commits;

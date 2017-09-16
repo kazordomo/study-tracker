@@ -5,8 +5,6 @@ const User = require('../models/User');
 const config = require('../../config');
 const router = express.Router();
 
-//TODO: res.status(...).json({}). Put proper statuses.
-
 // /POST login
 router.post('/login', (req, res) => {
 
@@ -23,12 +21,10 @@ router.post('/login', (req, res) => {
                 };
                 //create token string
                 const token = jwt.sign(payload, config.jwtSecret);
-                const data = {
-                    name: user.name
-                };
+                const userId = user._id;
                 return res.json({
                     success: true,
-                    data: data,
+                    userId: userId,
                     token: token
                 });
             }

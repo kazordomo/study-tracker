@@ -73,11 +73,27 @@ class EditSubject extends Component {
     }
 
     componentWillMount() {
-        let paramId = this.props.match.params.id;
-        let isSubjectItem = this.props.subjects.filter((sub) => {
-            return sub._id === paramId;
-        })[0];
-        this.setState({subject: isSubjectItem});
+        if(this.props.subjects.length) {
+            let paramId = this.props.match.params.id;
+            let isSubjectItem = this.props.subjects.filter((sub) => {
+                return sub._id === paramId;
+            })[0];
+            this.setState({subject: isSubjectItem});
+        } else {
+            this.setState({redirect: true});
+            // this.setState({
+            //     subject: {
+            //         commitMessages: [],
+            //         description: "Nej",
+            //         hoursDone: 12,
+            //         hoursTodo: 20,
+            //         inFocus: true,
+            //         infinity: false,
+            //         title: "Jaaarååååå",
+            //         _id: "59aefe6b86bcb25c1038e70d"
+            //     }
+            // })
+        }
     }
 
     render() {
@@ -136,6 +152,10 @@ class EditSubject extends Component {
         );
     }
 }
+
+EditSubject.defaultProps = {
+    subjects: []
+};
 
 EditSubject.propTypes = {
     data: PropTypes.array,

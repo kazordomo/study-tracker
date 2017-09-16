@@ -37,6 +37,8 @@ class Register extends Component {
                 return response.json();
             }
         }).then((data) => {
+            //TODO: we need to set the userId on register as well.
+            localStorage.setItem('userId', data.userId);
             Auth.authenticateUser(data.token);
             this.setState({redirect: true});
         });

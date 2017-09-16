@@ -8,18 +8,21 @@ class Subject extends Component {
         let hoursDonePercent = Math.round((this.props.subject.hoursDone / this.props.subject.hoursTodo) * 100);
         hoursDonePercent = (hoursDonePercent > 100) ? 100 : hoursDonePercent;
         let color = '';
-        if(hoursDonePercent <= 30) {
+        if(hoursDonePercent <= 20) {
             color = '#FC2626';
-        } else if (hoursDonePercent > 30 && hoursDonePercent <= 70) {
+        } else if (hoursDonePercent > 20 && hoursDonePercent <= 60) {
             color = '#FFC400';
         } else {
             color = '#24DE10';
         }
 
+        let goldStarStyle = {
+            display: 'none'
+        };
         let style = {
             width: this.props.subject.infinity ? '100%' : hoursDonePercent + '%',
             backgroundColor: this.props.subject.infinity ? '#36D1AA' : color,
-            borderRadius: '15px 0px 0px 15px'
+            borderRadius: '2px 0px 0px 2px'
         };
         let commitLinkStyle = {
             position: 'absolute',
@@ -33,13 +36,15 @@ class Subject extends Component {
             position: 'relative',
             zIndex: 999
         };
-        if(hoursDonePercent === 100 || this.props.subject.infinity) {
-            style.borderRadius = '15px 15px 15px 15px';
+        if(hoursDonePercent === 100 && !this.props.subject.infinity) {
+            goldStarStyle.display = 'block';
+            style.borderRadius = '2px 2px 2px 2px';
         }
         const progressBarText = this.props.subject.infinity ? <i className="fa fa-bolt" aria-hidden="true"></i> : (hoursDonePercent + '%');
 
         return (
             <div className="Subject">
+                <i className="fa fa-star Subject-gold-star" style={goldStarStyle} aria-hidden="true"></i>
                 <div className="Subject-wrapper">
                     <Link to={'/commits/'+this.props.subject._id} style={commitLinkStyle} ></Link>
                     <div className="clearfix">

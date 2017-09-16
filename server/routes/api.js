@@ -42,23 +42,20 @@ router.post('/editsubject', (req, res) => {
         subject.update(updateSubject, (error, subject) => {
             if(error) {
                 return res.status(400).end();
-            } else {
-                return res.json(subject);
             }
+            return res.json(subject);
         });
     });
 });
 
 // /DELETE subject
 router.delete('/deletesubject', (req, res) => {
-   Subject.deleteOne({_id: req.body._id}, (error, result) => {
-       //cleaning up: no else needed, it will end directly if error occurs
-       if(error) {
-           return res.send(500, error);
-       } else {
-           return res.status(200).end();
-       }
-   });
+    Subject.deleteOne({_id: req.body._id}, (error, result) => {
+        if(error) {
+            return res.send(500, error);
+        }
+        return res.status(200).end();
+    });
 });
 
 // /GET profile

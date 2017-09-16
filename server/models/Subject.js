@@ -15,7 +15,8 @@ let SubjectSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    commitMessages: Array
+    commitMessages: Array,
+    userId: String
 });
 
 let Subject = mongoose.model('Subject', SubjectSchema);

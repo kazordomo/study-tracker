@@ -5,7 +5,6 @@ import Subjects from './components/Subjects';
 import AddSubject from './components/AddSubject';
 import EditSubject from './components/EditSubject';
 import Commits from './components/Commits';
-import Profile from './components/Profile';
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import Auth from './components/Auth';
 import './App.css';
@@ -18,6 +17,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
+            userId: '',
             subjects: []
         }
     }
@@ -41,11 +41,16 @@ class App extends Component {
                     .then((data) => {
                         this.setState({
                             subjects: data.doc
-                        }, () => {
-
                         });
                     })
             )
+        }
+    }
+
+    handleStoreUser() {
+        let user = localStorage.getItem('userId');
+        if(user) {
+            this.setState({userId: user});
         }
     }
 
@@ -57,17 +62,10 @@ class App extends Component {
 
     handleEditSubject(subject) {
         let subjects = this.state.subjects;
-        //try with this. make a function of it this.isSubjectItem(subject).
-        // let isSubjectItem = subjects.find((sub) => {
-        //     return sub._id === subject._id;
-        // });
-
-        //please remove tha for loop.
         for(let i = 0; i < subjects.length; i++) {
             if(subjects[i]._id === subject._id) {
                 let cm = subjects[i].commitMessages;
                 subjects[i] = subject;
-                //bad bad bad bad
                 subjects[i].commitMessages = cm;
                 return;
             }
@@ -84,10 +82,13 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
-    //SUBJECTS SHOULD RERENDER WITH NEW SORTED ORDER.
     handleAddCommit(commit, subject) {
         let subjects = this.state.subjects;
-        subject.hoursDone += parseInt(commit.time, 10);
+        let isSubjectItem = subjects.filter((sub) => {
+            return sub._id === subject._id;
+        })[0];
+        isSubjectItem.hoursDone += parseInt(commit.time, 10);
+        isSubjectItem.lastUpdated = subject.lastUpdated;
         this.setState({subjects: subjects});
     }
 
@@ -97,12 +98,13 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getSubjects();
     }
 
     render() {
 
+        //TODO: Fix the private route to work with routes with parameters.
         const PrivateRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={props => (
                 Auth.isUserAuthenticated() ? (
@@ -139,8 +141,7 @@ class App extends Component {
                         <PrivateRoute path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
                         <PrivateRoute path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} subjects={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
-                        <Route path='/commits/:id' render={(props) => <Commits {...props} data={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
-                        <PrivateRoute path='/profile' component={Profile} />
+                        <Route path='/commits/:id' render={(props) => <Commits {...props} commits={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
                         <Route path="*" component={NotFound} />
                     </Switch>
                 </main>
@@ -155,10 +156,6 @@ const Header = () => (
         <Link to="/"><span className="Header-logo">ST</span></Link>
         <nav>
             <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/register'>Login/Register</Link></li>
-                <li><Link to='/overview'>Subjects</Link></li>
-                <li><Link to='/profile'>Profile</Link></li>
                 <li><Link to='/' onClick={() => {Auth.removeToken()}}>Logout</Link></li>
             </ul>
         </nav>
