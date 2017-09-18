@@ -45,6 +45,7 @@ main {
 .container {
     width: 90%;
     max-width: 800px;
+    min-height: 300px;
     margin: 0 auto;
 }
 
@@ -250,6 +251,19 @@ footer p .Footer-cr {
 
 /* SUBJECTS
 ------------------------------------------------------------ */
+.Subjects .Subjects-start-message {
+    width: 100%;
+    text-align: center;
+    margin: 150px 0px 15px 0px;
+    font-size: 30px;
+    font-style: italic;
+    opacity: 0.4;
+}
+
+.Subjects .Subjects-start-button {
+    margin: 0 auto;
+}
+
 .Subjects .Subjects-subjects {
     display: flex;
     flex-wrap: wrap;

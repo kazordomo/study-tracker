@@ -35,7 +35,6 @@ class Subjects extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
         let sortedSubjects = this.props.subjects.sort((a, b) => {
             return new Date(b.lastUpdated) - new Date(a.lastUpdated);
         });
@@ -50,6 +49,9 @@ class Subjects extends Component {
     }
 
     render() {
+        const startMessage = [<div className="Subjects-start-message">Start with creating your first Subject!</div>, <Link className="Subjects-start-button" to='/addsubject'><button className="button">Create subject <i className="fa fa-plus" aria-hidden="true"></i></button></Link>];
+        const populateView = this.state.subjects.length ? this.state.subjects : startMessage.map((n) => {return n});
+
         return (
             <div className="Subjects">
                 <div className="container">
@@ -63,7 +65,7 @@ class Subjects extends Component {
                         <Link to='/addsubject'><span className="Subjects-add-subject">New subject</span></Link>
                     </div>
                     <div className="Subjects-subjects">
-                        {this.state.subjects}
+                        {populateView}
                     </div>
                 </div>
             </div>
