@@ -57,7 +57,18 @@ router.post('/register', (req, res) => {
             if(error) {
                 return res.status(400).end();
             } else {
-                return res.status(200).end();
+                const payload = {
+                    sub: user._id
+                };
+                //create token string
+                const token = jwt.sign(payload, config.jwtSecret);
+                const userId = user._id;
+                return res.json({
+                    success: true,
+                    userId: userId,
+                    token: token
+                });
+                // return res.status(200).end();
             }
         });
     } else {

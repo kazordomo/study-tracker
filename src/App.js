@@ -14,10 +14,9 @@ class App extends Component {
     //TODO: If we only fetch when we are auth, the page need to be reloaded for the subjects to render.
     //TODO: You should only be able to access for instance Subjects if you are logged in.
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            userId: '',
             subjects: []
         }
     }
@@ -44,13 +43,6 @@ class App extends Component {
                         });
                     })
             )
-        }
-    }
-
-    handleStoreUser() {
-        let user = localStorage.getItem('userId');
-        if(user) {
-            this.setState({userId: user});
         }
     }
 
@@ -98,7 +90,14 @@ class App extends Component {
         this.setState({subjects: subjects});
     }
 
-    componentWillMount() {
+    //"Creative" (or bad, your choice) async solution to, for instance, send subjects as props to overview.
+    fetchSubjectThenRedirect() {
+        this.getSubjects().then(() => {
+            return <Redirect to='/overview'/>;
+        });
+    }
+
+    componentDidMount() {
         this.getSubjects();
     }
 
@@ -137,8 +136,9 @@ class App extends Component {
                 <main>
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <HasTokenRoute path='/register' component={Register} />
+                        <HasTokenRoute path='/register' component={() => (<Register handleLogin={this.fetchSubjectThenRedirect.bind(this)} /> )} />
                         <PrivateRoute path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
+                        {/*<Route path='/overview' render={(props) => (<Subjects {...props} subjects={this.state.subjects} />)} />*/}
                         <PrivateRoute path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
                         <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} subjects={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
                         <Route path='/commits/:id' render={(props) => <Commits {...props} commits={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />

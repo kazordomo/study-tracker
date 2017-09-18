@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Auth from './Auth';
 import uuid from 'uuid';
@@ -91,6 +91,7 @@ class Commits extends Component {
         });
     }
 
+    //TODO: seems a bit off.
     handleDeleteCommit(message) {
         let commitData = {
             subject: this.state.subject,
@@ -107,6 +108,7 @@ class Commits extends Component {
         }).then((response) => {
             return response.json();
         }).then(data => {
+            console.log(data);
             let commits = this.state.commitMessages;
             let isCommitItem = commits.filter((com) => {
                 return com._id === message._id;
@@ -151,6 +153,9 @@ class Commits extends Component {
         return (
             <div className="Commits">
                 <div className="container">
+                    <div className="go-back">
+                        <Link to='/overview'><i className="fa fa-arrow-left" aria-hidden="true"></i></Link>
+                    </div>
                    <h1>{this.state.subject.title}</h1>
                     <form onSubmit={this.handleAddCommit.bind(this)}>
                         <input type="text" ref="message" placeholder="Message" required />

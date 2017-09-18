@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import Auth from './Auth';
 
+//TODO: FIX REGISTERING
 class Register extends Component {
-
-
-    //TODO: If we set username as state, we could send it as prop to profile and therefor not haveing to fetch it from database?
-    state = {
-        redirect: false
-    };
 
     postFetch(url) {
         let formData = {};
@@ -37,10 +31,8 @@ class Register extends Component {
                 return response.json();
             }
         }).then((data) => {
-            //TODO: we need to set the userId on register as well.
-            localStorage.setItem('userId', data.userId);
             Auth.authenticateUser(data.token);
-            this.setState({redirect: true});
+            this.props.handleLogin();
         });
     }
 
@@ -57,12 +49,6 @@ class Register extends Component {
     }
 
     render() {
-
-        const { redirect } = this.state;
-
-        if (redirect) {
-            return <Redirect to='/overview'/>;
-        }
 
         return (
             <div className="Register">

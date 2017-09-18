@@ -35,7 +35,7 @@ class Subjects extends Component {
     }
 
     componentDidMount() {
-        //DRY
+        console.log(this.props);
         let sortedSubjects = this.props.subjects.sort((a, b) => {
             return new Date(b.lastUpdated) - new Date(a.lastUpdated);
         });

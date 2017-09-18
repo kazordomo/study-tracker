@@ -81,21 +81,8 @@ class EditSubject extends Component {
             this.setState({subject: isSubjectItem});
         } else {
             this.setState({redirect: true});
-            // this.setState({
-            //     subject: {
-            //         commitMessages: [],
-            //         description: "Nej",
-            //         hoursDone: 12,
-            //         hoursTodo: 20,
-            //         inFocus: true,
-            //         infinity: false,
-            //         title: "Jaaarååååå",
-            //         _id: "59aefe6b86bcb25c1038e70d"
-            //     }
-            // })
         }
     }
-
     render() {
 
         const { redirect } = this.state;
