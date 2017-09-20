@@ -6,7 +6,6 @@ class Profile extends Component {
     state = {
         profileData: {}
     };
-    //TODO: User-profile. Show stats as total commits, total hours studied and so on...
 
     getJSON(response) {
         return response.json();

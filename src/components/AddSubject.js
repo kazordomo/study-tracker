@@ -13,7 +13,6 @@ class AddSubject extends Component {
         }
     }
 
-    //TODO: no id is added to subjects directly.
     handleSubmit(e) {
         e.preventDefault();
 
@@ -59,7 +58,7 @@ class AddSubject extends Component {
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <div>Title</div>
-                            <input type="text" ref="title" required />
+                            <input type="text" maxLength="30" ref="title" required />
                         </div>
                         <div className="form-group">
                             <div>Hours to do</div>
@@ -71,7 +70,7 @@ class AddSubject extends Component {
                         </div>
                         <div className="form-group">
                             <div>Description</div>
-                            <textarea ref="description" rows="15"></textarea>
+                            <textarea ref="description" maxLength="250" rows="15"></textarea>
                         </div>
                         <div className="form-group">
                             <div>In Focus?</div>

@@ -27,8 +27,7 @@ const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);
 //secured routes that will need a token.
 app.use('/api', apiRoutes);
-
-//TODO: some kind of error handling? maybe we should keep it on the client side.
+app.use('/*/api', apiRoutes);
 
 app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'));

@@ -5,8 +5,6 @@ const Subject = require('../models/Subject');
 const jwt = require('jsonwebtoken');
 const config = require('../../config');
 
-
-//TODO: CREATE A PROPER WAY TO GET THE USERID
 // /GET subjects
 router.get('/subjects', (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
@@ -100,9 +98,8 @@ router.post('/addcommit', (req, res) => {
 router.delete('/deletecommit', (req, res) => {
     Subject.findById(req.body.subject._id, (error, subject) => {
         let commit = subject.commitMessages.filter(message => message._id === req.body.message._id);
-        //wtf
         subject.hoursDone -= parseInt(commit[0].time, 10);
-        subject.commitMessages.splice(subject.commitMessages.indexOf(commit), 1);
+        subject.commitMessages.splice(subject.commitMessages.indexOf(commit[0]), 1);
         subject.save((error) => {
             if(error) {
                 return res.status(400).end();

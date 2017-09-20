@@ -3,13 +3,17 @@ const mongoose = require('mongoose');
 let SubjectSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        maxlength: 30
     },
     hoursDone: Number,
     //either hoursTodo or infinity should be required.
     hoursTodo: Number,
     infinity: Boolean,
-    description: String,
+    description: {
+        type: String,
+        maxlength: 250
+    },
     inFocus: Boolean,
     lastUpdated: {
         type: Date,

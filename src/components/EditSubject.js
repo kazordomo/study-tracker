@@ -108,7 +108,7 @@ class EditSubject extends Component {
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <div>Title</div>
-                            <input type="text" ref="title" defaultValue={this.state.subject.title} />
+                            <input type="text" ref="title" maxLength="30" defaultValue={this.state.subject.title} />
                         </div>
                         <div className="form-group">
                             <div>Hours to do</div>
@@ -123,7 +123,7 @@ class EditSubject extends Component {
                         </div>
                         <div className="form-group">
                             <div>Description</div>
-                            <textarea rows="15" ref="description" defaultValue={this.state.subject.description} ></textarea>
+                            <textarea rows="15" ref="description" maxLength="250" defaultValue={this.state.subject.description} ></textarea>
                         </div>
                         <div className="form-group">
                             <div>In Focus?</div>

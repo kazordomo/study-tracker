@@ -11,13 +11,11 @@ import './App.css';
 
 class App extends Component {
 
-    //TODO: If we only fetch when we are auth, the page need to be reloaded for the subjects to render.
-    //TODO: You should only be able to access for instance Subjects if you are logged in.
-
     constructor(props) {
         super(props);
         this.state = {
-            subjects: []
+            subjects: [],
+            isFetched: false
         }
     }
 
@@ -39,7 +37,8 @@ class App extends Component {
                     .then(this.getJSON)
                     .then((data) => {
                         this.setState({
-                            subjects: data.doc
+                            subjects: data.doc,
+                            isFetched: true
                         });
                     })
             )
@@ -97,7 +96,7 @@ class App extends Component {
         });
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getSubjects();
     }
 
@@ -131,41 +130,47 @@ class App extends Component {
         );
 
         return (
-            <div>
-                <Header />
-                <main>
-                    <Switch>
-                        <Route exact path='/' component={Home} />
-                        <HasTokenRoute path='/register' component={() => (<Register handleLogin={this.fetchSubjectThenRedirect.bind(this)} /> )} />
-                        <PrivateRoute path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
-                        {/*<Route path='/overview' render={(props) => (<Subjects {...props} subjects={this.state.subjects} />)} />*/}
-                        <PrivateRoute path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
-                        <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} subjects={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
-                        <Route path='/commits/:id' render={(props) => <Commits {...props} commits={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
-                        <Route path="*" component={NotFound} />
-                    </Switch>
-                </main>
-                <Footer />
-            </div>
+            this.state.isFetched || !Auth.isUserAuthenticated() ?
+                <div>
+                    <Header />
+                    <main>
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <HasTokenRoute path='/register' component={() => (<Register handleLogin={this.fetchSubjectThenRedirect.bind(this)} /> )} />
+                            <PrivateRoute path='/overview' component={() => (<Subjects subjects={this.state.subjects} />)} />
+                            <PrivateRoute path='/addsubject' component={() => (<AddSubject addSubject={this.handleAddSubject.bind(this)} />)} />
+                            <Route path='/editsubject/:id' render={(props) => <EditSubject {...props} subjects={this.state.subjects} editSubject={this.handleEditSubject.bind(this)} deleteSubject={this.handleDeleteSubject.bind(this)} />} />
+                            <Route path='/commits/:id' render={(props) => <Commits {...props} commits={this.state.subjects} addCommit={this.handleAddCommit.bind(this)} deleteCommit={this.handleDeleteCommit.bind(this)} />} />
+                            <Route path="*" component={NotFound} />
+                        </Switch>
+                    </main>
+                    <Footer />
+                </div> :
+                <Route path="*" component={Loader} />
         );
     }
 }
 
-const Header = () => (
-    <header>
-        <Link to="/"><span className="Header-logo">ST</span></Link>
-        <nav>
-            <ul>
-                <li><Link to='/' onClick={() => {Auth.removeToken()}}>Logout</Link></li>
-            </ul>
-        </nav>
-    </header>
-);
+const Header = () => {
+    let logout = Auth.isUserAuthenticated() ? <nav><ul><li><Link to ='/' onClick={()=>{Auth.removeToken()}}>Logout</Link></li></ul></nav> : '';
+    return (
+        <header>
+            <Link to="/"><span className="Header-logo">ST</span></Link>
+            {logout}
+        </header>
+    )
+};
 
 const Footer = () => (
     <footer>
         <p>Kazordomo productions <span className="Footer-cr">&copy;</span></p>
     </footer>
+);
+
+const Loader = () => (
+    <div className="Loader-container">
+        <div className="Loader-symbol"></div>
+    </div>
 );
 
 const NotFound = () => {

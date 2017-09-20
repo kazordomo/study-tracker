@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Auth from './Auth';
 
-//TODO: FIX REGISTERING
 class Register extends Component {
 
     postFetch(url) {

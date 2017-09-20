@@ -5,14 +5,13 @@ import Subject from './Subject';
 
 class Subjects extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             subjects: []
         }
     }
 
-    //TODO: no rerender of subject, need to reload to get the sorting done.
     handleSelect(e) {
         let sortedSubjects = this.props.subjects.sort((a, b) => {
             return new Date(b.lastUpdated) - new Date(a.lastUpdated);
@@ -34,7 +33,7 @@ class Subjects extends Component {
         this.setState({subjects: subjects});
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let sortedSubjects = this.props.subjects.sort((a, b) => {
             return new Date(b.lastUpdated) - new Date(a.lastUpdated);
         });
@@ -49,29 +48,49 @@ class Subjects extends Component {
     }
 
     render() {
-        const startMessage = [<div className="Subjects-start-message">Start with creating your first Subject!</div>, <Link className="Subjects-start-button" to='/addsubject'><button className="button">Create subject <i className="fa fa-plus" aria-hidden="true"></i></button></Link>];
-        const populateView = this.state.subjects.length ? this.state.subjects : startMessage.map((n) => {return n});
+        const ifSubjects = () => {
+            return (
+                this.state.subjects.length ?
+                    <div>
+                        <div className="Subjects-nav">
+                            <select onChange={this.handleSelect.bind(this)}>
+                                <option value="inFocus">In focus</option>
+                                <option value="all">All</option>
+                                <option value="done">Done</option>
+                            </select>
+                            <Link to='/addsubject'><span className="Subjects-add-subject">New subject</span></Link>
+                        </div>
+                        <div className="Subjects-subjects">
+                            {this.state.subjects}
+                        </div>
+                    </div> :
+                    <div>
+                        <div className="Subjects-subjects">
+                            <div className="Subjects-start-wrapper">
+                                <div className="Subjects-start-message">Start with creating your first Subject!</div>
+                                <Link className="Subjects-start-button" to='/addsubject'>
+                                    <button className="button">Create subject <i className="fa fa-plus" aria-hidden="true"></i></button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+            )
+        };
 
         return (
             <div className="Subjects">
                 <div className="container">
                     <div className="title">Subjects</div>
-                    <div className="Subjects-nav">
-                        <select onChange={this.handleSelect.bind(this)}>
-                            <option value="inFocus">In focus</option>
-                            <option value="all">All</option>
-                            <option value="done">Done</option>
-                        </select>
-                        <Link to='/addsubject'><span className="Subjects-add-subject">New subject</span></Link>
-                    </div>
-                    <div className="Subjects-subjects">
-                        {populateView}
-                    </div>
+                    {ifSubjects()}
                 </div>
             </div>
         );
     }
 }
+
+Subjects.defaultProps = {
+    subjects: []
+};
 
 Subjects.proTypes = {
     subjects: PropTypes.array

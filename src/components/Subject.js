@@ -48,8 +48,8 @@ class Subject extends Component {
                 <div className="Subject-wrapper">
                     <Link to={'/commits/'+this.props.subject._id} style={commitLinkStyle} ></Link>
                     <div className="clearfix">
-                        <div className="sub-title">{this.props.subject.title}</div>
                         <Link to={'/editsubject/'+this.props.subject._id} ><i className="fa fa-pencil-square-o" style={editLinkStyle} aria-hidden="true"></i></Link>
+                        <div className="sub-title">{this.props.subject.title}</div>
                     </div>
                     <div className="Subject-progress-bar">
                         <span className="Subject-percent">{progressBarText}</span>

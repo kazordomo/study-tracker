@@ -187,6 +187,27 @@ footer p .Footer-cr {
     color: #2EA3C9;
 }
 
+/* LOADER
+------------------------------------------------------------ */
+.Loader-container {
+    margin-top: 35vh;
+}
+
+.Loader-container .Loader-symbol {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border: 16px solid #FFFFFF;
+    border-top: 16px solid #2EA3C9;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* HOME
 ------------------------------------------------------------ */
 .Home .Home-wrapper {
@@ -251,10 +272,15 @@ footer p .Footer-cr {
 
 /* SUBJECTS
 ------------------------------------------------------------ */
-.Subjects .Subjects-start-message {
+.Subjects .Subjects-start-wrapper {
     width: 100%;
+    margin-top: 100px;
     text-align: center;
-    margin: 150px 0px 15px 0px;
+}
+
+.Subjects .Subjects-start-message {
+    margin-bottom: 15px;
+    text-align: center;
     font-size: 30px;
     font-style: italic;
     opacity: 0.4;
@@ -509,6 +535,10 @@ footer p .Footer-cr {
     font-size: 20px;
 }
 
+.Commit .Commit-time-responsive {
+    display: none;
+}
+
 .Commit i {
     margin-right: 20px;
 }
@@ -536,30 +566,84 @@ footer p .Footer-cr {
     background-color: rgba(46, 163, 201, 0.8);
 }
 
-/* PROFILE
+/* MEDIA QUERY
 ------------------------------------------------------------ */
-.Profile .container {
-    margin-top: 50px;
-    max-width: 500px;
+@media screen and (max-width: 700px) {
+    .Subject {
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+    .AddSubject .container, .EditSubject .container {
+        width: 90%;
+    }
+
+    .Subjects-nav {
+        margin: 15px 0px;
+    }
+
+    .Subjects .Subjects-nav select {
+        padding: 4px 7px;
+        font-size: 18px;
+        background-color: #2EA3C9;
+        border-radius: 2px;
+    }
+
+    .Subjects-add-subject {
+        padding: 4px 7px;
+        background-color: #2EA3C9;
+        border-radius: 2px;
+    }
 }
 
-.Profile .Profile-stats-row {
-    display: flex;
-    width: 100%;
-    /*margin-bottom: 10px;*/
-    padding: 10px 5px;
-    justify-content: space-between;
-    font-size: 30px;
-    /*border-bottom: 2px solid #1C3E66;*/
+@media screen and (max-width: 530px) {
+    main {
+        margin-top: 25px;
+    }
+    .go-back {
+        margin-bottom: 25px;
+    }
+    .Subject .sub-title {
+        width: 100%;
+        float: none;
+    }
+    .Commits input[type="text"], .Commits input[type="number"] {
+        margin-right: 0px;
+    }
+    .Commits input[type="number"] {
+        width: 20%;
+    }
+
+    .Commits input[type="text"] {
+        width: 78%;
+        margin-right: 2%;
+    }
+
+    .Commits .button.button-add {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .Commit {
+        background-color: rgba(46, 163, 201, 0.1);
+        font-size: 16px;
+    }
+    .Commit-delete i, .Commit .Commit-time {
+        font-size: 16px;
+    }
+    .Commit:hover {
+        background-color: transparent;
+    }
+    .Commit .Commit-delete {
+        opacity: 1;
+        cursor: pointer;
+    }
+    .Commit .Commit-dash {
+        margin: 0px 5px;
+    }
+    .Commit .Commit-time {
+        display: none;
+    }
+    .Commit .Commit-time-responsive {
+        display: inline-block;
+    }
 }
-
-.Profile .Profile-stats .Profile-stats-title {
-
-}
-
-.Profile .Profile-stats .Profile-stats-sum {
-    padding: 2px 10px;
-    background-color: #2EA3C9;
-    border-radius: 20px 0px 20px 0px;
-}
-
