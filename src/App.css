@@ -55,8 +55,6 @@ main {
 
 .button {
     padding: 10px 20px;
-    /*background-color: #FF8838;*/
-    /*color: #09121F;*/
     background-color: #2EA3C9;
     color: #FFFFFF;
     outline: none;
@@ -67,7 +65,6 @@ main {
     font-weight: 700;
 }
 
-/*remove important and change hiearchy instead pl0x*/
 .button.button-cancel {
     float: left !important;
     background-color: #FF8838;
@@ -479,7 +476,6 @@ footer p .Footer-cr {
 
 /* COMMITS
 ------------------------------------------------------------ */
-/*change ALL of this*/
 .Commits input[type="text"], .Commits input[type="number"] {
     box-sizing: border-box;
     margin-right: 1.5%;

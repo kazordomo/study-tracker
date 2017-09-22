@@ -40,8 +40,7 @@ class Subject extends Component {
             goldStarStyle.display = 'block';
             style.borderRadius = '2px 2px 2px 2px';
         }
-        const progressBarText = this.props.subject.infinity ? <i className="fa fa-bolt" aria-hidden="true"></i> : (hoursDonePercent + '%');
-
+        const progressBarText = this.props.subject.infinity ? (this.props.subject.hoursDone + 'h') : (hoursDonePercent + '%');
         return (
             <div className="Subject">
                 <i className="fa fa-star Subject-gold-star" style={goldStarStyle} aria-hidden="true"></i>

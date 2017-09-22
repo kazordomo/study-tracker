@@ -12,7 +12,6 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        //TODO: should catch error if the request is bad
         return (
             fetch('api/profile', {
                 method: 'get',

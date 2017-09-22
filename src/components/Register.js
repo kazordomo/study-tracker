@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Auth from './Auth';
+import PropTypes from 'prop-types';
 
 class Register extends Component {
 
@@ -37,13 +38,11 @@ class Register extends Component {
 
     handleLogin(e) {
         e.preventDefault();
-
         this.postFetch('login');
     }
 
     handleRegister(e) {
         e.preventDefault();
-
         this.postFetch('register');
     }
 
@@ -71,5 +70,9 @@ class Register extends Component {
         );
     }
 }
+
+Register.propTypes = {
+    handleLogin: PropTypes.func
+};
 
 export default Register;

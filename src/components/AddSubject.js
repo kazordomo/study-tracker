@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Auth from './Auth';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class AddSubject extends Component {
 
-    constructor(   ) {
-        super();
-        this.state = {
-            redirect: false
-        }
-    }
+    state = {
+        redirect: false
+    };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -36,13 +32,13 @@ class AddSubject extends Component {
         }).then((response) => {
             return response.json();
         }).then((data) => {
-            //case of race condition?
             this.setState({redirect: true});
             this.props.addSubject(data);
         });
     }
 
     render() {
+
         const { redirect } = this.state;
 
         if (redirect) {

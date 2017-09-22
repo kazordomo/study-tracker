@@ -15,7 +15,6 @@ router.get('/subjects', (req, res) => {
     });
 });
 
-//TODO: CREATE A PROPER WAY TO GET THE USERID
 // /ADD subject
 router.post('/addsubject', (req, res) => {
     if(req.body.title) {

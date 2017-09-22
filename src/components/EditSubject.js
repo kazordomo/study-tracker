@@ -67,21 +67,17 @@ class EditSubject extends Component {
         }).then((response) => {
             if(response.status === 200) {
                 this.setState({redirect: true});
+                this.props.deleteSubject(this.state.subject);
             }
         });
-        this.props.deleteSubject(this.state.subject);
     }
 
     componentWillMount() {
-        if(this.props.subjects.length) {
-            let paramId = this.props.match.params.id;
-            let isSubjectItem = this.props.subjects.filter((sub) => {
-                return sub._id === paramId;
-            })[0];
-            this.setState({subject: isSubjectItem});
-        } else {
-            this.setState({redirect: true});
-        }
+        let paramId = this.props.match.params.id;
+        let isSubjectItem = this.props.subjects.filter((sub) => {
+            return sub._id === paramId;
+        })[0];
+        this.setState({subject: isSubjectItem});
     }
     render() {
 
@@ -108,7 +104,7 @@ class EditSubject extends Component {
                     <form onSubmit={this.handleSubmit.bind(this)}>
                         <div className="form-group">
                             <div>Title</div>
-                            <input type="text" ref="title" maxLength="30" defaultValue={this.state.subject.title} />
+                            <input type="text" ref="title" maxLength="30" defaultValue={this.state.subject.title} required />
                         </div>
                         <div className="form-group">
                             <div>Hours to do</div>

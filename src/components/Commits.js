@@ -120,10 +120,7 @@ class Commits extends Component {
         });
     }
 
-
-
     render() {
-
         let quantity = this.renderCommitMessages(this.state.commitMessages).length;
         let quantityTotal = this.state.subject.commitMessages.length;
         let showMore = this.renderCommitMessages(this.state.commitMessages).length === this.state.commitMessages.length ?
