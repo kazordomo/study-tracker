@@ -105,6 +105,7 @@ class App extends Component {
     render() {
 
         //CUSTOM ROUTES
+        //routes only avaible if login
         const PrivateRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={props => (
                 Auth.isUserAuthenticated() ? (
@@ -118,6 +119,7 @@ class App extends Component {
             )}/>
         );
 
+        //redirect to overview if auth-token
         const HasTokenRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={props => (
                 Auth.isUserAuthenticated() ? (

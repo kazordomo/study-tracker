@@ -36,7 +36,6 @@ class Commits extends Component {
         }).slice(0, quantity);
         return (
             messagesArr.map(message => {
-                //lol, no. just no.
                 message.formatedDate = new moment(message.timestamp).format('MMM Do YY');
                 return (
                     <Commit value={message} deleteCommit={this.handleDeleteCommit.bind(this)} key={message._id} />
