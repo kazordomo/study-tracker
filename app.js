@@ -17,10 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //serve static files from /public folder
-LOCAL
-app.use(express.static(__dirname + '/client/public'));
+// LOCAL
+// app.use(express.static(__dirname + '/client/public'));
 // DEPLOYED
-// app.use(express.static(__dirname + '/client/build'));
+app.use(express.static(__dirname + '/client/build'));
 app.use(favicon(__dirname + '/client/public/favicon.ico'));
 
 const authCheckMiddleware = require('./server/middleware/auth-check');
