@@ -298,7 +298,7 @@ footer p .Footer-cr {
     margin-bottom: 5px;
 }
 
-.Subjects .Subjects-nav select {
+.Subjects .Subjects-nav .Subject-select {
     border: none;
     font-size: 18px;
     background-color: transparent;
@@ -308,13 +308,13 @@ footer p .Footer-cr {
     font-weight: 700;
 }
 
-.Subjects .Subjects-nav select > option {
+.Subjects .Subjects-nav .Subject-select > option {
     background-color: #09121F;
     cursor: pointer;
     font-weight: 700;
 }
 
-.Subjects .Subjects-nav select option:hover {
+.Subjects .Subjects-nav .Subject-select option:hover {
     box-shadow: 0 0 10px 100px #1882A8 inset;
 }
 

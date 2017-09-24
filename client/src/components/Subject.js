@@ -38,6 +38,8 @@ class Subject extends Component {
         };
         if(hoursDonePercent === 100 && !this.props.subject.infinity) {
             goldStarStyle.display = 'block';
+        }
+        if(hoursDonePercent === 100 || this.props.subject.infinity) {
             style.borderRadius = '2px 2px 2px 2px';
         }
         const progressBarText = this.props.subject.infinity ? (this.props.subject.hoursDone + 'h') : (hoursDonePercent + '%');

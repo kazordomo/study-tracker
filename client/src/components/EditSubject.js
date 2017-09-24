@@ -126,7 +126,7 @@ class EditSubject extends Component {
                             <input type="checkbox" ref="inFocus" className="switch" defaultChecked={this.state.subject.inFocus} />
                         </div>
                         <div className="button-wrapper">
-                            <input type="submit" className="button" value="Edit" />
+                            <input type="submit" className="EditSubject-button button" value="Edit" />
                             <button className="EditSubject-delete button" onClick={this.openCloseDeleteModal.bind(this)}>Delete</button>
                         </div>
                     </form>

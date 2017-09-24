@@ -73,7 +73,7 @@ class AddSubject extends Component {
                             <input type="checkbox" ref="inFocus" className="switch" defaultChecked />
                         </div>
                         <div className="button-wrapper">
-                            <input type="submit" className="button" value="Add" />
+                            <input type="submit" className="AddSubject-button button" value="Add" />
                         </div>
                     </form>
                 </div>

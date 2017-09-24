@@ -53,7 +53,7 @@ class Subjects extends Component {
                 this.state.subjects.length ?
                     <div>
                         <div className="Subjects-nav">
-                            <select onChange={this.handleSelect.bind(this)}>
+                            <select className="Subject-select" onChange={this.handleSelect.bind(this)}>
                                 <option value="inFocus">In focus</option>
                                 <option value="all">All</option>
                                 <option value="done">Done</option>
