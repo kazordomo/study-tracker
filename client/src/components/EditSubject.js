@@ -93,9 +93,9 @@ class EditSubject extends Component {
                     <div className="EditSubject-fade-background"></div>
                     <div className="EditSubject-delete-modal">
                         <div className="title">Delete subject?</div>
-                        <div className="button-wrapper">
-                            <button className="button-cancel button" onClick={this.openCloseDeleteModal.bind(this)}>Cancel</button>
-                            <button className="EditSubject-delete button" onClick={this.handleDelete.bind(this)}>Delete</button>
+                        <div className="EditSubject-button-wrapper">
+                            <button className="EditSubject-button-cancel" onClick={this.openCloseDeleteModal.bind(this)}>Cancel</button>
+                            <button className="EditSubject-delete" onClick={this.handleDelete.bind(this)}>Delete</button>
                         </div>
                     </div>
                     <div className="go-back">
@@ -125,9 +125,9 @@ class EditSubject extends Component {
                             <div>In Focus?</div>
                             <input type="checkbox" ref="inFocus" className="switch" defaultChecked={this.state.subject.inFocus} />
                         </div>
-                        <div className="button-wrapper">
-                            <input type="submit" className="EditSubject-button button" value="Edit" />
-                            <button className="EditSubject-delete button" onClick={this.openCloseDeleteModal.bind(this)}>Delete</button>
+                        <div className="EditSubject-button-wrapper">
+                            <input type="submit" className="EditSubject-button" value="Edit" />
+                            <button className="EditSubject-delete" onClick={this.openCloseDeleteModal.bind(this)}>Delete</button>
                         </div>
                     </form>
                 </div>

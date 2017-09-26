@@ -69,7 +69,7 @@ class Subjects extends Component {
                             <div className="Subjects-start-wrapper">
                                 <div className="Subjects-start-message">Start with creating your first Subject!</div>
                                 <Link className="Subjects-start-button" to='/addsubject'>
-                                    <button className="button">Create subject <i className="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button>Create subject <i className="fa fa-plus" aria-hidden="true"></i></button>
                                 </Link>
                             </div>
                         </div>

@@ -135,7 +135,7 @@ class Commits extends Component {
                     <form onSubmit={this.handleAddCommit.bind(this)}>
                         <input type="text" ref="message" placeholder="Message" required />
                         <input type="number" ref="time" placeholder="Hours" required />
-                        <input type="submit" value="Add" className="Commits-button button button-add" />
+                        <input type="submit" value="Add" className="Commits-button Commits-button-add" />
                     </form>
                     <div className="Commits-messages">
                         {this.renderCommitMessages(this.state.commitMessages)}

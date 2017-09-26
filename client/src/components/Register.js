@@ -55,7 +55,7 @@ class Register extends Component {
                         <div className="sub-title">Login</div>
                         <input type="text" ref="loginUserName" placeholder="Username..." />
                         <input type="password" ref="loginPassword" placeholder="Password..." />
-                        <input type="submit" className="Login-button button" value="Login" />
+                        <input type="submit" className="Login-button" value="Login" />
                     </form>
                     <form onSubmit={this.handleRegister.bind(this)}>
                         <div className="sub-title">Register</div>
@@ -63,7 +63,7 @@ class Register extends Component {
                         <input type="text" ref="email" placeholder="Email..." />
                         <input type="password" ref="password" placeholder="Password..." />
                         <input type="password" ref="reenterPassword" placeholder="Password..." />
-                        <input type="submit" className="Register-button button" value="Register" />
+                        <input type="submit" className="Register-button" value="Register" />
                     </form>
                 </div>
             </div>

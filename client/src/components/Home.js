@@ -9,7 +9,7 @@ class Home extends Component {
                     <div className="Home-title">STUDY TRACKER</div>
                     <div className="Home-sub-title">Track your study progress.</div>
                     <div className="Home-button">
-                        <Link to='/register'><button className="button">Login/Register</button></Link>
+                        <Link to='/register'><button>Login/Register</button></Link>
                     </div>
                 </div>
             </div>
